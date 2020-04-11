@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\avnee_000\.Rider2019.3\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\avnee_000\.Rider2019.3\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\avnee_000\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\avnee_000\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_WpfTaskify.1518465113.00" t="ExcludeRecursive" />
+    <e p="E:\Development\Projects\Taskify\src\WpfPrismApplication\WpfTaskify" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="WpfTaskify" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="IShell.cs" t="Include" />
+        <e p="IShellViewModel.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="App.g.cs" t="Include" />
+            <e p="Shell.g.cs" t="Include" />
+          </e>
+        </e>
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="Shell.xaml" t="Include" />
+        <e p="Shell.xaml.cs" t="Include" />
+        <e p="ShellViewModel.cs" t="Include" />
+        <e p="WpfTaskify.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="WpfTaskify.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
