@@ -4,13 +4,11 @@ Using Microsoft Todo and a template (at least in terms of functionality) this pr
 
 The aim is to implement Taskify for...
 
-* Mobile, includes Android, iOS and UWP (see note below regarding UWP) using Xamarin.Forms, needs to work on phone and tablet idioms
+* Mobile, includes Android and iOS using Xamarin.Forms, needs to work on phone and tablet idioms
 * Windows desktop using WPF and/or UWP (see note below)
 * Mac desktop using Xamarin.Mac
 * Tizen OS, specifically for the watch using Xamarin.Tizen
 * Web using React
-
-_Note: UWP may be better being implemented as "pure" UWP instead of using Xamarin.Forms, so this one may change, or look into using Uno to develop it and mayby also port to mobile._
 
 # Functional Requirements
 
