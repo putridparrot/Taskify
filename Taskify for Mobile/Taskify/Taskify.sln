@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify.Android", "Taskify\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify.iOS", "Taskify\Taskify.iOS\Taskify.iOS.csproj", "{E1503291-6B8F-4FA0-ACFB-CC9BB47714A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify", "Taskify\Taskify\Taskify.csproj", "{7CA02976-2E32-429B-9602-C3F598B80515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify", "Taskify\Taskify\Taskify.csproj", "{7CA02976-2E32-429B-9602-C3F598B80515}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{BE2BFC07-DB21-4BB8-AC62-9DBAB695F7EB}"
 EndProject
