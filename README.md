@@ -25,11 +25,19 @@ The mobile application supports Android, iOS (and possibly UWP) using Xamarin.Fo
 
 # Windows desktop
 
-The Windows desktop should be written in either WPF or UWP (or both as UWP would be supported in the Window store)
+There may well end up being two "Windows desktop" implementations, one in WPF and one in UWP which would allow the application to target the Windows store or even be installed on Xbox.
 
 # Mac desktop
 
 The Mac desktop application is currently being written using Xamarin.Mac.
+
+# Linux/Gnome
+
+Not sure the level of support but might be interesting the try GTK#
+
+https://www.mono-project.com/download/stable/
+
+Installed to C:\Program Files (x86)\GtkSharp\2.12\lib
 
 # Tizen OS
 
