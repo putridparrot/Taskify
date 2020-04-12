@@ -102,8 +102,8 @@
     <None Include="webkit-sharp.dll.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Taskify for Mobile\Taskify\Taskify\Taskify\Taskify.csproj">
-      <Project>{483c327d-0713-4137-9f1e-633fef03878a}</Project>
+    <ProjectReference Include="..\..\..\..\Taskify for Mobile\Taskify\Taskify\Taskify\Taskify.csproj">
+      <Project>{24526e55-b3a2-4731-95e4-8486b4824d78}</Project>
       <Name>Taskify</Name>
     </ProjectReference>
   </ItemGroup>
