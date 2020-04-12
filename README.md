@@ -21,7 +21,7 @@ Core concepts.
 
 # Mobile 
 
-The mobile application should support Android, iOS (and possibly UWP) and work on phone and tablet type devices.
+The mobile application supports Android, iOS (and possibly UWP) using Xamarin.Forms and aims work on phone and tablet type devices.
 
 # Windows desktop
 
@@ -29,12 +29,12 @@ The Windows desktop should be written in either WPF or UWP (or both as UWP would
 
 # Mac desktop
 
-The Mac desktop application should be written using Xamarin.Mac.
+The Mac desktop application is currently being written using Xamarin.Mac.
 
 # Tizen OS
 
-Tizen watch should be supported using Tizen.NET and include integration with Samsung phones.
+Tizen watch is currently using Tizen.NET and should eventually include integration with phones via SAP (Samsung Accessory Protocol) see https://developer.samsung.com/galaxy-watch-develop/creating-your-first-app/native-companion/interact-device.html.
 
 # Web
 
-A Web based implementation should be written using React and support PWA functionality for an offline experience.
+A Web based implementation is written using React along with material-ui and aims to support PWA functionality for an offline experience.
