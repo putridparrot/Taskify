@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Taskify.Data.Domain.TaskItem">
+    <Position X="322.5" Y="339" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADCAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAACAEAAAA=</HashCode>
+      <FileName>Domain\TaskItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Schedule" />
+      <Property Name="Note" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Steps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Taskify.Data.Domain.TaskList">
+    <Position X="319.5" Y="339" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Domain\TaskList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="specification" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tasks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Taskify.Data.Domain.TaskListSpecification">
+    <Position X="316.25" Y="338.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgCABAAAAEAAAAAABABAAAAAAA=</HashCode>
+      <FileName>Domain\TaskListSpecification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Taskify.Data.Domain.TaskStep">
+    <Position X="322.5" Y="336.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\TaskStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Taskify.Data.Domain.TaskItemSchedule">
+    <Position X="322.5" Y="342.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\TaskItemSchedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Taskify.Data.Domain.TaskNote">
+    <Position X="325.5" Y="339.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Domain\TaskNote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

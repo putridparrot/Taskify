@@ -3,43 +3,61 @@ using NUnit.Framework;
 using System.Linq;
 using TechTalk.SpecFlow;
 using Taskify.Data.Domain;
+using Taskify.Data.Services;
 
 namespace Tests.Taskify.Data
 {
     [Binding]
     public class AddRemovalOfTaskListsSteps
     {
-        private readonly TaskListContext _context;
+        private readonly TaskService taskService;
 
-        public AddRemovalOfTaskListsSteps(TaskListContext context)
+        public AddRemovalOfTaskListsSteps(TaskService taskService)
         {
-            _context = context;
+            this.taskService = taskService;
         }
 
         [Given(@"I have a known set of user lists")]
         public void GivenIHaveAKnownSetOfUserLists()
         {
-            _context.State.TaskLists.Add(new UserdefinedList("L1"));
-            _context.State.TaskLists.Add(new UserdefinedList("L2"));
-            _context.State.TaskLists.Add(new UserdefinedList("L3"));
+            taskService.AddTaskList(new TaskList("L1", new TaskListSpecification()
+            {
+                CanDelete = true
+            }));
+
+            taskService.AddTaskList(new TaskList("L2", new TaskListSpecification()
+            {
+                CanDelete = true
+            }));
+
+            taskService.AddTaskList(new TaskList("L3", new TaskListSpecification()
+            {
+                CanDelete = true
+            }));
         }
 
         [Given(@"I add a new list (.*)")]
         public void GivenIAddANewList(string listName)
         {
-            _context.State.TaskLists.Add(new UserdefinedList(listName));
+            taskService.AddTaskList(new TaskList(listName, new TaskListSpecification()
+            {
+                CanDelete = true
+            }));
+
+            
         }
 
         [Given(@"I remove a list (.*)")]
         public void GivenIRemoveAList(string listName)
         {
-            _context.State.RemoveByName(listName);
+            taskService.RemoveTaskList(listName);
+            
         }
 
         [Then(@"I expect to see (.*) (.*) list in the user defined list")]
         public void ThenIExpectToSeeListInTheUserDefinedList(int count, string listName)
         {
-            Assert.AreEqual(count, _context.State.TaskLists.Count(l => l.Name == listName));
+            Assert.IsNotNull(taskService.FindList(listName));
         }
     }
 }

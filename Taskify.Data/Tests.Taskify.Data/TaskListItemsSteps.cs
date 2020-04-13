@@ -1,8 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using TechTalk.SpecFlow;
 using Taskify.Data.Domain;
+using Taskify.Data.Services;
 
 
 namespace Tests.Taskify.Data
@@ -10,24 +13,26 @@ namespace Tests.Taskify.Data
     [Binding]
     public class TaskListItemsSteps
     {
-        private readonly TaskListContext _context;
+        private readonly TaskService taskService;
+
         private List<TaskItem> _results;
 
-        public TaskListItemsSteps(TaskListContext context)
+        public TaskListItemsSteps(TaskService taskService)
         {
-            _context = context;
+            this.taskService = taskService;
         }
 
-        [Given(@"I have (.*) for (.*)")]
-        public void GivenIHaveFor(int tasks, string taskList)
+        [Given(@"I have (.*) for (.*) with (.*)")]
+        public void GivenIHaveFor(int tasks, string taskList,bool isUserGenerated)
         {
-            GenerateTasks(_context, tasks, taskList);
+            GenerateTasks(tasks, taskList, isUserGenerated);
         }
 
-        [When(@"I request (.*)'s tasks")]
-        public void WhenIRequestSTasks(string taskList)
+        [When(@"I request (.*)'s tasks for (.*)")]
+        public void WhenIRequestSTasks(string taskList, bool isUserGenerated)
         {
-            _results = _context.State.ByName(taskList);
+            var list = taskService.FindList(taskList, isUserGenerated);
+            this._results = list.Tasks;
         }
 
         [Then(@"the resultant list should have (.*) items")]
@@ -39,105 +44,28 @@ namespace Tests.Taskify.Data
         [Given(@"I have a known state of tasks")]
         public void GivenIHaveAKnownStateOfTasks()
         {
-            // user defined some today most not
-            _context.State.TaskLists.Add(new UserdefinedList("New List")
-            {
-                Tasks =
-                {
-                    new TaskItem
-                    {
-                        Due = DateTime.Now.AddDays(1)
-                    },
-                    new TaskItem
-                    {
-                        Due = DateTime.Now.AddDays(1)
-                    },
-                    new TaskItem
-                    {
-                        Due = DateTime.Now.AddDays(1)
-                    },
-                    new TaskItem
-                    {
-                        Due = DateTime.Now
-                    },
-                }
-            });
-
-            // My Day
-            _context.State.Tasks.Add(new TaskItem
-            {
-                Due = DateTime.Now
-            });
-            // Important && Planned
-            _context.State.Tasks.Add(new TaskItem
-            {
-                Important = true,
-                Due = DateTime.Now.AddDays(1)
-            });
-            _context.State.Tasks.Add(new TaskItem
-            {
-                Important = true,
-                Due = DateTime.Now.AddDays(2)
-            });
-            _context.State.Tasks.Add(new TaskItem
-            {
-                Important = true,
-                Due = DateTime.Now.AddDays(3)
-            });
-            // Planned but not important
-            _context.State.Tasks.Add(new TaskItem
-            {
-                Due = DateTime.Now.AddDays(4)
-            });
         }
 
-        private static void GenerateTasks(TaskListContext context, int numTasks, string taskListName)
+        private void GenerateTasks(int numTasks, string taskListName, bool isUserGenerated)
         {
-            var taskList = context.State.GetTaskList(taskListName);
-            if (taskList is SmartList)
+            if (!isUserGenerated)
             {
-                // add tasks that will be filtered by the smart list
+                var taskList = taskService.FindList(taskListName).First();
                 for (var i = 0; i < numTasks; i++)
                 {
-                    var task = new TaskItem();
-                    context.State.Tasks.Add(task);
-
-                    switch (taskListName)
-                    {
-                        case "My Day":
-                            task.Due = DateTime.Now;
-                            break;
-                        case "Important":
-                            task.Important = true;
-                            break;
-                        case "Planned":
-                            task.Due = DateTime.Now.AddDays(3);
-                            break;
-                    }
+                    taskList.Tasks.Add(new TaskItem("Task:" + i));
                 }
             }
             else
             {
-                UserdefinedList list;
-                if (taskList != null)
+                TaskList taskList = new TaskList(taskListName, new TaskListSpecification() { CanDelete = true });
+                for (var i = 0; i < numTasks; i++)
                 {
-                    list = taskList as UserdefinedList;
+                    taskList.Tasks.Add(new TaskItem("Task:" + i));
                 }
-                else
-                {
-                    list = new UserdefinedList(taskListName);
-                    context.State.TaskLists.Add(list);
-                }
-
-                if (list != null)
-                {
-                    // generate required tasks for this list
-                    for (var i = 0; i < numTasks; i++)
-                    {
-                        list.Tasks.Add(new TaskItem { });
-                    }
-                }
+                taskService.AddTaskList(taskList);
             }
+            
         }
     }
 }

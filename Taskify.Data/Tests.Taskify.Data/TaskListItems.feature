@@ -4,31 +4,19 @@
 
 @TaskListItems
 Scenario: When I request matching tasks for a task list
-	Given I have <tasks> for <taskList>
-	When I request <taskList>'s tasks
+	Given I have <tasks> for <taskList> with <isUserGenerated>
+	When I request <taskList>'s tasks for <isUserGenerated>
 	Then the resultant list should have <expected> items
 
 	Examples: 
-	| taskList | tasks | expected |
-	| My Day   | 0     | 0        |
-	| My Day   | 10    | 10       |
-	| Important| 0     | 0        |
-	| Important| 4     | 4        |
-	| Planned  | 0     | 0        |
-	| Planned  | 4     | 4        |
-	| New List | 0     | 0        |
-	| New List | 12    | 12       |
+	| taskList | tasks | expected |isUserGenerated |
+	| My Day   | 0     | 0        |False |
+	| My Day   | 10    | 10       |True |
+	| Important| 0     | 0        |False |
+	| Important| 4     | 4        |True |
+	| Planned  | 0     | 0        |False |
+	| Planned  | 4     | 4        |True |
+	| New List | 0     | 0        |True |
+	| New List | 12    | 12       |True |
 
-@TaskListItems
-Scenario: When I request matching tasks for a known task list state
-	Given I have a known state of tasks
-	When I request <taskList>'s tasks
-	Then the resultant list should have <expected> items
-
-	Examples: 
-	| taskList | expected |
-	| My Day   | 2        |
-	| Important| 3        |
-	| Planned  | 7        |
-	| New List | 4        |
 

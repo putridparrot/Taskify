@@ -77,15 +77,15 @@ namespace Tests.Taskify.Data
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("When I request matching tasks for a task list")]
         [NUnit.Framework.CategoryAttribute("TaskListItems")]
-        [NUnit.Framework.TestCaseAttribute("My Day", "0", "0", null)]
-        [NUnit.Framework.TestCaseAttribute("My Day", "10", "10", null)]
-        [NUnit.Framework.TestCaseAttribute("Important", "0", "0", null)]
-        [NUnit.Framework.TestCaseAttribute("Important", "4", "4", null)]
-        [NUnit.Framework.TestCaseAttribute("Planned", "0", "0", null)]
-        [NUnit.Framework.TestCaseAttribute("Planned", "4", "4", null)]
-        [NUnit.Framework.TestCaseAttribute("New List", "0", "0", null)]
-        [NUnit.Framework.TestCaseAttribute("New List", "12", "12", null)]
-        public virtual void WhenIRequestMatchingTasksForATaskList(string taskList, string tasks, string expected, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("My Day", "0", "0", "False", null)]
+        [NUnit.Framework.TestCaseAttribute("My Day", "10", "10", "True", null)]
+        [NUnit.Framework.TestCaseAttribute("Important", "0", "0", "False", null)]
+        [NUnit.Framework.TestCaseAttribute("Important", "4", "4", "True", null)]
+        [NUnit.Framework.TestCaseAttribute("Planned", "0", "0", "False", null)]
+        [NUnit.Framework.TestCaseAttribute("Planned", "4", "4", "True", null)]
+        [NUnit.Framework.TestCaseAttribute("New List", "0", "0", "True", null)]
+        [NUnit.Framework.TestCaseAttribute("New List", "12", "12", "True", null)]
+        public virtual void WhenIRequestMatchingTasksForATaskList(string taskList, string tasks, string expected, string isUserGenerated, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "TaskListItems"};
@@ -116,62 +116,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given(string.Format("I have {0} for {1}", tasks, taskList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have {0} for {1} with {2}", tasks, taskList, isUserGenerated), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When(string.Format("I request {0}\'s tasks", taskList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I request {0}\'s tasks for {1}", taskList, isUserGenerated), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then(string.Format("the resultant list should have {0} items", expected), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("When I request matching tasks for a known task list state")]
-        [NUnit.Framework.CategoryAttribute("TaskListItems")]
-        [NUnit.Framework.TestCaseAttribute("My Day", "2", null)]
-        [NUnit.Framework.TestCaseAttribute("Important", "3", null)]
-        [NUnit.Framework.TestCaseAttribute("Planned", "7", null)]
-        [NUnit.Framework.TestCaseAttribute("New List", "4", null)]
-        public virtual void WhenIRequestMatchingTasksForAKnownTaskListState(string taskList, string expected, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "TaskListItems"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When I request matching tasks for a known task list state", null, @__tags);
-#line 23
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 24
- testRunner.Given("I have a known state of tasks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 25
- testRunner.When(string.Format("I request {0}\'s tasks", taskList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 26
  testRunner.Then(string.Format("the resultant list should have {0} items", expected), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
