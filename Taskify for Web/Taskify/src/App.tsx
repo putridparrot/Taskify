@@ -1,5 +1,8 @@
-import React from 'react';
+import React from "react";
+import {render} from "react-dom"
+
 import './App.css';
+
 
 function App() {
   return (
@@ -9,3 +12,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
