@@ -25,7 +25,7 @@ The mobile application supports Android, iOS (and possibly UWP) using Xamarin.Fo
 
 # Windows desktop
 
-There may well end up being two "Windows desktop" implementations, one in WPF and one in UWP which would allow the application to target the Windows store or even be installed on Xbox.
+There are two "Windows desktop" implementations, one in WPF and one in UWP (Universal Windows). The UWP implementation would allow the application to target the Windows store or even be installed on Xbox.
 
 # Mac desktop
 
