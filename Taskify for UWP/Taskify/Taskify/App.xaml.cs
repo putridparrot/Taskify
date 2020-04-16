@@ -5,8 +5,11 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +33,7 @@ namespace Taskify
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
         }
 
         /// <summary>
@@ -58,6 +62,11 @@ namespace Taskify
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
+
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             if (e.PrelaunchActivated == false)
             {
@@ -95,6 +104,10 @@ namespace Taskify
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnResuming(object sender, object e)
+        {
         }
     }
 }

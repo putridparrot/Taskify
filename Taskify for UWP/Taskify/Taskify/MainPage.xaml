@@ -9,6 +9,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <NavigationView IsBackEnabled="False" IsBackButtonVisible="Collapsed" PaneDisplayMode="Left">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Item1">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE81E;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+        </NavigationView>
+        <Grid>
+            <TextBlock Text="Content"
+                       FontSize="24"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+        <SplitView IsPaneOpen="True" DisplayMode="Inline" PanePlacement="Right">
 
+        </SplitView>
     </Grid>
 </Page>
