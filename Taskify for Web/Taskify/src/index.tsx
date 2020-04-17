@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 
 import * as serviceWorker from './serviceWorker';
-import Header from "./Components/HeaderComponent";
+import ContainerComponent from "./Components/ContainerComponent";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

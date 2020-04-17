@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskifyWebApiService", "TaskifyWebApiService\TaskifyWebApiService.csproj", "{022BBB3C-A39B-402E-8F05-9279726AD76C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskifyWebApiService", "TaskifyWebApiService\TaskifyWebApiService.csproj", "{022BBB3C-A39B-402E-8F05-9279726AD76C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{8A4B2FCE-3B5B-4018-9C64-E93D9322E2C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Taskify.Data", "..\..\Taskify.Data\Tests.Taskify.Data\Tests.Taskify.Data.csproj", "{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{022BBB3C-A39B-402E-8F05-9279726AD76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{022BBB3C-A39B-402E-8F05-9279726AD76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{022BBB3C-A39B-402E-8F05-9279726AD76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4B2FCE-3B5B-4018-9C64-E93D9322E2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4B2FCE-3B5B-4018-9C64-E93D9322E2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4B2FCE-3B5B-4018-9C64-E93D9322E2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4B2FCE-3B5B-4018-9C64-E93D9322E2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
