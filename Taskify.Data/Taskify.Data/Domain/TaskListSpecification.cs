@@ -1,6 +1,6 @@
 ﻿namespace Taskify.Data.Domain
 {
-    public class TaskListSpecification
+    public class TaskListSpecification 
     {
         public TaskListSpecification()
         {

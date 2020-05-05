@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Taskify.Data.Services;
+using Taskify.Data.SqlServer;
 
 namespace TaskifyWebApiService
 {
@@ -27,6 +28,7 @@ namespace TaskifyWebApiService
         {
             services.AddControllers();
             services.AddDependencies();
+            services.AddDbContext<TaskifyDbContext>();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -40,6 +42,14 @@ namespace TaskifyWebApiService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var dbInitializer = scope.ServiceProvider.GetService<IDbInitializerService>();
+                dbInitializer.Initialize();
+                dbInitializer.SeedData();
             }
 
             app.UseCors("CorsPolicy");
