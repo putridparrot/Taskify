@@ -1,8 +1,6 @@
-﻿using System;
-using Taskify.Data.Services;
+﻿using Taskify.Data.Services;
 using Taskify.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Taskify
 {
@@ -14,7 +12,6 @@ namespace Taskify
 
             DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
-
         }
 
         protected override void OnStart()

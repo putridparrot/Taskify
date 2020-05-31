@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Taskify.Data.Domain;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,13 +8,13 @@ namespace Taskify.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public TaskItem Item { get; set; }
 
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Item = new TaskItem
             {
                 Text = "Item name",
                 Description = "This is an item description."

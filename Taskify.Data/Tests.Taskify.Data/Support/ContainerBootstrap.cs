@@ -10,18 +10,18 @@ namespace Tests.Taskify.Data.Support
     [Binding]
     public  class ContainerBootstrap
     {
-        private readonly IObjectContainer objectContainer;
+        private readonly IObjectContainer _objectContainer;
 
         public ContainerBootstrap(IObjectContainer objectContainer)
         {
-            this.objectContainer = objectContainer;
+            _objectContainer = objectContainer;
         }
 
         [BeforeScenario]
         public void InitializeWebDriver()
         {
-            TaskRepository taskRepository = new TaskRepository();
-            objectContainer.RegisterInstanceAs<ITaskRepository>(taskRepository);
+            var taskRepository = new TaskRepository();
+            _objectContainer.RegisterInstanceAs<ITaskRepository>(taskRepository);
         }
     }
 }

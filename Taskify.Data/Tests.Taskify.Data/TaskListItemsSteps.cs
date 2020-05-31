@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using TechTalk.SpecFlow;
 using Taskify.Data.Domain;
 using Taskify.Data.Services;
@@ -13,13 +11,13 @@ namespace Tests.Taskify.Data
     [Binding]
     public class TaskListItemsSteps
     {
-        private readonly TaskService taskService;
+        private readonly TaskService _taskService;
 
         private List<TaskItem> _results;
 
         public TaskListItemsSteps(TaskService taskService)
         {
-            this.taskService = taskService;
+            _taskService = taskService;
         }
 
         [Given(@"I have (.*) for (.*) with (.*)")]
@@ -31,7 +29,7 @@ namespace Tests.Taskify.Data
         [When(@"I request (.*)'s tasks for (.*)")]
         public void WhenIRequestSTasks(string taskList, bool isUserGenerated)
         {
-            var list = taskService.FindList(taskList, isUserGenerated);
+            var list = _taskService.FindList(taskList, isUserGenerated);
             this._results = list.Tasks;
         }
 
@@ -50,7 +48,7 @@ namespace Tests.Taskify.Data
         {
             if (!isUserGenerated)
             {
-                var taskList = taskService.FindList(taskListName).First();
+                var taskList = _taskService.FindList(taskListName).First();
                 for (var i = 0; i < numTasks; i++)
                 {
                     taskList.Tasks.Add(new TaskItem("Task:" + i));
@@ -63,7 +61,7 @@ namespace Tests.Taskify.Data
                 {
                     taskList.Tasks.Add(new TaskItem("Task:" + i));
                 }
-                taskService.AddTaskList(taskList);
+                _taskService.AddTaskList(taskList);
             }
             
         }

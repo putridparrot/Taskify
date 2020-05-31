@@ -7,8 +7,8 @@ namespace Taskify.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public TaskItem Item { get; set; }
+        public ItemDetailViewModel(TaskItem item = null)
         {
             Title = item?.Text;
             Item = item;

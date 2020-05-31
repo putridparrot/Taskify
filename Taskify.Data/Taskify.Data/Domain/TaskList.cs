@@ -4,15 +4,13 @@ namespace Taskify.Data.Domain
 {
     public class TaskList
     {
-        private TaskListSpecification specification;
-
         public TaskList()
         {
         }
 
         public TaskList(string name, TaskListSpecification taskListSpecification)
         {
-            this.specification = taskListSpecification;
+            this.Specification = taskListSpecification;
             Name = name;
             this.Tasks = new List<TaskItem>();
         }
@@ -22,6 +20,6 @@ namespace Taskify.Data.Domain
 
         public List<TaskItem> Tasks { get; }
 
-        public TaskListSpecification Specification => specification;
+        public TaskListSpecification Specification { get; }
     }
 }

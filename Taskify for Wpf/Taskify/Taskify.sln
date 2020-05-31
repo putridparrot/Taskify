@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify", "Taskify\Taskify.csproj", "{67F92AAE-8BD2-4A1A-87E4-74495AE68A32}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{DBEC0CAE-2DE1-4326-93DC-72C2A3BC288A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{102F4036-7F3C-4852-AAB2-CA9A9BC41429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{67F92AAE-8BD2-4A1A-87E4-74495AE68A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F92AAE-8BD2-4A1A-87E4-74495AE68A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F92AAE-8BD2-4A1A-87E4-74495AE68A32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBEC0CAE-2DE1-4326-93DC-72C2A3BC288A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBEC0CAE-2DE1-4326-93DC-72C2A3BC288A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBEC0CAE-2DE1-4326-93DC-72C2A3BC288A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBEC0CAE-2DE1-4326-93DC-72C2A3BC288A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,8 +8,49 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
     <Grid>
-        <NavigationView IsBackEnabled="False" IsBackButtonVisible="Collapsed" PaneDisplayMode="Left">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource LargeWindowSnapPoint}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SplitView.DisplayMode" Value="Inline"/>
+                        <Setter Target="SplitView.IsPaneOpen" Value="True"/>
+                        <Setter Target="NavView.IsPaneOpen" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource MediumWindowSnapPoint}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SplitView.DisplayMode" Value="Inline"/>
+                        <Setter Target="SplitView.IsPaneOpen" Value="False"/>
+                        <Setter Target="NavView.IsPaneOpen" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SplitView.DisplayMode" Value="Inline"/>
+                        <Setter Target="SplitView.IsPaneOpen" Value="False"/>
+                        <Setter Target="NavView.IsPaneOpen" Value="False"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <NavigationView x:Name="NavView"
+            IsBackEnabled="False" IsBackButtonVisible="Collapsed"
+            PaneDisplayMode="Left">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Item1">
                     <NavigationViewItem.Icon>
@@ -24,7 +65,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
         </Grid>
-        <SplitView IsPaneOpen="True" DisplayMode="Inline" PanePlacement="Right">
+        <SplitView x:Name="SplitView" IsPaneOpen="True" DisplayMode="Inline" PanePlacement="Right">
 
         </SplitView>
     </Grid>

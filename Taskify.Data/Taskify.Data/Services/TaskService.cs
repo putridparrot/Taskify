@@ -7,31 +7,31 @@ namespace Taskify.Data.Services
 {
     public class TaskService : ITaskService
     {
-        private readonly ITaskRepository taskRepository;
+        private readonly ITaskRepository _taskRepository;
 
         public TaskService(ITaskRepository taskRepository)
         {
-            this.taskRepository = taskRepository;
+            _taskRepository = taskRepository;
         }
 
         public List<TaskList> FetchLists()
         {
-            return taskRepository.FetchLists();
+            return _taskRepository.FetchLists();
         }
 
         public void AddTaskList(TaskList taskList)
         {
-            taskRepository.AddTaskList(taskList);
+            _taskRepository.AddTaskList(taskList);
         }
 
         public void RemoveTaskList(string listName)
         {
-            taskRepository.RemoveTaskList(listName);
+            _taskRepository.RemoveTaskList(listName);
         }
 
         public List<TaskList> FindList(string listName)
         {
-            return taskRepository.FindList(listName);
+            return _taskRepository.FindList(listName);
         }
 
         public TaskList FindList(string taskList, bool isUserGenerated)

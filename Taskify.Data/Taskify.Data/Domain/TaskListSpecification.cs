@@ -4,7 +4,7 @@
     {
         public TaskListSpecification()
         {
-            this.IsUserGenerated = true;
+            IsUserGenerated = true;
         }
 
         public bool CanDelete { get; set; }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify.GTK", "Taskify.GTK\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify", "..\..\..\Taskify for Mobile\Taskify\Taskify\Taskify\Taskify.csproj", "{24526E55-B3A2-4731-95E4-8486B4824D78}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{1F9A8A22-5AD4-4FCB-827E-1F4D99F572E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{24526E55-B3A2-4731-95E4-8486B4824D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24526E55-B3A2-4731-95E4-8486B4824D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24526E55-B3A2-4731-95E4-8486B4824D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F9A8A22-5AD4-4FCB-827E-1F4D99F572E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F9A8A22-5AD4-4FCB-827E-1F4D99F572E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F9A8A22-5AD4-4FCB-827E-1F4D99F572E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F9A8A22-5AD4-4FCB-827E-1F4D99F572E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
