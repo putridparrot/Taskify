@@ -13,7 +13,7 @@ namespace Taskify.Data.SqlServer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = @"Server=MyServer;Database=Taskify;User Id=TestUser;Password=test;";
+            string connectionString = @"Server=WINDOWS-I5FUUVE;Database=Taskify;User Id=TestUser;Password=test;";
             optionsBuilder.UseSqlServer(connectionString);
             optionsBuilder.EnableDetailedErrors(true);
         }

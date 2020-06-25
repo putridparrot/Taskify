@@ -1,12 +1,12 @@
 import React from "react";
-import TaskList from "./TaskListComponent";
+import TaskLists from "./TaskListsComponent";
 
 class ContainerComponent extends React.Component{
      render(){
         return <div className="container">
              <div className="row">
                   <div className="col-sm">
-                     <TaskList/>
+                     <TaskLists/>
                   </div>
                   <div className="col-sm">
                        One of three columns

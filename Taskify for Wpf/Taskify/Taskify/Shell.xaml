@@ -4,9 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTaskify"
+        xmlns:regions="http://prismlibrary.com/"
+        xmlns:controls="clr-namespace:Taskify.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DataTemplates.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <controls:TaskListUserControl DataContext="{Binding Path=TaskListDetailViewModel}"></controls:TaskListUserControl>
+        <ContentControl regions:RegionManager.RegionName="{x:Static local:RegionNames.TaskRegion}"></ContentControl>
     </Grid>
 </Window>
