@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using WpfTaskify.Behaviours;
 
 namespace Taskify.Data.Domain
 {
-    public class TaskList
+    public class TaskList 
     {
         public TaskList()
         {
@@ -21,5 +22,6 @@ namespace Taskify.Data.Domain
         public List<TaskItem> Tasks { get; }
 
         public TaskListSpecification Specification { get; }
+        public bool IsSelected { get; set; }
     }
 }

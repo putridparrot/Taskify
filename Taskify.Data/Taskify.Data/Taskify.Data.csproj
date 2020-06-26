@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Taskify for Wpf\Taskify\Taskify.Common\Taskify.Common.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -109,6 +109,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\TaskDisplayControl.cs" />
     <Compile Include="Controls\TaskListUserControl.xaml.cs">
       <DependentUpon>TaskListUserControl.xaml</DependentUpon>
     </Compile>
@@ -141,6 +142,10 @@
     <Page Include="TaskListViewModelDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,11 @@
       <Project>{3b2743cc-fe49-4e37-961b-1e3e160a6a80}</Project>
       <Name>Taskify.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Taskify.Common\Taskify.Common.csproj">
+      <Project>{AAB6BD3F-3175-448E-ADB0-670FFB13AAFA}</Project>
+      <Name>Taskify.Common</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

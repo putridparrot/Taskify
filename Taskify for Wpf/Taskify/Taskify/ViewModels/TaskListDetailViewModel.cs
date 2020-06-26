@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Prism.Mvvm;
 using Taskify.Data.Domain;
 using Taskify.Data.Services;
 
 namespace WpfTaskify.ViewModels
 {
-    public class TaskListDetailViewModel
+    public class TaskListDetailViewModel : BindableBase
     {
         private readonly ITaskService taskService;
 

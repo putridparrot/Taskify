@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Taskify.Controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:WpfTaskify.Behaviours;assembly=Taskify.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ItemsControl ItemsSource="{Binding TaskLists}"></ItemsControl>
+        <ListBox ItemsSource="{Binding TaskLists}">
+            <i:Interaction.Behaviors>
+                <behaviours:SelectableListItemBehaviour/>
+            </i:Interaction.Behaviors>
+        </ListBox>
     </Grid>
 </UserControl>
