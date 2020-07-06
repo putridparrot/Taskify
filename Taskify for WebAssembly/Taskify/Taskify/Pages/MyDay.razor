@@ -1,4 +1,8 @@
 ﻿@page "/"
 
-<h1>My Day</h1>
+<h4>My Day</h4>
+<div>
+    @DateTime.Now.ToString("dddd d MMMM")
+</div>
 
+<TextField placeholder="Add a task"></TextField>
