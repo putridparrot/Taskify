@@ -1,8 +1,23 @@
-﻿@page "/"
+﻿@namespace Taskify
+@page "/"
 
-<h4>My Day</h4>
-<div>
-    @DateTime.Now.ToString("dddd d MMMM")
-</div>
+    <div class="MyDay-Root">
+        <div class="MyDay-Content-Container">
+            <h4>My Day</h4>
+            <div>
+                @DateTime.Now.ToString("dddd d MMMM")
+            </div>
+            <div class="MyDay-Middle-Container">
+                <main class="MyDay-Content">
 
-<TextField placeholder="Add a task"></TextField>
+                    <div style="padding: 16px 30px 12px 10px;">
+                        Content
+                    </div>
+
+                </main>
+                <footer class="MyDay-Footer">
+                    <AddTask />
+                </footer>
+            </div>
+        </div>
+    </div>

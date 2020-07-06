@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MainLayout ContentStyle="padding: 30px;">
+<MainLayout>
     <TitleContent>
         <Typography Style="flex-grow: 1; margin-left: 20px;"
                     Variant="@TypographyVariant.H6"
@@ -15,13 +15,17 @@
         <Navigation Class="FullLayout-Navigation"
                     Items="@Items">
         </Navigation>
+        <Divider Class="FullLayout-Divider" />
+        <Navigation Class="FullLayout-Navigation"
+                    Items="@DynamicItems">
+        </Navigation>
     </SidebarContent>
 </MainLayout>
 
 @code
 {
     private List<NavigationItem> Items = new List<NavigationItem>
-{
+    {
         new NavigationItem
         {
             Title = "My Day",
@@ -55,6 +59,24 @@
             Title = "Tasks",
             Path = "tasks",
             Icon = @<ListIcon />,
+            Prefix = true
+        }
+    };
+
+    private List<NavigationItem> DynamicItems = new List<NavigationItem>
+    {
+        new NavigationItem
+        {
+            Title = "Test",
+            Path = "",
+            Icon = @<HomeIcon/>,
+            Prefix = false
+        },
+        new NavigationItem
+        {
+            Title = "Untitled",
+            Path = "",
+            Icon = @<AddIcon/>,
             Prefix = true
         }
     };
