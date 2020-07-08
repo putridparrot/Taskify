@@ -31,7 +31,7 @@
     {
         var taskList = await DataService.GetTaskLists();
 
-        var system = taskList.Where(tl => tl?.Specification != null && !tl.Specification.IsUserGenerated);
+        var system = taskList.Where(tl => tl?.Specification == null || !tl.Specification.IsUserGenerated);
         var userDefined = taskList.Where(tl => tl?.Specification != null && tl.Specification.IsUserGenerated);
 
         Items.Clear();

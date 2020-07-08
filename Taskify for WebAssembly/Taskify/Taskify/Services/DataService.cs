@@ -5,11 +5,11 @@ using Taskify.Dto;
 
 namespace Taskify.Services
 {
-    public class DataSource : IDataService
+    public class DataService : IDataService
     {
         private readonly IDataServiceApi _dataServiceApi;
 
-        public DataSource()
+        public DataService()
         {
             // TODO move URL into configuration
             _dataServiceApi = RestService.For<IDataServiceApi>("http://localhost:52606/api/");

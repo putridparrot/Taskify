@@ -29,7 +29,8 @@ namespace Taskify
                     .WithResponsive(true)
                     .Build()
             );
-            builder.Services.AddSingleton<IDataService>(sp => new DataSource());
+//            builder.Services.AddSingleton<IDataService>(sp => new DataService());
+            builder.Services.AddSingleton<IDataService>(sp => new LocalDataService());
 
             await builder.Build().RunAsync();
         }
