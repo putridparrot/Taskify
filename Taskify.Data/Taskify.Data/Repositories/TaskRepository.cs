@@ -16,7 +16,11 @@ namespace Taskify.Data.Repositories
                 new TaskList("My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}), 
                 new TaskList("Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}), 
                 new TaskList("Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}),
-                new TaskList("Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false})
+                new TaskList("Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}),
+                new TaskList("Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}),
+                // user added
+                new TaskList("UserTasks1", new TaskListSpecification {CanDelete = true, IsUserGenerated = true}),
+                new TaskList("UserTasks2", new TaskListSpecification {CanDelete = true, IsUserGenerated = true})
             };
         }
 

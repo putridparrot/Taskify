@@ -24,6 +24,5 @@ namespace Taskify.Data.Domain
         public List<TaskStep> Steps { get; set; }
 
         public TaskItemSchedule Schedule { get; set; }
-
     }
 }

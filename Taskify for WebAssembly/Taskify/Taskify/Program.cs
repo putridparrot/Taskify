@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Refit;
 using Skclusive.Material.Layout;
+using Taskify.Services;
 
 namespace Taskify
 {
@@ -19,7 +21,6 @@ namespace Taskify
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
             builder.Services.TryAddLayoutServices
             (
                 new LayoutConfigBuilder()
@@ -28,6 +29,7 @@ namespace Taskify
                     .WithResponsive(true)
                     .Build()
             );
+            builder.Services.AddSingleton<IDataService>(sp => new DataSource());
 
             await builder.Build().RunAsync();
         }

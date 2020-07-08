@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using WpfTaskify.Behaviours;
 
 namespace Taskify.Data.Domain
 {
@@ -11,9 +10,9 @@ namespace Taskify.Data.Domain
 
         public TaskList(string name, TaskListSpecification taskListSpecification)
         {
-            this.Specification = taskListSpecification;
+            Specification = taskListSpecification;
             Name = name;
-            this.Tasks = new List<TaskItem>();
+            Tasks = new List<TaskItem>();
         }
 
         public int Id  { get; set; }

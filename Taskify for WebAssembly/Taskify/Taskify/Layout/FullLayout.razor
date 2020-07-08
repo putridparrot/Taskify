@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using Taskify.Services
+@using Taskify.Dto
+@inherits LayoutComponentBase
+@inject IDataService DataService;
 
 <MainLayout>
     <TitleContent>
@@ -24,60 +27,42 @@
 
 @code
 {
-    private List<NavigationItem> Items = new List<NavigationItem>
+    protected override async Task OnInitializedAsync()
     {
-        new NavigationItem
+        var taskList = await DataService.GetTaskLists();
+
+        var system = taskList.Where(tl => tl?.Specification != null && !tl.Specification.IsUserGenerated);
+        var userDefined = taskList.Where(tl => tl?.Specification != null && tl.Specification.IsUserGenerated);
+
+        Items.Clear();
+        Items.AddRange(system.Select(s => new NavigationItem
         {
-            Title = "My Day",
+            Title = s.Name,
+            Path = "",
+            Icon =@<HomeIcon />,
+            Prefix = false
+        }));
+
+        DynamicItems.Clear();
+        DynamicItems.AddRange(userDefined.Select(s => new NavigationItem
+        {
+            Title = s.Name,
             Path = "",
             Icon = @<HomeIcon />,
             Prefix = false
-        },
-        new NavigationItem
-        {
-            Title = "Important",
-            Path = "important",
-            Icon = @<AddIcon />,
-            Prefix = true
-        },
-        new NavigationItem
-        {
-            Title = "Planned",
-            Path = "planned",
-            Icon = @<ListIcon />,
-            Prefix = true
-        },
-        new NavigationItem
-        {
-            Title = "Assigned to you",
-            Path = "assignedtoyou",
-            Icon = @<ListIcon />,
-            Prefix = true
-        },
-        new NavigationItem
-        {
-            Title = "Tasks",
-            Path = "tasks",
-            Icon = @<ListIcon />,
-            Prefix = true
-        }
-    };
+            }));
 
-    private List<NavigationItem> DynamicItems = new List<NavigationItem>
+         base.OnInitializedAsync();
+    }
+
+    public List<NavigationItem> Items { get; set; } = new List<NavigationItem>();
+    public List<NavigationItem> DynamicItems { get; set; } = new List<NavigationItem>();
+
+@*new NavigationItem
     {
-        new NavigationItem
-        {
-            Title = "Test",
-            Path = "",
-            Icon = @<HomeIcon/>,
-            Prefix = false
-        },
-        new NavigationItem
-        {
-            Title = "Untitled",
-            Path = "",
-            Icon = @<AddIcon/>,
-            Prefix = true
-        }
-    };
+        Title = "My Day",
+        Path = "",
+        Icon = @<HomeIcon />,
+        Prefix = false
+    },*@
 }

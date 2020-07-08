@@ -48,8 +48,11 @@ namespace TaskifyWebApiService
             using (var scope = scopeFactory.CreateScope())
             {
                 var dbInitializer = scope.ServiceProvider.GetService<IDbInitializerService>();
-                dbInitializer.Initialize();
-                dbInitializer.SeedData();
+                if (dbInitializer != null)
+                {
+                    dbInitializer.Initialize();
+                    dbInitializer.SeedData();
+                }
             }
 
             app.UseCors("CorsPolicy");

@@ -11,9 +11,10 @@ namespace TaskifyWebApiService
         public static void AddDependencies(this IServiceCollection services)
         {
             services.AddScoped<ITaskService, TaskService>();
-            //services.AddScoped<ITaskRepository, SqlTaskRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
-            services.AddScoped<IDbInitializerService, SqlDbInitializerService>();
+            //services.AddScoped<ITaskRepository, SqlTaskRepository>();
+            // if using SQL uncomment
+            // services.AddScoped<IDbInitializerService, SqlDbInitializerService>();
         }
     }
 }

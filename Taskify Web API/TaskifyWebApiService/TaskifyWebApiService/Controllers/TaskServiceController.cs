@@ -23,7 +23,8 @@ namespace TaskifyWebApiService.Controllers
             _logger = logger;
         }
         
-        [HttpGet] public IEnumerable<TaskList> Lists()
+        [HttpGet] 
+        public IEnumerable<TaskList> Lists()
         {
             return taskService.FetchLists();
         }
