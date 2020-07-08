@@ -6,7 +6,6 @@ export default function Container() {
     <div className="container">
       <div className="row">
         <div className="col-sm">
-          Tasks go here...
           <TaskLists />
         </div>
       </div>

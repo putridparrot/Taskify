@@ -3,7 +3,7 @@ import './App.css';
 
 import Shell from "./Components/Shell";
 import Container from "./Components/Container";
-import { makeStyles, Theme, createStyles, Toolbar, Typography } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Toolbar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
