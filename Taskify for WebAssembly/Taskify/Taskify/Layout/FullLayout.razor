@@ -1,0 +1,61 @@
+﻿@inherits LayoutComponentBase
+
+<MainLayout ContentStyle="padding: 30px;">
+    <TitleContent>
+        <Typography Style="flex-grow: 1; margin-left: 20px;"
+                    Variant="@TypographyVariant.H6"
+                    NoWrap>
+            Taskify
+        </Typography>
+    </TitleContent>
+    <BodyContent>
+        @Body
+    </BodyContent>
+    <SidebarContent>
+        <Navigation Class="FullLayout-Navigation"
+                    Items="@Items">
+        </Navigation>
+    </SidebarContent>
+</MainLayout>
+
+@code
+{
+    private List<NavigationItem> Items = new List<NavigationItem>
+{
+        new NavigationItem
+        {
+            Title = "My Day",
+            Path = "",
+            Icon = @<HomeIcon />,
+            Prefix = false
+        },
+        new NavigationItem
+        {
+            Title = "Important",
+            Path = "important",
+            Icon = @<AddIcon />,
+            Prefix = true
+        },
+        new NavigationItem
+        {
+            Title = "Planned",
+            Path = "planned",
+            Icon = @<ListIcon />,
+            Prefix = true
+        },
+        new NavigationItem
+        {
+            Title = "Assigned to you",
+            Path = "assignedtoyou",
+            Icon = @<ListIcon />,
+            Prefix = true
+        },
+        new NavigationItem
+        {
+            Title = "Tasks",
+            Path = "tasks",
+            Icon = @<ListIcon />,
+            Prefix = true
+        }
+    };
+}
