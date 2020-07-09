@@ -17,26 +17,19 @@ namespace Taskify.Services
         {
             _taskLists = new List<TaskList>
             {
-                new TaskList
-                {
-                    Id = 0,
-                    Name = "My Day"
-                },
-                new TaskList
-                {
-                    Id = 1,
-                    Name = "Important"
-                },
-                new TaskList
-                {
-                    Id = 2,
-                    Name = "User 1",
-                    Specification = new TaskListSpecification
-                    {
-                        IsUserGenerated = true
-                    }
-                }
+                TaskListFactory.CreateTaskList(0, "My Day", "/"),
+                TaskListFactory.CreateTaskList(1, "Important", "/important"), 
+                TaskListFactory.CreateTaskList(2, "Planned", "/planned"),
+                TaskListFactory.CreateTaskList(3, "Assigned to you", "/assignedtoyou"),
+                TaskListFactory.CreateTaskList(4, "Tasks", "/tasks")
             };
+
+            // append some sample user defined
+            _taskLists.AddRange(new TaskList[]
+            {
+                TaskListFactory.CreateTaskList(5, "User1", "/tasks", true),
+                TaskListFactory.CreateTaskList(6, "User2", "/tasks", true)
+            });
         }
 
         public Task<List<TaskList>> GetTaskLists()

@@ -36,6 +36,8 @@ namespace Taskify.Dto
         public TaskListSpecification Specification { get; set; }
         [JsonProperty("isSelected")]
         public bool IsSelected { get; set; }
+        [JsonProperty("uri")]
+        public string Uri { get; set; }
     }
 
     public class TaskListSpecification
@@ -60,5 +62,37 @@ namespace Taskify.Dto
     {
         public int Id { get; set; }
         public string Name { get; set; }
+    }
+
+    public static class TaskListFactory
+    {
+        public static TaskList CreateTaskList(int id, string name, string uri)
+        {
+            return new TaskList
+            {
+                Id = id,
+                Name = name,
+                Uri = uri
+            };
+        }
+
+        public static TaskList CreateTaskList(int id, string name, string uri, bool isUserGenerated)
+        {
+            return new TaskList
+            {
+                Id = id,
+                Name = name,
+                Uri = uri,
+                Specification = CreateTaskListSpecification(isUserGenerated)
+            };
+        }
+
+        public static TaskListSpecification CreateTaskListSpecification(bool isUserGenerated)
+        {
+            return new TaskListSpecification
+            {
+                IsUserGenerated = isUserGenerated
+            };
+        }
     }
 }
