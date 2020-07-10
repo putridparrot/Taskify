@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Refit;
 using Skclusive.Material.Layout;
 using Taskify.Services;
 
@@ -29,8 +28,9 @@ namespace Taskify
                     .WithResponsive(true)
                     .Build()
             );
-//            builder.Services.AddSingleton<IDataService>(sp => new DataService());
-            builder.Services.AddSingleton<IDataService>(sp => new LocalDataService());
+
+            // builder.Services.AddSingleton<IDataService, DataService>();
+            builder.Services.AddSingleton<IDataService, LocalDataService>();
 
             await builder.Build().RunAsync();
         }

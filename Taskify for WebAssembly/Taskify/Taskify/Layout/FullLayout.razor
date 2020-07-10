@@ -1,8 +1,9 @@
 ﻿@using Taskify.Services
-@using Taskify.Dto
 @using Taskify.Utils
+@using Microsoft.Extensions.Logging
 @inherits LayoutComponentBase
 @inject IDataService DataService;
+@inject ILogger<FullLayout> Logger;
 
 <MainLayout>
     <TitleContent>
@@ -51,19 +52,22 @@
             Path = s.Uri ?? String.Empty,
             Icon = TaskIcon.GetIconFor(s.Id),
             Prefix = false
-            }));
+        }));
 
-         base.OnInitializedAsync();
+        Logger.LogDebug($"Items: {Items.Count}");
+        Logger.LogDebug($"DynamicItems: {DynamicItems.Count}");
+
+        base.OnInitializedAsync();
     }
 
     public List<NavigationItem> Items { get; set; } = new List<NavigationItem>();
     public List<NavigationItem> DynamicItems { get; set; } = new List<NavigationItem>();
 
-@*new NavigationItem
-    {
-        Title = "My Day",
-        Path = "",
-        Icon = @<HomeIcon />,
-        Prefix = false
-    },*@
+    @*new NavigationItem
+        {
+            Title = "My Day",
+            Path = "",
+            Icon = @<HomeIcon />,
+            Prefix = false
+        },*@
 }
