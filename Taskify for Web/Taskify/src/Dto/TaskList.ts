@@ -38,4 +38,5 @@ export interface TaskList {
   tasks: TaskItem[];
   specification: TaskListSpecification;
   isSelected: boolean;
+  iconName : string;
 };

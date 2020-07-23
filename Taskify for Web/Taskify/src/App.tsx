@@ -20,10 +20,10 @@ function App() {
   return (
     <div className="App">
       <Shell>
-        <main className={classes.content}>
+       {/* <main className={classes.content}>
           <Toolbar />
           <Container/>       
-        </main>
+        </main>*/}
       </Shell>
     </div>
   );

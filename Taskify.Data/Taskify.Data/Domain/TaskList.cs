@@ -8,11 +8,12 @@ namespace Taskify.Data.Domain
         {
         }
 
-        public TaskList(string name, TaskListSpecification taskListSpecification)
+        public TaskList(string name, TaskListSpecification taskListSpecification, string iconName = "FormatListBulleted")
         {
             Specification = taskListSpecification;
             Name = name;
             Tasks = new List<TaskItem>();
+            this.IconName = iconName;
         }
 
         public int Id  { get; set; }
@@ -22,5 +23,7 @@ namespace Taskify.Data.Domain
 
         public TaskListSpecification Specification { get; }
         public bool IsSelected { get; set; }
+
+        public string IconName { get; set; }
     }
 }

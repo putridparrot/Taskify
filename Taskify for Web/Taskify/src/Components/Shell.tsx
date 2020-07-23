@@ -12,6 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 import axios from "axios";
 import ResponsiveDrawer from './ResponsiveDrawer';
 import { TaskList } from '../Dto/TaskList';
+import {IconRetriever} from "../Helpers/IconRetriever";
 
 const drawerWidth = 240;
 
@@ -51,6 +52,7 @@ export default function Shell(props: ShellProps) {
   useEffect(() => {
     axios.get("http://localhost:52606/api/tasklist")
       .then((response) => {
+        console.log(response.data);
         setTaskLists(response.data);
       }).catch((ex) => {
         console.log(ex);
@@ -66,9 +68,11 @@ export default function Shell(props: ShellProps) {
           <List>
             {taskLists.filter(task => !task.specification.isUserGenerated).map((task, _index) => (
               <ListItem button key={task.name}>
-                {/* We should map text and icon */}
+                {
+                
+                  /* We should map text and icon */}
                 <ListItemIcon>
-                  <HomeIcon />
+                  { IconRetriever.map(task.iconName)}
                 </ListItemIcon>
                 <ListItemText primary={task.name} />
               </ListItem>
@@ -80,7 +84,7 @@ export default function Shell(props: ShellProps) {
               <ListItem button key={task.name}>
                 {/* We should map text and icon */}
                 <ListItemIcon>
-                  <AddIcon />
+                  { IconRetriever.map(task.iconName)}
                 </ListItemIcon>
                 <ListItemText primary={task.name} />
               </ListItem>

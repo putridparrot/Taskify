@@ -16,10 +16,15 @@ namespace Taskify.Data.SqlServer
         {
             this.taskLists = new List<TaskList>()
             {
-                new TaskList("My Day", new TaskListSpecification() {CanDelete = false, IsUserGenerated = false}), 
-                new TaskList("Important", new TaskListSpecification() {CanDelete = false, IsUserGenerated = false}), 
-                new TaskList("Planned", new TaskListSpecification() {CanDelete = false, IsUserGenerated = false}),
-                new TaskList("Tasks", new TaskListSpecification() {CanDelete = false, IsUserGenerated = false})
+                new TaskList("My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"WbSunnyOutlined"),
+                new TaskList("Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"StarBorderOutlined"),
+                new TaskList("Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"DateRangeOutlined"),
+                new TaskList("Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"PersonOutlineOutlined"),
+                new TaskList("Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"FlagOutlined"),
+                new TaskList("Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"HomeOutlined"),
+                // user added
+                new TaskList("UserTasks1", new TaskListSpecification {CanDelete = true, IsUserGenerated = true}),
+                new TaskList("UserTasks2", new TaskListSpecification {CanDelete = true, IsUserGenerated = true})
             };
         }
 
