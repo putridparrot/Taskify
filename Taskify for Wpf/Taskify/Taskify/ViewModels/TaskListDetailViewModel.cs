@@ -1,20 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Prism.Events;
 using Prism.Mvvm;
 using Taskify.Data.Domain;
 using Taskify.Data.Services;
+using WpfTaskify.Events;
 
 namespace WpfTaskify.ViewModels
 {
     public class TaskListDetailViewModel : BindableBase
     {
         private readonly ITaskService taskService;
+        private readonly IEventAggregator eventAggregator;
+        private TaskListViewModel selectedItem;
 
-        public TaskListDetailViewModel(ITaskService taskService)
+        public TaskListDetailViewModel(ITaskService taskService , IEventAggregator eventAggregator)
         {
             this.taskService = taskService;
+            this.eventAggregator = eventAggregator;
             this.TaskLists = new ObservableCollection<TaskListViewModel>();
             this.Refresh();
+        }
+
+        public TaskListViewModel SelectedItem
+        {
+            get => this.selectedItem;
+            set
+            {
+                this.SetProperty(ref this.selectedItem, value, nameof(SelectedItem));
+                TaskListSelectedEvent taskListSelectedEvent = this.eventAggregator.GetEvent<TaskListSelectedEvent>();
+                taskListSelectedEvent.Publish(this.selectedItem.Id);
+            }
         }
 
         private void Refresh()
@@ -22,8 +38,11 @@ namespace WpfTaskify.ViewModels
             List<TaskList> lists = this.taskService.FetchLists();
             lists.ForEach(l =>
             {
-                TaskListViewModel taskListViewModel = new TaskListViewModel();
-                taskListViewModel.Name = l.Name;
+                TaskListViewModel taskListViewModel = new TaskListViewModel()
+                {
+                    Name = l.Name,
+                    Id = l.Id
+                };
                 this.TaskLists.Add(taskListViewModel);
             });
             

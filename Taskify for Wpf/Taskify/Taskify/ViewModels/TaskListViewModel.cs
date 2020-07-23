@@ -8,6 +8,7 @@ namespace WpfTaskify.ViewModels
     public class TaskListViewModel: BindableBase, ISelectableItem
     {
         public string Name { get; set; }
+        public int Id { get; set; }
 
         private bool isSelected;
         public bool IsSelected

@@ -113,12 +113,22 @@
     <Compile Include="Controls\TaskListUserControl.xaml.cs">
       <DependentUpon>TaskListUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TasksViewUserControl.xaml.cs">
+      <DependentUpon>TasksViewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Events\TaskListSelectedEvent.cs" />
     <Compile Include="IShellViewModel.cs" />
     <Compile Include="RegionNames.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\TaskListDetailViewModel.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
+    <Compile Include="ViewModels\TasksViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
     <Page Include="Controls\TaskListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TasksViewUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

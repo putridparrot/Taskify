@@ -21,6 +21,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <controls:TaskListUserControl DataContext="{Binding Path=TaskListDetailViewModel}"></controls:TaskListUserControl>
-        <ContentControl regions:RegionManager.RegionName="{x:Static local:RegionNames.TaskRegion}"></ContentControl>
+        <controls:TasksViewUserControl DataContext=""></controls:TasksViewUserControl>
     </Grid>
 </Window>
