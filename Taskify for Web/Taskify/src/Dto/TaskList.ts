@@ -1,16 +1,17 @@
 export interface TaskNote {
   id: number;
   note: string;
-};
+}
 
-export interface TaskStep {  
-};
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface TaskStep {
+}
 
-export interface TaskItemSchedule {  
+export interface TaskItemSchedule {
   id: number;
   due: string; // datetime
   reminder: string; // datetime
-};
+}
 
 export interface TaskItem {
   id: string;
@@ -20,7 +21,7 @@ export interface TaskItem {
   description: string;
   steps: TaskStep[];
   schedule: TaskItemSchedule;
-};
+}
 
 export interface TaskListSpecification {
   canDelete: boolean;
@@ -38,5 +39,5 @@ export interface TaskList {
   tasks: TaskItem[];
   specification: TaskListSpecification;
   isSelected: boolean;
-  iconName : string;
-};
+  iconName: string;
+}

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -52,14 +52,16 @@ interface ResponsiveDrawerProps {
   children?: ReactNode;
 }
 
-export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
+export default function ResponsiveDrawer(props: ResponsiveDrawerProps): ReactElement {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   function handleDrawerToggle() {
-    setMobileOpen(!mobileOpen)
+    setMobileOpen(!mobileOpen);
   }
+
+  const { title, children } = props;
   
   return (
     <div className={classes.root}>
@@ -76,7 +78,7 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            {props.title}
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -98,7 +100,7 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
             <IconButton onClick={handleDrawerToggle} className={classes.closeMenuButton}>
               <CloseIcon />
             </IconButton>
-            {props.children}
+            {children}
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="js">
@@ -109,7 +111,7 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
               paper: classes.drawerPaper,
             }}
           >
-            {props.children}
+            {children}
           </Drawer>
         </Hidden>
       </nav>

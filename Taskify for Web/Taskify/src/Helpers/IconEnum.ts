@@ -1,5 +1,5 @@
-enum IconEnum{
-  WbSunnyOutlinedIcon = "WbSunnyOutlinedIcon" ,
+enum IconEnum {
+  WbSunnyOutlinedIcon = "WbSunnyOutlinedIcon",
   StarBorderOutlinedIcon = "StarBorderOutlinedIcon",
   DateRangeOutlinedIcon ="DateRangeOutlinedIcon",
   PersonOutlineOutlinedIcon ="PersonOutlineOutlinedIcon",
@@ -8,4 +8,4 @@ enum IconEnum{
   FormatListBulletedIcon="FormatListBulletedIcon"
 }
 
-export { IconEnum} 
+export default IconEnum;

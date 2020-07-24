@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import axios from "axios";
 import TaskList from "./TaskList";
 
-export default function TaskLists() {
+export default function TaskLists(): ReactElement {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function TaskLists() {
       }).catch((ex) => {
         console.log(ex);
       });
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function TaskLists() {
         {tasks.length > 0 ?
           tasks.map((task: any) => (
             <TaskList key={task.name} listName={task.name} />
-            /*  <li key={value.name}>{value.name}</li>*/
+            /* <li key={value.name}>{value.name}</li> */
           )) :
           'No Tasks Found'
         }

@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState, ReactElement } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,12 +7,10 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
-import AddIcon from '@material-ui/icons/Add';
 import axios from "axios";
 import ResponsiveDrawer from './ResponsiveDrawer';
 import { TaskList } from '../Dto/TaskList';
-import {IconRetriever} from "../Helpers/IconRetriever";
+import IconRetriever from "../Helpers/IconRetriever";
 
 const drawerWidth = 240;
 
@@ -45,7 +43,7 @@ interface ShellProps {
   children?: ReactNode;
 }
 
-export default function Shell(props: ShellProps) {
+export default function Shell(props: ShellProps): ReactElement {
   const [taskLists, setTaskLists] = useState<TaskList[]>([]);
   const classes = useStyles();
 
@@ -57,7 +55,9 @@ export default function Shell(props: ShellProps) {
       }).catch((ex) => {
         console.log(ex);
       });
-  }, []);  
+  }, []);
+
+  const { children } = props;
 
   return (
     <div className={classes.root}>
@@ -69,10 +69,10 @@ export default function Shell(props: ShellProps) {
             {taskLists.filter(task => !task.specification.isUserGenerated).map((task, _index) => (
               <ListItem button key={task.name}>
                 {
-                
+
                   /* We should map text and icon */}
                 <ListItemIcon>
-                  { IconRetriever.map(task.iconName)}
+                  {IconRetriever.map(task.iconName)}
                 </ListItemIcon>
                 <ListItemText primary={task.name} />
               </ListItem>
@@ -84,7 +84,7 @@ export default function Shell(props: ShellProps) {
               <ListItem button key={task.name}>
                 {/* We should map text and icon */}
                 <ListItemIcon>
-                  { IconRetriever.map(task.iconName)}
+                  {IconRetriever.map(task.iconName)}
                 </ListItemIcon>
                 <ListItemText primary={task.name} />
               </ListItem>
@@ -92,7 +92,7 @@ export default function Shell(props: ShellProps) {
           </List>
         </div>
       </ResponsiveDrawer>
-      {props.children}
-   </div>  
+      {children}
+    </div>
   );
 }

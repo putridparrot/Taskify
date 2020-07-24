@@ -1,13 +1,15 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 interface TaskListProps {
-    listName: string;
+  listName: string;
 }
 
-export default function TaskList(props: TaskListProps) {
+export default function TaskList(props: TaskListProps): ReactElement {
+  const { listName } = props;
+
   return (
     <div>
-      {props.listName}
+      {listName}
     </div>
   );
 }
