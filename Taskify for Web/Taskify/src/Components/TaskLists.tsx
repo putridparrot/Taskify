@@ -24,6 +24,13 @@ export class TaskLists extends React.Component<TaskListProps, TaskListState> {
     };
 
   }
+  
+  shouldComponentUpdate(nextProps: Readonly<TaskListProps>, nextState: Readonly<TaskListState>, nextContext: any): boolean {
+    if(this.state.taskLists.length===0 && nextState.taskLists.length===0){
+      return false;
+    }
+    return true;    
+  }
 
   componentDidMount() {
     axios.get("http://localhost:52606/api/tasklist")
@@ -37,14 +44,14 @@ export class TaskLists extends React.Component<TaskListProps, TaskListState> {
 
   updateTasks(taskLists: TaskList[]): void {
     if (!this.props.isUserGenerated) {
-      let fileredTaskLists = taskLists.filter(tl => !tl.specification.isUserGenerated);
+      let filteredTaskLists = taskLists.filter(tl => !tl.specification.isUserGenerated);
       this.setState(() => {
-        return {taskLists: fileredTaskLists};
+        return {taskLists: filteredTaskLists};
       });
     } else {
-      let fileredTaskLists = taskLists.filter(tl => tl.specification.isUserGenerated);
+      let filteredTaskLists = taskLists.filter(tl => tl.specification.isUserGenerated);
       this.setState(() => {
-        return {taskLists: fileredTaskLists};
+        return {taskLists: filteredTaskLists};
       });
     }
 
