@@ -1,16 +1,10 @@
-import React, { ReactNode, useEffect, useState, ReactElement } from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import React, {ReactElement, ReactNode} from 'react';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import axios from "axios";
 import ResponsiveDrawer from './ResponsiveDrawer';
-import { TaskList } from '../Dto/TaskList';
-import IconRetriever from "../Helpers/IconRetriever";
+import {TaskLists} from "./TaskLists";
 
 const drawerWidth = 240;
 
@@ -44,55 +38,19 @@ interface ShellProps {
 }
 
 export default function Shell(props: ShellProps): ReactElement {
-  const [taskLists, setTaskLists] = useState<TaskList[]>([]);
   const classes = useStyles();
-
-  useEffect(() => {
-    axios.get("http://localhost:52606/api/tasklist")
-      .then((response) => {
-        console.log(response.data);
-        setTaskLists(response.data);
-      }).catch((ex) => {
-        console.log(ex);
-      });
-  }, []);
-
-  const { children } = props;
-
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      <CssBaseline/>
       <ResponsiveDrawer title="Taskify">
-        <Toolbar />
+        <Toolbar/>
         <div className={classes.drawerContainer}>
-          <List>
-            {taskLists.filter(task => !task.specification.isUserGenerated).map((task, _index) => (
-              <ListItem button key={task.name}>
-                {
-
-                  /* We should map text and icon */}
-                <ListItemIcon>
-                  {IconRetriever.map(task.iconName)}
-                </ListItemIcon>
-                <ListItemText primary={task.name} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {taskLists.filter(task => task.specification.isUserGenerated).map((task, _index) => (
-              <ListItem button key={task.name}>
-                {/* We should map text and icon */}
-                <ListItemIcon>
-                  {IconRetriever.map(task.iconName)}
-                </ListItemIcon>
-                <ListItemText primary={task.name} />
-              </ListItem>
-            ))}
-          </List>
+          <TaskLists isUserGenerated={false}/>
+          <Divider/>
+          <TaskLists isUserGenerated={true}/>
         </div>
       </ResponsiveDrawer>
-      {children}
+      {/*{children}*/}
     </div>
   );
 }
