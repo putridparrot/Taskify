@@ -1,28 +1,19 @@
 import React from "react";
-import {TaskList} from "../Dto/TaskList";
+import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import IconRetriever from "../Helpers/IconRetriever";
 import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
-import "reflect-metadata";
-import {connect} from 'react-redux'
 import {TaskListProps} from "./TaskListProps";
+import {connect} from  'react-redux';
 
-class TaskLists extends React.Component<TaskListProps> {
- 
-  constructor( props: TaskListProps) {
-    super(props);    
-  }
-  
-  handleTaskListSelected(id: Number){
-    
-  }
-  
+class SystemTaskLists extends React.Component<TaskListProps> {
+  handleTaskListSelected(listId:number) {
+  }  
   render() {
     console.log("Render......");
     return (<List> {
-      this.props.taskLists?.map((task, _index) => {        
+      this.props.taskLists?.map((task, _index) => {
         return (<ListItem button key={task.name} onClick={(event)=>this.handleTaskListSelected(task.id)}>
           <ListItemIcon>
             {IconRetriever.map(task.iconName)}
@@ -33,12 +24,12 @@ class TaskLists extends React.Component<TaskListProps> {
     </List>);
   }
 }
-const ConnectedUserTaskLists = connect((state)=>{
+
+const ConnectedSystemTaskLists = connect((state)=>{
   return{
-    taskLists: state.userTaskLists
+    taskLists: state.systemTaskLists
   }
-})(TaskLists);
+})(SystemTaskLists);
 
 
-export {ConnectedUserTaskLists}
-  
+export {ConnectedSystemTaskLists}
