@@ -12,7 +12,7 @@ namespace Taskify.Client.Utils
             switch (iconName)
             {
                 case "Tasks":
-                    iconType = typeof(HomeIcon);
+                    iconType = typeof(HomeOutlined);
                     break;
                 case "MyDay":
                     iconType = typeof(WbSunnyOutlined);
