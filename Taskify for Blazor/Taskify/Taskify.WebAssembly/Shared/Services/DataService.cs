@@ -12,7 +12,7 @@ namespace Taskify.WebAssembly.Shared.Services
         public DataService()
         {
             // TODO move URL into configuration
-            _dataServiceApi = RestService.For<IDataServiceApi>("http://localhost:52606/api/");
+            _dataServiceApi = RestService.For<IDataServiceApi>("http://localhost:5000/api/");
         }
 
         public Task<List<TaskList>> GetTaskLists()

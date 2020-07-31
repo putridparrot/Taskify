@@ -12,33 +12,31 @@ import IconEnum from "./IconEnum";
 
 class IconRetriever {
   static map(iconName: string): ReactElement {
-    // console.log(`Getting icon for ${iconName}Icon`);
-    const icon: IconEnum = IconEnum[`${iconName}Icon`];
+    // console.log(`Getting icon for ${iconName}`);
+    const icon: IconEnum = IconEnum[iconName];
     let functionComponentElement;
     //  console.log(`Getting icon for ${icon}`);
     switch (icon) {
-      case IconEnum.WbSunnyOutlinedIcon:
+      case IconEnum.MyDay:
         functionComponentElement = React.createElement(WbSunnyOutlinedIcon, null);
         break;
-      case IconEnum.StarBorderOutlinedIcon:
+      case IconEnum.Important:
         functionComponentElement = React.createElement(StarBorderOutlined, null);
         break;
-      case IconEnum.DateRangeOutlinedIcon:
+      case IconEnum.Planned:
         functionComponentElement = React.createElement(DateRangeOutlined, null);
         break;
-      case IconEnum.PersonOutlineOutlinedIcon:
+      case IconEnum.AssignedToYou:
         functionComponentElement = React.createElement(PersonOutlineOutlined, null);
         break;
-      case IconEnum.FlagOutlinedIcon:
+      case IconEnum.Flagged:
         functionComponentElement = React.createElement(FlagOutlined, null);
         break;
-      case IconEnum.HomeOutlinedIcon:
+      case IconEnum.Tasks:
         functionComponentElement = React.createElement(HomeOutlined, null);
         break;
-      case IconEnum.FormatListBulletedIcon:
-        functionComponentElement = React.createElement(FormatListBulleted, null);
-        break;
       default:
+        functionComponentElement = React.createElement(FormatListBulleted, null);
         break;
     }
     return functionComponentElement;

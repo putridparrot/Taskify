@@ -40,8 +40,7 @@
         Items.AddRange(system.Select(s => new NavigationItem
         {
             Title = s.Name,
-            Path = s.Uri ?? String.Empty,
-            Icon = TaskIcon.GetIconFor(s.Id),
+            Icon = TaskIcon.GetIconFor(s.IconName),
             Prefix = false
         }));
 
@@ -49,8 +48,7 @@
         DynamicItems.AddRange(userDefined.Select(s => new NavigationItem
         {
             Title = s.Name,
-            Path = s.Uri ?? String.Empty,
-            Icon = TaskIcon.GetIconFor(s.Id),
+            Icon = TaskIcon.GetIconFor(s.IconName),
             Prefix = false
         }));
 

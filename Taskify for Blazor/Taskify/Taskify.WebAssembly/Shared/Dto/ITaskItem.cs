@@ -35,8 +35,8 @@ namespace Taskify.WebAssembly.Shared.Dto
         public TaskListSpecification Specification { get; set; }
         [JsonProperty("isSelected")]
         public bool IsSelected { get; set; }
-        [JsonProperty("uri")]
-        public string Uri { get; set; }
+        [JsonProperty("IconName")]
+        public string IconName { get; set; }
     }
 
     public class TaskListSpecification
@@ -71,7 +71,6 @@ namespace Taskify.WebAssembly.Shared.Dto
             {
                 Id = id,
                 Name = name,
-                Uri = uri
             };
         }
 
@@ -81,7 +80,6 @@ namespace Taskify.WebAssembly.Shared.Dto
             {
                 Id = id,
                 Name = name,
-                Uri = uri,
                 Specification = CreateTaskListSpecification(isUserGenerated)
             };
         }
@@ -94,5 +92,4 @@ namespace Taskify.WebAssembly.Shared.Dto
             };
         }
     }
-
 }

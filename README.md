@@ -46,3 +46,13 @@ Tizen watch is currently using Tizen.NET and should eventually include integrati
 # Web
 
 A Web based implementation is written using React along with material-ui and aims to support PWA functionality for an offline experience.
+
+* Added eslint and prettier to enforce code style etc.
+
+# Blazor
+
+A WASM/WebAssembly and server side Blazor implementation.
+
+# Web API
+
+The Taskify Web API project acts as the server based task storage/api mechanism.

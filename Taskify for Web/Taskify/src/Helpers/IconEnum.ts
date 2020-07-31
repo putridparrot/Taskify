@@ -1,11 +1,11 @@
 enum IconEnum {
-  WbSunnyOutlinedIcon = "WbSunnyOutlinedIcon",
-  StarBorderOutlinedIcon = "StarBorderOutlinedIcon",
-  DateRangeOutlinedIcon ="DateRangeOutlinedIcon",
-  PersonOutlineOutlinedIcon ="PersonOutlineOutlinedIcon",
-  FlagOutlinedIcon = "FlagOutlinedIcon",
-  HomeOutlinedIcon ="HomeOutlinedIcon",
-  FormatListBulletedIcon="FormatListBulletedIcon"
+  MyDay = "MyDay",
+  Important = "Important",
+  Planned ="Planned",
+  AssignedToYou ="AssignedToYou",
+  Flagged = "Flagged",
+  Tasks ="Tasks",
+  User="User"
 }
 
 export default IconEnum;

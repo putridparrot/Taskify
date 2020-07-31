@@ -1,29 +1,36 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Skclusive.Material.Icon;
+using Taskify.Icon;
 
 namespace Taskify.Client.Utils
 {
     public static class TaskIcon
     {
-        public static RenderFragment GetIconFor(int id)
+        public static RenderFragment GetIconFor(string iconName)
         {
             var iconType = typeof(ListIcon);
-            switch (id)
+            switch (iconName)
             {
-                case 0:
+                case "Tasks":
                     iconType = typeof(HomeIcon);
                     break;
-                case 1:
-                    iconType = typeof(NotificationImportantIcon);
+                case "MyDay":
+                    iconType = typeof(WbSunnyOutlined);
                     break;
-                case 2:
-                    iconType = typeof(AssignmentIcon);
+                case "Important":
+                    iconType = typeof(StarBorderOutlined);
                     break;
-                case 3:
-                    iconType = typeof(PersonIcon);
+                case "Planned":
+                    iconType = typeof(DateRangeOutlined);
                     break;
-                case 4:
-                    iconType = typeof(WorkIcon);
+                case "AssignedToYou":
+                    iconType = typeof(PersonOutlineOutlined);
+                    break;
+                case "Flagged":
+                    iconType = typeof(FlagOutlined);
+                    break;
+                default:
+                    iconType = typeof(FormatListBulleted);
                     break;
             }
 

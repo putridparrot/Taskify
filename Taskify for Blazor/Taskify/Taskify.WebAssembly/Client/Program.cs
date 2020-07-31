@@ -31,8 +31,8 @@ namespace Taskify.WebAssembly.Client
                     .Build()
             );
 
-            // builder.Services.AddSingleton<IDataService, DataService>();
-            builder.Services.AddSingleton<IDataService, LocalDataService>();
+            builder.Services.AddSingleton<IDataService, DataService>();
+            // builder.Services.AddSingleton<IDataService, LocalDataService>();
 
             await builder.Build().RunAsync();
         }

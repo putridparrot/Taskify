@@ -8,12 +8,12 @@ namespace Taskify.Data.Domain
         {
         }
 
-        public TaskList(string name, TaskListSpecification taskListSpecification, string iconName = "FormatListBulleted")
+        public TaskList(string name, TaskListSpecification taskListSpecification, string iconName = "User")
         {
             Specification = taskListSpecification;
             Name = name;
             Tasks = new List<TaskItem>();
-            this.IconName = iconName;
+            IconName = iconName;
         }
 
         public int Id  { get; set; }
