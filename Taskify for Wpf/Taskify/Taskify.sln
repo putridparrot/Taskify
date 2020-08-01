@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify", "Taskify\Taskify.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{102F4036-7F3C-4852-AAB2-CA9A9BC41429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Taskify.Data", "..\..\Taskify.Data\Tests.Taskify.Data\Tests.Taskify.Data.csproj", "{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify.Common", "Taskify.Common\Taskify.Common.csproj", "{AAB6BD3F-3175-448E-ADB0-670FFB13AAFA}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{102F4036-7F3C-4852-AAB2-CA9A9BC41429}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BCDA0C1-371B-4A14-B920-15F7B9C25E8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AAB6BD3F-3175-448E-ADB0-670FFB13AAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AAB6BD3F-3175-448E-ADB0-670FFB13AAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAB6BD3F-3175-448E-ADB0-670FFB13AAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
