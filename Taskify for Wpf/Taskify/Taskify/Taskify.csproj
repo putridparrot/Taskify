@@ -186,9 +186,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj">
-      <Project>{3b2743cc-fe49-4e37-961b-1e3e160a6a80}</Project>
-      <Name>Taskify.Data</Name>
+    <ProjectReference Include="..\..\..\Taskify.Service.Client\Taskify.Service.Client\Taskify.Service.Client.csproj">
+      <Project>{FBE7D511-8A74-478A-AAEC-F583A79DFA62}</Project>
+      <Name>Taskify.Service.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\Taskify.Common\Taskify.Common.csproj">
       <Project>{AAB6BD3F-3175-448E-ADB0-670FFB13AAFA}</Project>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Taskify.Data.Domain;
+using Taskify.Service.Client.Dto;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

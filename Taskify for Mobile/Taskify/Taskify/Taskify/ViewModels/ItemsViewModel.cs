@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
-using Taskify.Data.Domain;
+using Taskify.Service.Client.Dto;
 using Taskify.Views;
 using Xamarin.Forms;
 
@@ -24,7 +22,7 @@ namespace Taskify.ViewModels
             MessagingCenter.Subscribe<NewItemPage, TaskItem>(this, "AddItem", async (obj, item) =>
             {
                 Items.Add(item);
-                await DataStore.AddItemAsync(item);
+                // await DataService.AddItemAsync(item);
             });
         }
 
@@ -38,11 +36,11 @@ namespace Taskify.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                //var items = await DataService.GetItemsAsync(true);
+                //foreach (var item in items)
+                //{
+                //    Items.Add(item);
+                //}
             }
             catch (Exception ex)
             {

@@ -1,12 +1,7 @@
 ﻿using System.Windows;
-using Prism;
 using Prism.Ioc;
 using Prism.Unity;
-using Taskify.Data.Repositories;
-using Taskify.Data.Services;
-using Unity;
-using Unity.Extension;
-using Unity.Lifetime;
+using Taskify.Service.Client.Services;
 
 namespace WpfTaskify
 {
@@ -19,8 +14,7 @@ namespace WpfTaskify
         {
             containerRegistry.Register<IShell, Shell>();
             containerRegistry.Register<IShellViewModel, ShellViewModel>();
-            containerRegistry.Register<ITaskRepository, TaskRepository>();
-            containerRegistry.Register<ITaskService, TaskService>();
+            containerRegistry.Register<IDataService, DataService>();
         }
 
         protected override Window CreateShell()

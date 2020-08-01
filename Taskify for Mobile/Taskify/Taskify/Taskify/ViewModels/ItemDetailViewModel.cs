@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Taskify.Data.Domain;
+﻿using Taskify.Service.Client.Dto;
 
 namespace Taskify.ViewModels
 {

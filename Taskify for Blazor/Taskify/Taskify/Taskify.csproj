@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Taskify.WebAssembly\Client\Taskify.WebAssembly.Client.csproj" />
-    <ProjectReference Include="..\Taskify.WebAssembly\Shared\Taskify.WebAssembly.Shared.csproj" />
   </ItemGroup>
 
 </Project>

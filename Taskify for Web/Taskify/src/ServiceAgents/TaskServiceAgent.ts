@@ -7,7 +7,7 @@ import "reflect-metadata";
 @injectable()
 export class TaskServiceAgent implements ITaskServiceAgent{
   fetchTaskLists(callback: ITaskListCallBack): void {
-    axios.get("http://localhost:52606/api/tasklist")
+    axios.get("http://localhost:5000/api/tasklist")
       .then((response) => {
         console.log(response.data);
         callback(null, response.data);

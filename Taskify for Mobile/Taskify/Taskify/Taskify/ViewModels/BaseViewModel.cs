@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Taskify.Data.Domain;
-using Taskify.Data.Services;
+using Taskify.Service.Client.Services;
 using Xamarin.Forms;
 
 namespace Taskify.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<TaskItem> DataStore => DependencyService.Get<IDataStore<TaskItem>>();
+        public IDataService DataService => DependencyService.Get<IDataService>();
 
         private bool _isBusy = false;
         private string _title = String.Empty;

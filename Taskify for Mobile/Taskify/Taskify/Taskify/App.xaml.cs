@@ -1,4 +1,4 @@
-﻿using Taskify.Data.Services;
+﻿using Taskify.Service.Client.Services;
 using Taskify.Views;
 using Xamarin.Forms;
 
@@ -10,7 +10,7 @@ namespace Taskify
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<DataService>();
             MainPage = new MainPage();
         }
 
