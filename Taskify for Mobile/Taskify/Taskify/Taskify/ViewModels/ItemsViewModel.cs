@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Taskify.Service.Client.Dto;
+using Taskify.Data.Domain;
 using Taskify.Views;
 using Xamarin.Forms;
 

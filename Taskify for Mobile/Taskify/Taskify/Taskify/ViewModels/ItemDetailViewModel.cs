@@ -1,4 +1,4 @@
-﻿using Taskify.Service.Client.Dto;
+﻿using Taskify.Data.Domain;
 
 namespace Taskify.ViewModels
 {

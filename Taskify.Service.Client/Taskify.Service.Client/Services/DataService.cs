@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Refit;
-using Taskify.Service.Client.Dto;
+using Taskify.Data.Domain;
 
 namespace Taskify.Service.Client.Services
 {
+    /// <summary>
+    /// Wraps the Web API in a service
+    /// </summary>
     public class DataService : IDataService
     {
         private readonly IDataServiceApi _dataServiceApi;

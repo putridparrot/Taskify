@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Taskify.Service.Client.Dto;
+using Taskify.Data.Domain;
 
 namespace Taskify.Service.Client.Services
 {

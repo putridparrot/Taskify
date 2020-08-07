@@ -1,4 +1,4 @@
-﻿using Taskify.Service.Client.Dto;
+﻿using Taskify.Data.Domain;
 using Taskify.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

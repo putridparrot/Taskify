@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Taskify.Service.Client.Dto;
+using Taskify.Data.Domain;
 
 namespace Taskify.Service.Client.Services
 {
-    /*
-    * Implementation of IDataService for local storage
-    */
+    //
+    // Implementation of IDataService for local storage
+    //
     public class LocalDataService : IDataService
     {
         private readonly List<TaskList> _taskLists;
@@ -15,19 +16,13 @@ namespace Taskify.Service.Client.Services
         {
             _taskLists = new List<TaskList>
             {
-                TaskListFactory.CreateTaskList(0, "My Day", "/"),
-                TaskListFactory.CreateTaskList(1, "Important", "/important"),
-                TaskListFactory.CreateTaskList(2, "Planned", "/planned"),
-                TaskListFactory.CreateTaskList(3, "Assigned to you", "/assignedtoyou"),
-                TaskListFactory.CreateTaskList(4, "Tasks", "/tasks")
+                new TaskList("My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
+                new TaskList("Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
+                new TaskList("Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),
+                new TaskList("Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou"),
+                new TaskList("Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged"),
+                new TaskList("Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks"),
             };
-
-            // append some sample user defined
-            _taskLists.AddRange(new TaskList[]
-            {
-                TaskListFactory.CreateTaskList(5, "User1", "/tasks", true),
-                TaskListFactory.CreateTaskList(6, "User2", "/tasks", true)
-            });
         }
 
         public Task<List<TaskList>> GetTaskLists()

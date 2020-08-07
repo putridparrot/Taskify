@@ -11,9 +11,8 @@ namespace Taskify.Data.Repositories
         private readonly List<TaskList> _taskLists;
         public TaskRepository()
         {
-            _taskLists = new List<TaskList>()
+            _taskLists = new List<TaskList>
             {
-
                 new TaskList("My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
                 new TaskList("Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
                 new TaskList("Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),

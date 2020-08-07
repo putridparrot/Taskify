@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Prism.Events;
 using Prism.Mvvm;
-using Taskify.Service.Client.Dto;
+using Taskify.Data.Domain;
 using Taskify.Service.Client.Services;
 using WpfTaskify.Events;
 

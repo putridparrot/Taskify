@@ -56,3 +56,7 @@ A WASM/WebAssembly and server side Blazor implementation.
 # Web API
 
 The Taskify Web API project acts as the server based task storage/api mechanism.
+
+# CLI
+
+The Taskify CLI allows you to interact with Taskify via the command line in Windows, Linux or Mac
