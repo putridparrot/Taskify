@@ -1,5 +1,4 @@
 import React from "react";
-import {TaskList} from "../Dto/TaskList";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import IconRetriever from "../Helpers/IconRetriever";
@@ -8,6 +7,10 @@ import List from "@material-ui/core/List";
 import "reflect-metadata";
 import {connect} from 'react-redux'
 import {TaskListProps} from "./TaskListProps";
+import {setSelectedTaskList} from "../actions/setSelectedTaskList";
+import {SelectedListStateData} from "../actions/SelectedListStateData";
+import {store} from "../store/configureStore";
+import {setSystemTaskLists} from "../actions/setSystemTaskLists";
 
 class TaskLists extends React.Component<TaskListProps> {
  
@@ -16,7 +19,9 @@ class TaskLists extends React.Component<TaskListProps> {
   }
   
   handleTaskListSelected(id: Number){
-    
+    console.log("Clicked .." +id);
+    let selectedListStateData = new SelectedListStateData(id,false,true);
+    store.dispatch(setSelectedTaskList(selectedListStateData));   
   }
   
   render() {
@@ -38,7 +43,6 @@ const ConnectedUserTaskLists = connect((state)=>{
     taskLists: state.userTaskLists
   }
 })(TaskLists);
-
 
 export {ConnectedUserTaskLists}
   

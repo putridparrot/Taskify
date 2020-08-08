@@ -6,10 +6,18 @@ import IconRetriever from "../Helpers/IconRetriever";
 import ListItemText from "@material-ui/core/ListItemText";
 import {TaskListProps} from "./TaskListProps";
 import {connect} from  'react-redux';
+import {SelectedListStateData} from "../actions/SelectedListStateData";
+import {setSelectedTaskList} from "../actions/setSelectedTaskList";
+import {store} from "../store/configureStore";
 
 class SystemTaskLists extends React.Component<TaskListProps> {
-  handleTaskListSelected(listId:number) {
-  }  
+
+  handleTaskListSelected(id: Number){
+    console.log("Clicked .." +id);
+    let selectedListStateData = new SelectedListStateData(id,true,false);
+    store.dispatch(setSelectedTaskList(selectedListStateData));    
+  }
+  
   render() {
     console.log("Render......");
     return (<List> {

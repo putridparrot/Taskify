@@ -12,6 +12,9 @@ import {setSystemTaskLists} from "../actions/setSystemTaskLists";
 import {setUserTaskLists} from "../actions/setUserTaskLists";
 import {ConnectedSystemTaskLists} from "./SystemTaskLists";
 import {ConnectedUserTaskLists} from "./TaskLists";
+import {ConnectedTasks} from "./TaskListTasks";
+import {AppBar, Grid, Typography} from "@material-ui/core";
+import {SelectedTaskDetail} from "./SelectedTaskDetail";
 
 const drawerWidth = 240;
 
@@ -44,17 +47,16 @@ interface ShellProps {
   children?: ReactNode;
 }
 
-export default function Shell(props: ShellProps): ReactElement {  
-  useEffect(()=>{
-  let taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
-  taskServiceAgent?.fetchTaskLists((e,resp)=>{
-      if(e!=null){
+export default function Shell(props: ShellProps): ReactElement {
+  useEffect(() => {
+    let taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
+    taskServiceAgent?.fetchTaskLists((e, resp) => {
+      if (e != null) {
         console.log("Error Occured....");
-      }
-      else{
-        if(resp!=null) {
-          let filteredTaskLists:any = resp.filter(tl => !tl.specification.isUserGenerated);
-          let filteredUserTaskLists:any = resp.filter(tl => tl.specification.isUserGenerated);          
+      } else {
+        if (resp != null) {
+          let filteredTaskLists: any = resp.filter(tl => !tl.specification.isUserGenerated);
+          let filteredUserTaskLists: any = resp.filter(tl => tl.specification.isUserGenerated);
           store.dispatch(setSystemTaskLists(filteredTaskLists));
           store.dispatch(setUserTaskLists(filteredUserTaskLists));
           console.log("State is :");
@@ -62,21 +64,35 @@ export default function Shell(props: ShellProps): ReactElement {
         }
       }
     })
-  },[]);
-  
+  }, []);
+
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <CssBaseline/>
-      <ResponsiveDrawer title="Taskify">
-        <Toolbar/>
-        <div className={classes.drawerContainer}>
-          <ConnectedSystemTaskLists/>
-          <Divider/>
-          <ConnectedUserTaskLists />
-        </div>
-      </ResponsiveDrawer>
-      {/*{children}*/}
+    <div>
+      <div>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" className={classes.content}>
+              Taskify
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </div>
+      <div className={classes.root}>
+        <Grid container spacing={0}>
+          <Grid item xs={3}>
+            <ConnectedSystemTaskLists/>
+            <Divider/>
+            <ConnectedUserTaskLists/>
+          </Grid>
+          <Grid item xs={6}>
+            <ConnectedTasks></ConnectedTasks>
+          </Grid>
+          <Grid item>
+            <SelectedTaskDetail/>
+          </Grid>
+        </Grid>
+      </div>
     </div>
   );
 }
