@@ -3,7 +3,6 @@ import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
-import ResponsiveDrawer from './ResponsiveDrawer';
 import {ITaskServiceAgent} from "../ServiceAgents/ITaskServiceAgent";
 import {applicationContainer} from "../Container";
 import {Types} from "../Types";
