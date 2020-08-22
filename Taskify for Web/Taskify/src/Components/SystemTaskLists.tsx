@@ -27,6 +27,7 @@ class SystemTaskLists extends React.Component<TaskListProps> {
             {IconRetriever.map(task.iconName)}
           </ListItemIcon>
           <ListItemText primary={task.name}/>
+         {/*<ListItemText primary={process.env.REACT_APP_TASK_SERVER_URL}/>*/}
         </ListItem>)
       })}
     </List>);
