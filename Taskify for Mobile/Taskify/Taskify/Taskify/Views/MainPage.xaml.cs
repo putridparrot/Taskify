@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,7 +26,7 @@ namespace Taskify.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Browse:
-                        _menuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        _menuPages.Add(id, new NavigationPage(new NavigationListPage()));
                         break;
                     case (int)MenuItemType.About:
                         _menuPages.Add(id, new NavigationPage(new AboutPage()));

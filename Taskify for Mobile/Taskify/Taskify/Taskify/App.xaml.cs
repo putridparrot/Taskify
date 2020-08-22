@@ -1,4 +1,5 @@
 ﻿using Taskify.Service.Client.Services;
+using Taskify.ViewModels;
 using Taskify.Views;
 using Xamarin.Forms;
 
@@ -6,16 +7,22 @@ namespace Taskify
 {
     public partial class App : Application
     {
+        private readonly MainViewModel _mainViewModel;
+
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<DataService>();
-            MainPage = new MainPage();
+            _mainViewModel = new MainViewModel(new DataService());
+            MainPage = new MainPage
+            {
+                BindingContext = _mainViewModel
+            };
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            await _mainViewModel.Load();
         }
 
         protected override void OnSleep()
