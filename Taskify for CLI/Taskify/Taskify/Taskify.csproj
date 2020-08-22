@@ -9,4 +9,8 @@
     <PackageReference Include="PowerArgs" Version="3.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Taskify.Service.Client\Taskify.Service.Client\Taskify.Service.Client.csproj" />
+  </ItemGroup>
+
 </Project>

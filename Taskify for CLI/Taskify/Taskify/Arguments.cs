@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using PowerArgs;
+using Taskify.Service.Client.Services;
 
 namespace Taskify
 {
@@ -9,15 +11,38 @@ namespace Taskify
      */
     public class Arguments
     {
+        private readonly IDataService _dataService;
+
+        public Arguments()
+        {
+            _dataService = new DataService();
+        }
+
+        /// <summary>
+        /// lsg (to list task groups), with arg after
+        /// </summary>
+        [ArgActionMethod, 
+         ArgDescription("Lists all groups")]
+        public async Task lsg()
+        {
+            var taskList = await _dataService.GetTaskLists();
+
+            var i = 1;
+            foreach (var taskItem in taskList)
+            {
+                Console.WriteLine($"{i}. {taskItem.Name}");
+                i++;
+            }
+        }
+
         /// <summary>
         /// ls (to list tasks), with arg after, use as search, i.e. list "My Task" (as well as multiple args) as &&
         /// important - use the ls line number, i.e.important 4 to make ls item 4 important(important lines differ in colour)
         /// </summary>
-        [ArgActionMethod, 
+        [ArgActionMethod,
          ArgDescription("Lists all tasks")]
         public void ls()
         {
-            Console.WriteLine("ls executed");
         }
 
         [ArgActionMethod, 

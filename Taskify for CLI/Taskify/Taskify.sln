@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify", "Taskify\Taskify.csproj", "{DBAE6949-B21E-4886-83D6-D704381CBD75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify", "Taskify\Taskify.csproj", "{DBAE6949-B21E-4886-83D6-D704381CBD75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Service.Client", "..\..\Taskify.Service.Client\Taskify.Service.Client\Taskify.Service.Client.csproj", "{FEB11F18-D148-426A-AD8F-571BA70F0C5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{CAF04D24-4157-4BC6-86B0-ED1F6820BB29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FEB11F18-D148-426A-AD8F-571BA70F0C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEB11F18-D148-426A-AD8F-571BA70F0C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEB11F18-D148-426A-AD8F-571BA70F0C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF04D24-4157-4BC6-86B0-ED1F6820BB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF04D24-4157-4BC6-86B0-ED1F6820BB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF04D24-4157-4BC6-86B0-ED1F6820BB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF04D24-4157-4BC6-86B0-ED1F6820BB29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
