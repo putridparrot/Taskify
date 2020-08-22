@@ -10,7 +10,7 @@ namespace Taskify.Service.Client.Services
     /// </summary>
     public interface IDataServiceApi
     {
-        [Get("/api/tasklist")]
+        [Get("/tasklist")]
         Task<List<TaskList>> GetTaskLists();
     }
 }

@@ -34,7 +34,7 @@ namespace Taskify
             );
 
             services.AddSingleton<IDataService, DataService>();
-            // services.AddSingleton<IDataService, LocalDataService>();
+            //services.AddSingleton<IDataService, LocalDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
