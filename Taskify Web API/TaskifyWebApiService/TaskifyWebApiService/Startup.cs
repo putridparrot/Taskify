@@ -34,6 +34,7 @@ namespace TaskifyWebApiService
                 options.AddPolicy("CorsPolicy",
                     policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             });
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +58,11 @@ namespace TaskifyWebApiService
 
             app.UseCors("CorsPolicy");
             app.UseRouting();
+            app.UseOpenApi();
+            app.UseSwaggerUi3(c =>
+            {
+                c.DocumentTitle = "Taskify WebApi";
+            });
 
             app.UseAuthorization();
 
