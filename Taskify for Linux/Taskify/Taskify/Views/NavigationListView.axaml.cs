@@ -1,19 +1,14 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Taskify.Service.Client.Services;
-using Taskify.ViewModels;
 
 namespace Taskify.Views
 {
-    public class MainWindow : Window
+    public class NavigationListView : UserControl
     {
-        public MainWindow()
+        public NavigationListView()
         {
-            InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
+            this.InitializeComponent();
         }
 
         private void InitializeComponent()

@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Taskify.Service.Client.Services;
 using Taskify.ViewModels;
 using Taskify.Views;
 
@@ -17,10 +18,12 @@ namespace Taskify
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                var mainWindowViewModel = new MainWindowViewModel(new DataService());
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = mainWindowViewModel
                 };
+                mainWindowViewModel.Load();
             }
 
             base.OnFrameworkInitializationCompleted();
