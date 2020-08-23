@@ -1,4 +1,5 @@
-﻿using Taskify.Service.Client.Services;
+﻿using Taskify.Configuration;
+using Taskify.Service.Client.Services;
 using Taskify.ViewModels;
 using Taskify.Views;
 using Xamarin.Forms;
@@ -13,7 +14,7 @@ namespace Taskify
         {
             InitializeComponent();
 
-            _mainViewModel = new MainViewModel(new DataService());
+            _mainViewModel = new MainViewModel(new DataService(ConfigurationManager.AppSettings.Url));
             MainPage = new MainPage
             {
                 BindingContext = _mainViewModel

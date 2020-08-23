@@ -33,7 +33,7 @@ namespace Taskify
                     .Build()
             );
 
-            services.AddSingleton<IDataService, DataService>();
+            services.AddSingleton<IDataService, DataService>(sp => new DataService(Configuration["Url"]));
             //services.AddSingleton<IDataService, LocalDataService>();
         }
 
