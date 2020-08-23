@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 
-namespace WpfTaskify.Events
+namespace Taskify.Events
 {
     public class TaskListSelectedEvent: PubSubEvent<int>
     {

@@ -2,36 +2,36 @@
 using System.Windows.Controls;
 using System.Windows.Interactivity;
 
-namespace WpfTaskify.Behaviours
+namespace Taskify.Behaviours
 {
     public class SelectableListItemBehaviour: Behavior<ListBox>
     {
-        private ListBox listBox;
+        private ListBox _listBox;
         protected override void OnAttached()
         { 
             base.OnAttached();
-          this.listBox = this.AssociatedObject;
-          this.AddEvents();
+            _listBox = this.AssociatedObject;
+            AddEvents();
         }
 
         private void AddEvents()
         {
 
-            this.listBox.SelectionChanged += ListBox_SelectionChanged;
+            _listBox.SelectionChanged += ListBox_SelectionChanged;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IList addedItems = e.AddedItems;
+            var addedItems = e.AddedItems;
             foreach (var addedItem in addedItems)
             {
-                ISelectableItem selectableItem =  (ISelectableItem) addedItem;
+                var selectableItem =  (ISelectableItem) addedItem;
                 selectableItem.IsSelected = true;
             }
 
             foreach (var removedItem in e.RemovedItems)
             {
-                ISelectableItem selectableItem = (ISelectableItem)removedItem;
+                var selectableItem = (ISelectableItem)removedItem;
                 selectableItem.IsSelected = false;
             }
         }
@@ -39,7 +39,7 @@ namespace WpfTaskify.Behaviours
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            this.listBox.SelectionChanged -= ListBox_SelectionChanged;
+            this._listBox.SelectionChanged -= ListBox_SelectionChanged;
         }
     }
 

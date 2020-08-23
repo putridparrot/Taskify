@@ -1,49 +1,50 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Prism.Events;
 using Prism.Mvvm;
-using Taskify.Data.Domain;
+using Taskify.Events;
 using Taskify.Service.Client.Services;
-using WpfTaskify.Events;
 
-namespace WpfTaskify.ViewModels
+namespace Taskify.ViewModels
 {
     public class TaskListDetailViewModel : BindableBase
     {
-        private readonly IDataService dataService;
-        private readonly IEventAggregator eventAggregator;
-        private TaskListViewModel selectedItem;
+        private readonly IDataService _dataService;
+        private readonly IEventAggregator _eventAggregator;
+        private TaskListViewModel _selectedItem;
 
         public TaskListDetailViewModel(IDataService dataService , IEventAggregator eventAggregator)
         {
-            this.dataService = dataService;
-            this.eventAggregator = eventAggregator;
-            this.TaskLists = new ObservableCollection<TaskListViewModel>();
-            this.Refresh();
+            _dataService = dataService;
+            _eventAggregator = eventAggregator;
+            TaskLists = new ObservableCollection<TaskListViewModel>();
+            Refresh();
         }
 
         public TaskListViewModel SelectedItem
         {
-            get => this.selectedItem;
+            get => _selectedItem;
             set
             {
-                this.SetProperty(ref this.selectedItem, value, nameof(SelectedItem));
-                TaskListSelectedEvent taskListSelectedEvent = this.eventAggregator.GetEvent<TaskListSelectedEvent>();
-                taskListSelectedEvent.Publish(this.selectedItem.Id);
+                if (SetProperty(ref this._selectedItem, value, nameof(SelectedItem)))
+                {
+                    var taskListSelectedEvent =
+                        _eventAggregator.GetEvent<TaskListSelectedEvent>();
+                    taskListSelectedEvent.Publish(this._selectedItem.Id);
+                }
             }
         }
 
         private async void Refresh()
         {
-            List<TaskList> lists = await dataService.GetTaskLists();
+            var lists = await _dataService.GetTaskLists();
             lists.ForEach(l =>
             {
-                TaskListViewModel taskListViewModel = new TaskListViewModel()
+                var taskListViewModel = new TaskListViewModel()
                 {
                     Name = l.Name,
                     Id = l.Id
                 };
-                this.TaskLists.Add(taskListViewModel);
+                TaskLists.Add(taskListViewModel);
             });
             
         }

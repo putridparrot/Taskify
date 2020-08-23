@@ -1,4 +1,4 @@
-﻿namespace WpfTaskify
+﻿namespace Taskify
 {
     public static class RegionNames
     {

@@ -1,12 +1,10 @@
-﻿using WpfTaskify.ViewModels;
-
-namespace WpfTaskify
+﻿namespace Taskify.ViewModels
 {
-    public class ShellViewModel : IShellViewModel
+    public class ShellViewModel
     {
         public ShellViewModel(TaskListDetailViewModel taskListDetailViewModel)
         {
-            this.TaskListDetailViewModel = taskListDetailViewModel;
+            TaskListDetailViewModel = taskListDetailViewModel;
         }
 
         public TaskListDetailViewModel TaskListDetailViewModel { get; set; }

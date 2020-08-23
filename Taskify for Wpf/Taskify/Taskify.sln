@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskify.Common", "Taskify.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Service.Client", "..\..\Taskify.Service.Client\Taskify.Service.Client\Taskify.Service.Client.csproj", "{FBE7D511-8A74-478A-AAEC-F583A79DFA62}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taskify.Data", "..\..\Taskify.Data\Taskify.Data\Taskify.Data.csproj", "{DACEF5B9-A79C-47DF-9EEE-358600CA119F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FBE7D511-8A74-478A-AAEC-F583A79DFA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE7D511-8A74-478A-AAEC-F583A79DFA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE7D511-8A74-478A-AAEC-F583A79DFA62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DACEF5B9-A79C-47DF-9EEE-358600CA119F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DACEF5B9-A79C-47DF-9EEE-358600CA119F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DACEF5B9-A79C-47DF-9EEE-358600CA119F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DACEF5B9-A79C-47DF-9EEE-358600CA119F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 
-namespace WpfTaskify.ViewModels
+namespace Taskify.ViewModels
 {
     public class TaskViewModel : BindableBase
     {

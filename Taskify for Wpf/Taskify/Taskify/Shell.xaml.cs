@@ -1,9 +1,9 @@
-﻿namespace WpfTaskify
+﻿namespace Taskify
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Shell : IShell
+    public partial class Shell
     {
         public Shell()
         {

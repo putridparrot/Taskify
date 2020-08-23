@@ -120,9 +120,8 @@
       <DependentUpon>TasksViewUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Events\TaskListSelectedEvent.cs" />
-    <Compile Include="IShellViewModel.cs" />
     <Compile Include="RegionNames.cs" />
-    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TaskListDetailViewModel.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
@@ -147,7 +146,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IShell.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>

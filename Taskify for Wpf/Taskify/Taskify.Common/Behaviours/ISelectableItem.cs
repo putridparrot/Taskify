@@ -1,4 +1,4 @@
-﻿namespace WpfTaskify.Behaviours
+﻿namespace Taskify.Behaviours
 {
     public interface ISelectableItem
     {

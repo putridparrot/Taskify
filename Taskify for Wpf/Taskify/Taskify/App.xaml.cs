@@ -1,9 +1,11 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Windows;
 using Prism.Ioc;
 using Prism.Unity;
 using Taskify.Service.Client.Services;
+using Taskify.ViewModels;
 
-namespace WpfTaskify
+namespace Taskify
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -12,17 +14,19 @@ namespace WpfTaskify
     {
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IShell, Shell>();
-            containerRegistry.Register<IShellViewModel, ShellViewModel>();
-            containerRegistry.Register<IDataService, DataService>();
+            containerRegistry.RegisterSingleton<Shell>();
+            containerRegistry.RegisterSingleton<ShellViewModel>();
+
+            containerRegistry.RegisterInstance<IDataService>(new DataService(ConfigurationManager.AppSettings["Url"]));
+
+            containerRegistry.Register<TaskListDetailViewModel>();
         }
 
         protected override Window CreateShell()
         {
-            var shell = this.Container.Resolve<IShell>();
-            var shellViewModel = this.Container.Resolve<IShellViewModel>();
-            shell.DataContext = shellViewModel;
-            return (Window) shell;
+            var shell = Container.Resolve<Shell>();
+            shell.DataContext = Container.Resolve<ShellViewModel>();
+            return shell;
         }
     }
 }

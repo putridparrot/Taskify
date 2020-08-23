@@ -1,9 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows;
-using Prism.Mvvm;
-using WpfTaskify.Behaviours;
+﻿using Prism.Mvvm;
+using Taskify.Behaviours;
 
-namespace WpfTaskify.ViewModels
+namespace Taskify.ViewModels
 {
     public class TaskListViewModel: BindableBase, ISelectableItem
     {

@@ -1,17 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Mvvm;
 
-namespace WpfTaskify.ViewModels
+namespace Taskify.ViewModels
 {
     public class TasksViewModel : BindableBase
     {
-
-        private ObservableCollection<TaskViewModel> taskViewModels;
+        private ObservableCollection<TaskViewModel> _tasks;
 
         public ObservableCollection<TaskViewModel> Tasks
         {
-            get => taskViewModels;
-            set => taskViewModels = value;
+            get => _tasks;
+            set => _tasks = value;
         }
     }
 }
