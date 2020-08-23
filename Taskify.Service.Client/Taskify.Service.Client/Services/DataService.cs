@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Refit;
@@ -14,10 +16,9 @@ namespace Taskify.Service.Client.Services
     {
         private readonly IDataServiceApi _dataServiceApi;
 
-        public DataService()
+        public DataService(string url)
         {
-            // TODO move URL into configuration
-            _dataServiceApi = RestService.For<IDataServiceApi>("http://localhost:5000/api/");
+            _dataServiceApi = RestService.For<IDataServiceApi>(url);
         }
 
         public Task<List<TaskList>> GetTaskLists()
