@@ -7,8 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import { ITaskServiceAgent } from "../ServiceAgents/ITaskServiceAgent";
 import applicationContainer from "../Container";
 import { Types } from "../Types";
-import ConnectedSystemTaskLists from "./SystemTaskLists";
-import ConnectedUserTaskLists from "./TaskLists";
+import TaskLists from "./TaskLists";
 import ConnectedTasks from "./TaskListTasks";
 import SelectedTaskDetail from "./SelectedTaskDetail";
 import { setSystemTaskLists, setUserTaskLists } from '../redux/actions';
@@ -45,6 +44,13 @@ const useStyles = makeStyles((theme: Theme) =>
 // }
 
 function Shell(props: any): ReactElement {
+  const {
+    // eslint-disable-next-line no-shadow
+    setSystemTaskLists,
+    // eslint-disable-next-line no-shadow
+    setUserTaskLists
+  } = props;
+
   useEffect(() => {
     const taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
     taskServiceAgent?.fetchTaskLists((e, resp) => {
@@ -54,13 +60,6 @@ function Shell(props: any): ReactElement {
         const filteredTaskLists: any = resp.filter(tl => !tl.specification.isUserGenerated);
         const filteredUserTaskLists: any = resp.filter(tl => tl.specification.isUserGenerated);
 
-        const { 
-          // eslint-disable-next-line no-shadow
-          setSystemTaskLists, 
-          // eslint-disable-next-line no-shadow
-          setUserTaskLists
-        } = props;
-
         if (setSystemTaskLists != null) {
           setSystemTaskLists(filteredTaskLists);
         }
@@ -69,9 +68,17 @@ function Shell(props: any): ReactElement {
         }
       }
     });
-  }, [props]);
+  }, [setSystemTaskLists, setUserTaskLists]);
 
   const classes = useStyles();
+
+  const {
+    systemTaskList,
+    userTaskList,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setSelectedTaskList
+  } = props;
+
   return (
     <div>
       <div>
@@ -86,9 +93,9 @@ function Shell(props: any): ReactElement {
       <div className={classes.root}>
         <Grid container spacing={0}>
           <Grid item xs={3}>
-            <ConnectedSystemTaskLists />
+            <TaskLists taskLists={systemTaskList} setSelectedTaskList={setSelectedTaskList} />
             <Divider />
-            <ConnectedUserTaskLists />
+            <TaskLists taskLists={userTaskList} setSelectedTaskList={setSelectedTaskList} />
           </Grid>
           <Grid item xs={6}>
             <ConnectedTasks />
@@ -102,12 +109,17 @@ function Shell(props: any): ReactElement {
   );
 }
 
+const mapStateToProps = (state: any) => ({
+  systemTaskList: state.systemTaskLists,
+  userTaskList: state.userTaskLists
+});
+
 const mapDispatchToProps = {
   setSystemTaskLists,
   setUserTaskLists
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Shell);

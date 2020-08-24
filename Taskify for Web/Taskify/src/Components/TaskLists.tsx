@@ -4,33 +4,31 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import "reflect-metadata";
-import {connect} from "react-redux";
 import {TaskListProps} from "./TaskListProps";
 import SelectedListStateData from "../redux/types/SelectedListStateData";
 import IconRetriever from "../Helpers/IconRetriever";
-import { setSelectedTaskList } from "../redux/actions";
 
 class TaskLists extends React.Component<TaskListProps> {
   
-  handleTaskListSelected(id: number) {
+  handleTaskListSelected(id: number, isUser: boolean): void {
     // eslint-disable-next-line no-shadow
     const { setSelectedTaskList } = this.props;
 
-    console.log(`Clicked ..${id}`);
-
     if (setSelectedTaskList != null) {
-      setSelectedTaskList(new SelectedListStateData(id, false, true));
+      setSelectedTaskList(new SelectedListStateData(id, isUser));
     }
   }
   
   render(): ReactElement {
     const { taskLists } = this.props;
     
+    console.log(taskLists);
+
     return (
       <List> {
         taskLists?.map((task, _index) => {        
           return (
-            <ListItem button key={task.name} onClick={()=>this.handleTaskListSelected(task.id)}>
+            <ListItem button key={task.name} onClick={()=>this.handleTaskListSelected(task.id, task.specification?.isUserGenerated)}>
               <ListItemIcon>
                 {IconRetriever.map(task.iconName)}
               </ListItemIcon>
@@ -43,15 +41,4 @@ class TaskLists extends React.Component<TaskListProps> {
   }
 }
 
-const mapDispatchToProps = {
-  setSelectedTaskList
-};
-
-const mapStateToProps = (state: any) => ({
-  taskLists: state.userTaskLists
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TaskLists);
+export default TaskLists;
