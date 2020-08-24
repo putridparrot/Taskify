@@ -1,23 +1,26 @@
-import React, { ReactElement, useEffect } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import React, { ReactElement, useEffect } from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Grid, Typography } from "@material-ui/core";
-import { connect } from 'react-redux';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
+import { connect } from "react-redux";
+import Toolbar from "@material-ui/core/Toolbar";
 import { ITaskServiceAgent } from "../ServiceAgents/ITaskServiceAgent";
 import applicationContainer from "../Container";
 import { Types } from "../Types";
-import TaskLists from "./TaskLists";
 import ConnectedTasks from "./TaskListTasks";
-import SelectedTaskDetail from "./SelectedTaskDetail";
-import { setSystemTaskLists, setUserTaskLists } from '../redux/actions';
+import SelectedTaskDetail from "./SelectedTaskList";
+import {
+  setSystemTaskLists,
+  setUserTaskLists,
+  setSelectedTaskList,
+} from "../redux/actions";
+import TaskGroupsList from "./TaskGroupsList";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
+      display: "flex",
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -30,13 +33,13 @@ const useStyles = makeStyles((theme: Theme) =>
       width: drawerWidth,
     },
     drawerContainer: {
-      overflow: 'auto',
+      overflow: "auto",
     },
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
     },
-  }),
+  })
 );
 
 // interface ShellProps {
@@ -48,17 +51,25 @@ function Shell(props: any): ReactElement {
     // eslint-disable-next-line no-shadow
     setSystemTaskLists,
     // eslint-disable-next-line no-shadow
-    setUserTaskLists
+    setUserTaskLists,
+    // eslint-disable-next-line no-shadow
+    setSelectedTaskList,
   } = props;
 
   useEffect(() => {
-    const taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
+    const taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(
+      Types.ITaskServiceAgent
+    );
     taskServiceAgent?.fetchTaskLists((e, resp) => {
       if (e != null) {
         console.log("Error Occured....");
       } else if (resp != null) {
-        const filteredTaskLists: any = resp.filter(tl => !tl.specification.isUserGenerated);
-        const filteredUserTaskLists: any = resp.filter(tl => tl.specification.isUserGenerated);
+        const filteredTaskLists: any = resp.filter(
+          (tl) => !tl.specification.isUserGenerated
+        );
+        const filteredUserTaskLists: any = resp.filter(
+          (tl) => tl.specification.isUserGenerated
+        );
 
         if (setSystemTaskLists != null) {
           setSystemTaskLists(filteredTaskLists);
@@ -72,12 +83,7 @@ function Shell(props: any): ReactElement {
 
   const classes = useStyles();
 
-  const {
-    systemTaskList,
-    userTaskList,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setSelectedTaskList
-  } = props;
+  const { systemTaskList, userTaskList, selectedTaskList } = props;
 
   return (
     <div>
@@ -93,15 +99,17 @@ function Shell(props: any): ReactElement {
       <div className={classes.root}>
         <Grid container spacing={0}>
           <Grid item xs={3}>
-            <TaskLists taskLists={systemTaskList} setSelectedTaskList={setSelectedTaskList} />
-            <Divider />
-            <TaskLists taskLists={userTaskList} setSelectedTaskList={setSelectedTaskList} />
+            <TaskGroupsList
+              userTaskGroups={userTaskList}
+              systemTaskGroups={systemTaskList}
+              setSelectedTaskList={setSelectedTaskList}
+            />
           </Grid>
           <Grid item xs={6}>
             <ConnectedTasks />
           </Grid>
           <Grid item>
-            <SelectedTaskDetail />
+            <SelectedTaskDetail selected={selectedTaskList} />
           </Grid>
         </Grid>
       </div>
@@ -111,15 +119,14 @@ function Shell(props: any): ReactElement {
 
 const mapStateToProps = (state: any) => ({
   systemTaskList: state.systemTaskLists,
-  userTaskList: state.userTaskLists
+  userTaskList: state.userTaskLists,
+  selectedTaskList: state.selectedTaskList,
 });
 
 const mapDispatchToProps = {
   setSystemTaskLists,
-  setUserTaskLists
+  setUserTaskLists,
+  setSelectedTaskList,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Shell);
+export default connect(mapStateToProps, mapDispatchToProps)(Shell);

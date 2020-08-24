@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import TaskLists from "../Components/TaskLists";
+import TaskGroups from "../Components/TaskGroups";
 import { TaskList } from "../Dto/TaskList";
 
 const taskList: TaskList[] = [
@@ -31,8 +31,8 @@ const taskList: TaskList[] = [
   },
 ];
 
-storiesOf("TaskLists", module)
-  .add("Without Tasks", () => <TaskLists taskLists={[]} />)
+storiesOf("TaskGroups", module)
+  .add("Without Tasks", () => <TaskGroups taskLists={[]} />)
   .add("With Tasks", () => (
-    <TaskLists taskLists={taskList} setSelectedTaskList={action("Selected")} />
+    <TaskGroups taskLists={taskList} setSelectedTaskList={action("Selected")} />
   ));
