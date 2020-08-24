@@ -4,21 +4,20 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import "reflect-metadata";
-import SelectedListStateData from "../redux/types/SelectedListStateData";
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskList } from "../Dto/TaskList";
 
 export interface TaskGroupsProps {
   taskLists: TaskList[] | null;
-  setSelectedTaskList?: (selected: SelectedListStateData) => void;
+  setSelectedTaskGroup?: (selected: TaskList) => void;
 }
 
 export default function TaskGroups(props: TaskGroupsProps): ReactElement {
-  function handleTaskListSelected(id: number, isUser: boolean): void {
-    const { setSelectedTaskList } = props;
+  function handleTaskListSelected(taskList: TaskList): void {
+    const { setSelectedTaskGroup } = props;
 
-    if (setSelectedTaskList != null) {
-      setSelectedTaskList(new SelectedListStateData(id, isUser));
+    if (setSelectedTaskGroup != null) {
+      setSelectedTaskGroup(taskList);
     }
   }
 
@@ -31,12 +30,7 @@ export default function TaskGroups(props: TaskGroupsProps): ReactElement {
           <ListItem
             button
             key={task.name}
-            onClick={() =>
-              handleTaskListSelected(
-                task.id,
-                task.specification.isUserGenerated
-              )
-            }
+            onClick={() => handleTaskListSelected(task)}
           >
             <ListItemIcon>{IconRetriever.map(task.iconName)}</ListItemIcon>
             <ListItemText primary={task.name} />

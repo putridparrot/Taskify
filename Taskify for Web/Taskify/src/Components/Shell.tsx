@@ -11,7 +11,7 @@ import SelectedTaskDetail from "./SelectedTaskList";
 import {
   setSystemTaskLists,
   setUserTaskLists,
-  setSelectedTaskList,
+  setSelectedTaskGroup,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
 
@@ -53,7 +53,7 @@ function Shell(props: any): ReactElement {
     // eslint-disable-next-line no-shadow
     setUserTaskLists,
     // eslint-disable-next-line no-shadow
-    setSelectedTaskList,
+    setSelectedTaskGroup,
   } = props;
 
   useEffect(() => {
@@ -87,32 +87,28 @@ function Shell(props: any): ReactElement {
 
   return (
     <div>
-      <div>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" className={classes.content}>
-              Taskify
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </div>
-      <div className={classes.root}>
-        <Grid container spacing={0}>
-          <Grid item xs={3}>
-            <TaskGroupsList
-              userTaskGroups={userTaskList}
-              systemTaskGroups={systemTaskList}
-              setSelectedTaskList={setSelectedTaskList}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <ConnectedTasks />
-          </Grid>
-          <Grid item>
-            <SelectedTaskDetail selected={selectedTaskList} />
-          </Grid>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.content}>
+            Taskify
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Grid container spacing={0} className={classes.root}>
+        <Grid item xs={3}>
+          <TaskGroupsList
+            userTaskGroups={userTaskList}
+            systemTaskGroups={systemTaskList}
+            setSelectedTaskGroup={setSelectedTaskGroup}
+          />
         </Grid>
-      </div>
+        <Grid item xs={6}>
+          <ConnectedTasks />
+        </Grid>
+        <Grid item>
+          <SelectedTaskDetail selected={selectedTaskList} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
@@ -126,7 +122,7 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = {
   setSystemTaskLists,
   setUserTaskLists,
-  setSelectedTaskList,
+  setSelectedTaskGroup,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

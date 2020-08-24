@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { Box, Container } from "@material-ui/core";
-import SelectedListStateData from "../redux/types/SelectedListStateData";
+import { TaskList } from "../Dto/TaskList";
 
 export interface SelectedTaskDetailProps {
-  selected?: SelectedListStateData;
+  selected?: TaskList;
 }
 
 export default function SelectedTaskDetail(
@@ -14,7 +14,13 @@ export default function SelectedTaskDetail(
   return (
     <Container>
       <Box component="div" display="inline">
-        Task {selected?.id}
+        {selected?.tasks?.map((task) => {
+          return (
+            <div key={task.id}>
+              {task.id} {task.text}
+            </div>
+          );
+        })}
       </Box>
     </Container>
   );

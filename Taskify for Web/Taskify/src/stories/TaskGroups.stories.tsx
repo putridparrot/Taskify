@@ -34,5 +34,8 @@ const taskList: TaskList[] = [
 storiesOf("TaskGroups", module)
   .add("Without Tasks", () => <TaskGroups taskLists={[]} />)
   .add("With Tasks", () => (
-    <TaskGroups taskLists={taskList} setSelectedTaskList={action("Selected")} />
+    <TaskGroups
+      taskLists={taskList}
+      setSelectedTaskGroup={action("Selected")}
+    />
   ));

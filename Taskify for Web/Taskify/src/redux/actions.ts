@@ -1,10 +1,10 @@
-import { action } from 'typesafe-actions';
-import { ActionTypes } from "./actionTypes";
-import SelectedListStateData from "./types/SelectedListStateData";
+import { action } from "typesafe-actions";
+import ActionTypes from "./actionTypes";
+import { TaskList } from "../Dto/TaskList";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setSelectedTaskList(selectedTaskList: SelectedListStateData) {
-  return action(ActionTypes.SET_SELECTED_TASK_LIST, selectedTaskList);
+export function setSelectedTaskGroup(selectedTaskList: TaskList) {
+  return action(ActionTypes.SET_SELECTED_TASK_GROUP, selectedTaskList);
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
