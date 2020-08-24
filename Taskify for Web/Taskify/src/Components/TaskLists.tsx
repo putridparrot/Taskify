@@ -21,11 +21,8 @@ class TaskLists extends React.Component<TaskListProps> {
   render(): ReactElement {
     const { taskLists } = this.props;
 
-    console.log(taskLists);
-
     return (
       <List>
-        {" "}
         {taskLists?.map((task, _index) => {
           return (
             <ListItem
