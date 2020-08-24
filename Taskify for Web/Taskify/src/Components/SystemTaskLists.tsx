@@ -48,7 +48,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state: any) => ({
-  taskLists: state.systemTaskListsReducer.systemTaskLists
+  taskLists: state.systemTaskLists
 });
 
 export default connect(
