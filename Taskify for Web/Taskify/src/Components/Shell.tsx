@@ -1,12 +1,11 @@
 import React, { ReactElement, useEffect } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { AppBar, Grid, Typography } from "@material-ui/core";
+import { AppBar, Typography, Drawer, CssBaseline } from "@material-ui/core";
 import { connect } from "react-redux";
 import Toolbar from "@material-ui/core/Toolbar";
 import { ITaskServiceAgent } from "../ServiceAgents/ITaskServiceAgent";
 import applicationContainer from "../Container";
 import { Types } from "../Types";
-import ConnectedTasks from "./TaskListTasks";
 import SelectedTaskDetail from "./SelectedTaskList";
 import {
   setSystemTaskLists,
@@ -86,29 +85,35 @@ function Shell(props: any): ReactElement {
   const { systemTaskList, userTaskList, selectedTaskList } = props;
 
   return (
-    <div>
-      <AppBar position="static">
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.content}>
+          <Typography variant="h6" noWrap>
             Taskify
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid container spacing={0} className={classes.root}>
-        <Grid item xs={3}>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <Toolbar />
+        <div className={classes.drawerContainer}>
           <TaskGroupsList
             userTaskGroups={userTaskList}
             systemTaskGroups={systemTaskList}
             setSelectedTaskGroup={setSelectedTaskGroup}
           />
-        </Grid>
-        <Grid item xs={6}>
-          <ConnectedTasks />
-        </Grid>
-        <Grid item>
-          <SelectedTaskDetail selected={selectedTaskList} />
-        </Grid>
-      </Grid>
+        </div>
+      </Drawer>
+      <main className={classes.content}>
+        <Toolbar />
+        <SelectedTaskDetail selected={selectedTaskList} />
+      </main>
     </div>
   );
 }
