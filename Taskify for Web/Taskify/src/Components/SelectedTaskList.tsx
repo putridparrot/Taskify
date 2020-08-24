@@ -1,6 +1,27 @@
 import React, { ReactElement } from "react";
-import { Box, Container } from "@material-ui/core";
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  ListItem,
+  List,
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
+  ListItemIcon,
+  Checkbox,
+} from "@material-ui/core";
+import { StarBorder } from "@material-ui/icons";
 import { TaskList } from "../Dto/TaskList";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: "100%",
+      backgroundColor: theme.palette.background.paper,
+    },
+  })
+);
 
 export interface SelectedTaskDetailProps {
   selected?: TaskList;
@@ -9,19 +30,27 @@ export interface SelectedTaskDetailProps {
 export default function SelectedTaskDetail(
   props: SelectedTaskDetailProps
 ): ReactElement {
+  const classes = useStyles();
+
   const { selected } = props;
 
   return (
-    <Container>
-      <Box component="div" display="inline">
-        {selected?.tasks?.map((task) => {
-          return (
-            <div key={task.id}>
-              {task.id} {task.text}
-            </div>
-          );
-        })}
-      </Box>
-    </Container>
+    <List className={classes.root}>
+      {selected?.tasks?.map((task) => {
+        return (
+          <ListItem key={task.id}>
+            <ListItemIcon>
+              <Checkbox edge="start" checked tabIndex={-1} disableRipple />
+            </ListItemIcon>
+            <ListItemText primary={task.text} />
+            <ListItemSecondaryAction>
+              <IconButton>
+                <StarBorder />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        );
+      })}
+    </List>
   );
 }

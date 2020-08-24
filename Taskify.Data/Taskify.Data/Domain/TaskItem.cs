@@ -8,12 +8,13 @@ namespace Taskify.Data.Domain
         {
         }
 
-        public TaskItem(string text)
+        public TaskItem(int id, string text)
         {
+            Id = id;
             Text = text;
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
        
         public bool IsImportant { get; set; }
 

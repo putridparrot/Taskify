@@ -24,6 +24,18 @@ namespace Taskify.Data.Repositories
                 new TaskList(6,"UserTasks1", new TaskListSpecification {CanDelete = true, IsUserGenerated = true}),
                 new TaskList(7,"UserTasks2", new TaskListSpecification {CanDelete = true, IsUserGenerated = true})
             };
+
+            PopulateDemoTasks(_taskLists[0]);
+        }
+
+        private void PopulateDemoTasks(TaskList taskList)
+        {
+            taskList.Tasks.AddRange(new []
+            {
+                new TaskItem(0, "Write code to view tasks for selected group"),
+                new TaskItem(1, "Add a task to a group"),
+                new TaskItem(2, "Delete a user defined group")
+            });
         }
 
         public List<TaskList> FetchLists()

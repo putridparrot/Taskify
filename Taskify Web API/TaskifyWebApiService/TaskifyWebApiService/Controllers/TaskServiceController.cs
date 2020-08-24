@@ -13,20 +13,20 @@ namespace TaskifyWebApiService.Controllers
     [Route("/api/tasklist")]
     public class TaskServiceController : ControllerBase
     {
-        private readonly ITaskService taskService;
+        private readonly ITaskService _taskService;
         private readonly ILogger<TaskServiceController> _logger;
 
         
         public TaskServiceController(ITaskService taskService, ILogger<TaskServiceController> logger)
         {
-            this.taskService = taskService;
+            _taskService = taskService;
             _logger = logger;
         }
         
         [HttpGet] 
         public IEnumerable<TaskList> Lists()
         {
-            return taskService.FetchLists();
+            return _taskService.FetchLists();
         }
     }
 }

@@ -41,10 +41,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// interface ShellProps {
-//   children?: ReactNode;
-// }
-
 function Shell(props: any): ReactElement {
   const {
     // eslint-disable-next-line no-shadow
