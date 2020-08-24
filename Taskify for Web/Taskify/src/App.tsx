@@ -1,8 +1,8 @@
-import React, {ReactElement, useEffect} from 'react';
+import React, {ReactElement} from 'react';
+import {Provider}  from "react-redux";
 import './App.css';
 import Shell from "./Components/Shell";
-import {store} from "./store/configureStore";
-import {Provider}  from 'react-redux'
+import store from "./redux/store";
 
 function App(): ReactElement {    
   return (

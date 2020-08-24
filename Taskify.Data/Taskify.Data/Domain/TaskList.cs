@@ -8,8 +8,9 @@ namespace Taskify.Data.Domain
         {
         }
 
-        public TaskList(string name, TaskListSpecification taskListSpecification, string iconName = "User")
+        public TaskList(int id, string name, TaskListSpecification taskListSpecification, string iconName = "User")
         {
+            Id = id;
             Specification = taskListSpecification;
             Name = name;
             Tasks = new List<TaskItem>();

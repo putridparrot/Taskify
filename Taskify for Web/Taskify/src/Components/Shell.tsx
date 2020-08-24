@@ -1,19 +1,17 @@
-import React, {ReactElement, ReactNode, useEffect} from 'react';
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { ReactElement, useEffect } from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { AppBar, Grid, Typography } from "@material-ui/core";
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
-import {ITaskServiceAgent} from "../ServiceAgents/ITaskServiceAgent";
-import {applicationContainer} from "../Container";
-import {Types} from "../Types";
-import {store} from "../store/configureStore";
-import {setSystemTaskLists} from "../actions/setSystemTaskLists";
-import {setUserTaskLists} from "../actions/setUserTaskLists";
-import {ConnectedSystemTaskLists} from "./SystemTaskLists";
-import {ConnectedUserTaskLists} from "./TaskLists";
-import {ConnectedTasks} from "./TaskListTasks";
-import {AppBar, Grid, Typography} from "@material-ui/core";
-import {SelectedTaskDetail} from "./SelectedTaskDetail";
+import { ITaskServiceAgent } from "../ServiceAgents/ITaskServiceAgent";
+import applicationContainer from "../Container";
+import { Types } from "../Types";
+import ConnectedSystemTaskLists from "./SystemTaskLists";
+import ConnectedUserTaskLists from "./TaskLists";
+import ConnectedTasks from "./TaskListTasks";
+import SelectedTaskDetail from "./SelectedTaskDetail";
+import store from '../redux/store';
+import { setSystemTaskLists, setUserTaskLists } from '../redux/actions';
 
 const drawerWidth = 240;
 
@@ -42,27 +40,25 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface ShellProps {
-  children?: ReactNode;
-}
+// interface ShellProps {
+//   children?: ReactNode;
+// }
 
-export default function Shell(props: ShellProps): ReactElement {
+export default function Shell(/* props: ShellProps */): ReactElement {
   useEffect(() => {
-    let taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
+    const taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
     taskServiceAgent?.fetchTaskLists((e, resp) => {
       if (e != null) {
         console.log("Error Occured....");
-      } else {
-        if (resp != null) {
-          let filteredTaskLists: any = resp.filter(tl => !tl.specification.isUserGenerated);
-          let filteredUserTaskLists: any = resp.filter(tl => tl.specification.isUserGenerated);
-          store.dispatch(setSystemTaskLists(filteredTaskLists));
-          store.dispatch(setUserTaskLists(filteredUserTaskLists));
-          console.log("State is :");
-          console.log(store.getState());
-        }
+      } else if (resp != null) {
+        const filteredTaskLists: any = resp.filter(tl => !tl.specification.isUserGenerated);
+        const filteredUserTaskLists: any = resp.filter(tl => tl.specification.isUserGenerated);
+        store.dispatch(setSystemTaskLists(filteredTaskLists));
+        store.dispatch(setUserTaskLists(filteredUserTaskLists));
+        console.log("State is :");
+        console.log(store.getState());
       }
-    })
+    });
   }, []);
 
   const classes = useStyles();
@@ -80,15 +76,15 @@ export default function Shell(props: ShellProps): ReactElement {
       <div className={classes.root}>
         <Grid container spacing={0}>
           <Grid item xs={3}>
-            <ConnectedSystemTaskLists/>
-            <Divider/>
-            <ConnectedUserTaskLists/>
+            <ConnectedSystemTaskLists />
+            <Divider />
+            <ConnectedUserTaskLists />
           </Grid>
           <Grid item xs={6}>
-            <ConnectedTasks></ConnectedTasks>
+            <ConnectedTasks />
           </Grid>
           <Grid item>
-            <SelectedTaskDetail/>
+            <SelectedTaskDetail />
           </Grid>
         </Grid>
       </div>

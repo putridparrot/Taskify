@@ -23,6 +23,7 @@
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "reflect-metadata": "^0.1.13",
+    "typesafe-actions": "^5.1.0",
     "typescript": "~3.7.2"
   },
   "scripts": {

@@ -13,16 +13,16 @@ namespace Taskify.Data.Repositories
         {
             _taskLists = new List<TaskList>
             {
-                new TaskList("My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
-                new TaskList("Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
-                new TaskList("Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),
-                new TaskList("Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou"),
-                new TaskList("Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged"),
-                new TaskList("Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks"),
+                new TaskList(0, "My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
+                new TaskList(1,"Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
+                new TaskList(2,"Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),
+                new TaskList(3,"Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou"),
+                new TaskList(4,"Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged"),
+                new TaskList(5,"Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks"),
                 
                 // user added
-                new TaskList("UserTasks1", new TaskListSpecification {CanDelete = true, IsUserGenerated = true}),
-                new TaskList("UserTasks2", new TaskListSpecification {CanDelete = true, IsUserGenerated = true})
+                new TaskList(6,"UserTasks1", new TaskListSpecification {CanDelete = true, IsUserGenerated = true}),
+                new TaskList(7,"UserTasks2", new TaskListSpecification {CanDelete = true, IsUserGenerated = true})
             };
         }
 

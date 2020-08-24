@@ -1,19 +1,15 @@
+import React, { ReactElement } from "react";
 import {
   Avatar,
-  Box,
   Button,
-  Checkbox,
   Container,
   CssBaseline,
-  FormControlLabel,
   Grid,
   TextField, Typography,
   withStyles
 } from "@material-ui/core";
-import {createStyles} from "@material-ui/core/styles";
-import React, {Component} from "react";
-import {Copyright} from "@material-ui/icons";
-import { NavLink  } from "react-router-dom";
+import { createStyles } from "@material-ui/core/styles";
+import { NavLink } from "react-router-dom";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const styles = (theme) => createStyles({
@@ -37,9 +33,8 @@ const styles = (theme) => createStyles({
 });
 
 
-class Signup extends Component<any, any>
-{
-  render() {
+class Signup extends React.PureComponent<any> {
+  render(): ReactElement {
     const { classes } = this.props;
     return (
       <Container component="main" maxWidth="xs">
@@ -98,7 +93,7 @@ class Signup extends Component<any, any>
                   id="password"
                   autoComplete="current-password"
                 />
-              </Grid>              
+              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -117,12 +112,11 @@ class Signup extends Component<any, any>
               </Grid>
             </Grid>
           </form>
-        </div>        
+        </div>
       </Container>
     );
 
   }
 }
 
-const SignupComponent = withStyles(styles)(Signup);
-export default SignupComponent;
+export default withStyles(styles)(Signup);

@@ -1,20 +1,10 @@
 import React from "react";
-import {
-  Avatar, Button, Checkbox,
-  Container,
-  CssBaseline,
-  FormControlLabel,
-  Grid, InputAdornment,   
-  TextField,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import {LoginProps} from "./LoginProps";
+import { withStyles, Container, CssBaseline, Avatar, Typography, TextField, InputAdornment, FormControlLabel, Checkbox, Button, Grid } from "@material-ui/core";
+import { createStyles } from "@material-ui/core/styles";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import EmailIcon from '@material-ui/icons/Email';
-import {createStyles, makeStyles} from "@material-ui/core/styles";
-import { NavLink  } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import { LoginProps } from "./LoginProps";
 
 const styles = (theme) => createStyles({
   paper: {
@@ -37,32 +27,26 @@ const styles = (theme) => createStyles({
 });
 
 
-//const history = useHistory();
-class Login extends React.Component<LoginProps>
-{
- 
-  constructor(props:LoginProps) {
-    super(props);   
-        
+// const history = useHistory();
+class Login extends React.Component<LoginProps> {
+
+  submitForm(e) {
+    e.preventDefault();
   }
-  
-  submitForm (e) {
-    e.preventDefault();   
-  }
-  
-  render()
-  {    
-    const { classes } = this.props;    
-    return (<Container component="main" maxWidth={"xs"}>
-      <CssBaseline/>
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-           <LockOutlinedIcon />
+            <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-           Sign in
-        </Typography>
-          <form onSubmit={this.submitForm.bind(this)} className={classes.form} method="POST" >
+            Sign in
+          </Typography>
+          <form onSubmit={this.submitForm.bind(this)} className={classes.form} method="POST">
             <TextField
               variant="outlined"
               margin="normal"
@@ -96,33 +80,33 @@ class Login extends React.Component<LoginProps>
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <NavLink  to="/app">
-            <Button              
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}>
-              Sign In
-            </Button>
-            </NavLink >
+            <NavLink to="/app">
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}>
+                Sign In
+              </Button>
+            </NavLink>
             <Grid container>
               <Grid item xs>
-                <NavLink  to="#" variant="body2">
+                <NavLink to="#" variant="body2">
                   Forgot password?
-                </NavLink >
+                </NavLink>
               </Grid>
               <Grid item>
-                <NavLink  to="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </NavLink >
+                <NavLink to="/signup" variant="body2">
+                  Don&apos;t have an account? Sign Up
+                </NavLink>
               </Grid>
             </Grid>
           </form>
 
         </div>
-      </Container>)
+      </Container>
+    );
   }
 }
 
-const LoginComponent=withStyles(styles)(Login); 
-export default LoginComponent;  
+export default withStyles(styles)(Login);  
