@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { AppBar, Grid, Typography } from "@material-ui/core";
+import { connect } from 'react-redux';
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
 import { ITaskServiceAgent } from "../ServiceAgents/ITaskServiceAgent";
@@ -10,7 +11,6 @@ import ConnectedSystemTaskLists from "./SystemTaskLists";
 import ConnectedUserTaskLists from "./TaskLists";
 import ConnectedTasks from "./TaskListTasks";
 import SelectedTaskDetail from "./SelectedTaskDetail";
-import store from '../redux/store';
 import { setSystemTaskLists, setUserTaskLists } from '../redux/actions';
 
 const drawerWidth = 240;
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 //   children?: ReactNode;
 // }
 
-export default function Shell(/* props: ShellProps */): ReactElement {
+function Shell(props: any): ReactElement {
   useEffect(() => {
     const taskServiceAgent = applicationContainer.get<ITaskServiceAgent>(Types.ITaskServiceAgent);
     taskServiceAgent?.fetchTaskLists((e, resp) => {
@@ -53,13 +53,23 @@ export default function Shell(/* props: ShellProps */): ReactElement {
       } else if (resp != null) {
         const filteredTaskLists: any = resp.filter(tl => !tl.specification.isUserGenerated);
         const filteredUserTaskLists: any = resp.filter(tl => tl.specification.isUserGenerated);
-        store.dispatch(setSystemTaskLists(filteredTaskLists));
-        store.dispatch(setUserTaskLists(filteredUserTaskLists));
-        console.log("State is :");
-        console.log(store.getState());
+
+        const { 
+          // eslint-disable-next-line no-shadow
+          setSystemTaskLists, 
+          // eslint-disable-next-line no-shadow
+          setUserTaskLists
+        } = props;
+
+        if (setSystemTaskLists != null) {
+          setSystemTaskLists(filteredTaskLists);
+        }
+        if (setUserTaskLists != null) {
+          setUserTaskLists(filteredUserTaskLists);
+        }
       }
     });
-  }, []);
+  }, [props]);
 
   const classes = useStyles();
   return (
@@ -92,3 +102,12 @@ export default function Shell(/* props: ShellProps */): ReactElement {
   );
 }
 
+const mapDispatchToProps = {
+  setSystemTaskLists,
+  setUserTaskLists
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Shell);
