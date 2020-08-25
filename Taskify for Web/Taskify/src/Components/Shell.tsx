@@ -72,9 +72,12 @@ function Shell(props: any): ReactElement {
         if (setUserTaskLists != null) {
           setUserTaskLists(filteredUserTaskLists);
         }
+        if (setSelectedTaskGroup != null) {
+          setSelectedTaskGroup(filteredTaskLists[0]);
+        }
       }
     });
-  }, [setSystemTaskLists, setUserTaskLists]);
+  }, [setSystemTaskLists, setUserTaskLists, setSelectedTaskGroup]);
 
   const classes = useStyles();
 
