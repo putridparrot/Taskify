@@ -14,7 +14,6 @@ const toggleTaskCompleted = (
   task?: TaskItem
 ): TaskList[] | undefined => {
   if (task != null) {
-    console.log(task.isCompleted);
     task.isCompleted = !task.isCompleted;
   }
 

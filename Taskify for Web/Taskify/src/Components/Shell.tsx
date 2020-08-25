@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
+      // backgroundColor: "pink",
+      minHeight: "100vh",
+      overflow: "auto",
     },
   })
 );
