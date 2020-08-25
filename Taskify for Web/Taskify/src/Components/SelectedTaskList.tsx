@@ -13,7 +13,7 @@ import {
   Typography,
   Grid,
 } from "@material-ui/core";
-import { StarBorder } from "@material-ui/icons";
+import { StarBorder, Star } from "@material-ui/icons";
 import { TaskList } from "../Dto/TaskList";
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskItem } from "../Dto/TaskItem";
@@ -92,7 +92,11 @@ export default function SelectedTaskDetail(
                 <ListItemText primary={task.text} />
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => onImportantClicked(task)}>
-                    <StarBorder />
+                    {task.isImportant ? (
+                      <Star style={{ color: "red" }} />
+                    ) : (
+                      <StarBorder />
+                    )}
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
