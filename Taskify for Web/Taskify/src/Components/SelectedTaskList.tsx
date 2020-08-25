@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "white",
     },
     iconButton: {
+      left: 0,
       color: "white",
     },
     divider: {
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.primary.light,
       width: "calc(100% - 285px)",
       marginBottom: "10px",
+      textAlign: "left",
     },
     inputRoot: {
       color: "inherit",
