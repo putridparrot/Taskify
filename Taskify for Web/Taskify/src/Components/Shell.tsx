@@ -9,8 +9,8 @@ import { Types } from "../Types";
 import SelectedTaskDetail from "./SelectedTaskList";
 import {
   setSelectedTaskList,
-  setTaskCompleted,
-  setTaskImportant,
+  toggleTaskCompleted,
+  toggleTaskImportant,
   setTaskLists,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
@@ -48,9 +48,9 @@ function Shell(props: any): ReactElement {
     // eslint-disable-next-line no-shadow
     setSelectedTaskList,
     // eslint-disable-next-line no-shadow
-    setTaskCompleted,
+    toggleTaskCompleted,
     // eslint-disable-next-line no-shadow
-    setTaskImportant,
+    toggleTaskImportant,
     // eslint-disable-next-line no-shadow
     setTaskLists,
   } = props;
@@ -77,14 +77,14 @@ function Shell(props: any): ReactElement {
   const classes = useStyles();
 
   function onTaskCompleted(task: TaskItem) {
-    if (setTaskCompleted != null) {
-      setTaskCompleted(task);
+    if (toggleTaskCompleted != null) {
+      toggleTaskCompleted(task);
     }
   }
 
   function onTaskImportant(task: TaskItem) {
-    if (setTaskImportant != null) {
-      setTaskImportant(task);
+    if (toggleTaskImportant != null) {
+      toggleTaskImportant(task);
     }
   }
 
@@ -143,8 +143,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = {
   setTaskLists,
   setSelectedTaskList,
-  setTaskImportant,
-  setTaskCompleted,
+  toggleTaskImportant,
+  toggleTaskCompleted,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

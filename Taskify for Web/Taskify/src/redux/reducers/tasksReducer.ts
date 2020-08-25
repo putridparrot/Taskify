@@ -9,23 +9,24 @@ interface TaskifyState {
   selectedTaskList?: TaskList;
 }
 
-const setTaskCompleted = (
+const toggleTaskCompleted = (
   tasks?: TaskList[],
   task?: TaskItem
 ): TaskList[] | undefined => {
   if (task != null) {
-    task.isCompleted = true;
+    console.log(task.isCompleted);
+    task.isCompleted = !task.isCompleted;
   }
 
   return tasks != null ? [...tasks] : undefined;
 };
 
-const setTaskImportant = (
+const toggleTaskImportant = (
   tasks?: TaskList[],
   task?: TaskItem
 ): TaskList[] | undefined => {
   if (task != null) {
-    task.isImportant = true;
+    task.isImportant = !task.isImportant;
   }
 
   return tasks != null ? [...tasks] : undefined;
@@ -41,15 +42,15 @@ export default function tasksReducer(
       return { ...state, taskLists: action.payload };
     case ActionTypes.SET_SELECTED_TASK_LIST:
       return { ...state, selectedTaskList: action.payload };
-    case ActionTypes.SET_TASK_COMPLETED:
+    case ActionTypes.TOGGLE_TASK_COMPLETED:
       return {
         ...state,
-        taskLists: setTaskCompleted(state.taskLists, action.payload),
+        taskLists: toggleTaskCompleted(state.taskLists, action.payload),
       };
-    case ActionTypes.SET_TASK_IMPORTANT:
+    case ActionTypes.TOGGLE_TASK_IMPORTANT:
       return {
         ...state,
-        taskLists: setTaskImportant(state.taskLists, action.payload),
+        taskLists: toggleTaskImportant(state.taskLists, action.payload),
       };
     default:
       return state;

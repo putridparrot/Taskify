@@ -14,11 +14,11 @@ export function setSelectedTaskList(selectedTaskList: TaskList) {
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setTaskCompleted(task: TaskItem) {
-  return action(ActionTypes.SET_TASK_COMPLETED, task);
+export function toggleTaskCompleted(task: TaskItem) {
+  return action(ActionTypes.TOGGLE_TASK_COMPLETED, task);
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setTaskImportant(task: TaskItem) {
-  return action(ActionTypes.SET_TASK_IMPORTANT, task);
+export function toggleTaskImportant(task: TaskItem) {
+  return action(ActionTypes.TOGGLE_TASK_IMPORTANT, task);
 }
