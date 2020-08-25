@@ -8,7 +8,7 @@ namespace Taskify.Data.Domain
         {
         }
 
-        public TaskList(int id, string name, TaskListSpecification taskListSpecification, string iconName = "User")
+        public TaskList(string id, string name, TaskListSpecification taskListSpecification, string iconName = "User")
         {
             Id = id;
             Specification = taskListSpecification;
@@ -17,7 +17,7 @@ namespace Taskify.Data.Domain
             IconName = iconName;
         }
 
-        public int Id  { get; set; }
+        public string Id  { get; set; }
         public string Name { get; set; }
 
         public List<TaskItem> Tasks { get; set; }

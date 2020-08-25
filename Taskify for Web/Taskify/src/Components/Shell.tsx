@@ -8,11 +8,13 @@ import applicationContainer from "../Container";
 import { Types } from "../Types";
 import SelectedTaskDetail from "./SelectedTaskList";
 import {
-  setSystemTaskLists,
-  setUserTaskLists,
-  setSelectedTaskGroup,
+  setSelectedTaskList,
+  setTaskCompleted,
+  setTaskImportant,
+  setTaskLists,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
+import { TaskItem } from "../Dto/TaskItem";
 
 const drawerWidth = 240;
 
@@ -44,11 +46,13 @@ const useStyles = makeStyles((theme: Theme) =>
 function Shell(props: any): ReactElement {
   const {
     // eslint-disable-next-line no-shadow
-    setSystemTaskLists,
+    setSelectedTaskList,
     // eslint-disable-next-line no-shadow
-    setUserTaskLists,
+    setTaskCompleted,
     // eslint-disable-next-line no-shadow
-    setSelectedTaskGroup,
+    setTaskImportant,
+    // eslint-disable-next-line no-shadow
+    setTaskLists,
   } = props;
 
   useEffect(() => {
@@ -59,29 +63,39 @@ function Shell(props: any): ReactElement {
       if (e != null) {
         console.log("Error Occured....");
       } else if (resp != null) {
-        const filteredTaskLists: any = resp.filter(
-          (tl) => !tl.specification.isUserGenerated
-        );
-        const filteredUserTaskLists: any = resp.filter(
-          (tl) => tl.specification.isUserGenerated
-        );
+        if (setTaskLists != null) {
+          setTaskLists(resp);
+        }
 
-        if (setSystemTaskLists != null) {
-          setSystemTaskLists(filteredTaskLists);
-        }
-        if (setUserTaskLists != null) {
-          setUserTaskLists(filteredUserTaskLists);
-        }
-        if (setSelectedTaskGroup != null) {
-          setSelectedTaskGroup(filteredTaskLists[0]);
+        if (setSelectedTaskList != null) {
+          setSelectedTaskList(resp[0]);
         }
       }
     });
-  }, [setSystemTaskLists, setUserTaskLists, setSelectedTaskGroup]);
+  }, [setSelectedTaskList, setTaskLists]);
 
   const classes = useStyles();
 
-  const { systemTaskList, userTaskList, selectedTaskList } = props;
+  function onTaskCompleted(task: TaskItem) {
+    if (setTaskCompleted != null) {
+      setTaskCompleted(task);
+    }
+  }
+
+  function onTaskImportant(task: TaskItem) {
+    if (setTaskImportant != null) {
+      setTaskImportant(task);
+    }
+  }
+
+  const { selectedTaskList, taskLists } = props;
+
+  const systemTaskList: any = taskLists?.filter(
+    (tl) => !tl.specification.isUserGenerated
+  );
+  const userTaskList: any = taskLists?.filter(
+    (tl) => tl.specification.isUserGenerated
+  );
 
   return (
     <div className={classes.root}>
@@ -105,28 +119,32 @@ function Shell(props: any): ReactElement {
           <TaskGroupsList
             userTaskGroups={userTaskList}
             systemTaskGroups={systemTaskList}
-            setSelectedTaskGroup={setSelectedTaskGroup}
+            setSelectedTaskGroup={setSelectedTaskList}
           />
         </div>
       </Drawer>
       <main className={classes.content}>
         <Toolbar />
-        <SelectedTaskDetail selected={selectedTaskList} />
+        <SelectedTaskDetail
+          selected={selectedTaskList}
+          completedClicked={onTaskCompleted}
+          importantClicked={onTaskImportant}
+        />
       </main>
     </div>
   );
 }
 
 const mapStateToProps = (state: any) => ({
-  systemTaskList: state.systemTaskLists,
-  userTaskList: state.userTaskLists,
+  taskLists: state.taskLists,
   selectedTaskList: state.selectedTaskList,
 });
 
 const mapDispatchToProps = {
-  setSystemTaskLists,
-  setUserTaskLists,
-  setSelectedTaskGroup,
+  setTaskLists,
+  setSelectedTaskList,
+  setTaskImportant,
+  setTaskCompleted,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

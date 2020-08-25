@@ -11,11 +11,12 @@ import {
   ListItemIcon,
   Checkbox,
   Typography,
-  Box,
+  Grid,
 } from "@material-ui/core";
-import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import { StarBorder } from "@material-ui/icons";
 import { TaskList } from "../Dto/TaskList";
+import IconRetriever from "../Helpers/IconRetriever";
+import { TaskItem } from "../Dto/TaskItem";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,12 +26,16 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     header: {
       width: "100%",
+      padding: theme.spacing(1, 0, 1),
+      backgroundColor: theme.palette.background.default,
     },
   })
 );
 
 export interface SelectedTaskDetailProps {
   selected?: TaskList;
+  completedClicked?: (task: TaskItem) => void;
+  importantClicked?: (task: TaskItem) => void;
 }
 
 export default function SelectedTaskDetail(
@@ -38,29 +43,55 @@ export default function SelectedTaskDetail(
 ): ReactElement {
   const classes = useStyles();
 
-  const { selected } = props;
+  const { selected, completedClicked, importantClicked } = props;
+
+  function onCompletedClicked(task: TaskItem) {
+    if (completedClicked != null) {
+      completedClicked(task);
+    }
+  }
+
+  function onImportantClicked(task: TaskItem) {
+    if (importantClicked != null) {
+      importantClicked(task);
+    }
+  }
+
   const hasTasks =
     selected != null && selected.tasks != null && selected.tasks.length > 0;
 
   return (
     <div>
-      <Typography className={classes.header} variant="h5">
-        <Box textAlign="left" m={1} justifyContent="center">
-          <HomeOutlinedIcon />
-          Tasks
-        </Box>
-      </Typography>
+      {selected != null && (
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          className={classes.header}
+        >
+          <Grid item>{IconRetriever.map(selected.iconName)}</Grid>
+          <Grid item style={{ paddingLeft: "10px" }}>
+            <Typography variant="h5">{selected!.name}</Typography>
+          </Grid>
+        </Grid>
+      )}
       {hasTasks && (
         <List className={classes.root}>
           {selected?.tasks?.map((task) => {
             return (
               <ListItem key={task.id}>
                 <ListItemIcon>
-                  <Checkbox edge="start" checked tabIndex={-1} disableRipple />
+                  <Checkbox
+                    edge="start"
+                    checked={task.isCompleted}
+                    tabIndex={-1}
+                    disableRipple
+                    onChange={() => onCompletedClicked(task)}
+                  />
                 </ListItemIcon>
                 <ListItemText primary={task.text} />
                 <ListItemSecondaryAction>
-                  <IconButton>
+                  <IconButton onClick={() => onImportantClicked(task)}>
                     <StarBorder />
                   </IconButton>
                 </ListItemSecondaryAction>

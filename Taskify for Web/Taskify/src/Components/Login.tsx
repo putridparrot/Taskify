@@ -1,35 +1,49 @@
 import React from "react";
-import { withStyles, Container, CssBaseline, Avatar, Typography, TextField, InputAdornment, FormControlLabel, Checkbox, Button, Grid } from "@material-ui/core";
+import {
+  withStyles,
+  Container,
+  CssBaseline,
+  Avatar,
+  Typography,
+  TextField,
+  InputAdornment,
+  FormControlLabel,
+  Checkbox,
+  Button,
+  Grid,
+} from "@material-ui/core";
 import { createStyles } from "@material-ui/core/styles";
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import EmailIcon from '@material-ui/icons/Email';
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import EmailIcon from "@material-ui/icons/Email";
 import { NavLink } from "react-router-dom";
-import { LoginProps } from "./LoginProps";
 
-const styles = (theme) => createStyles({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-});
+const styles = (theme) =>
+  createStyles({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  });
 
+export interface LoginProps {
+  classes;
+}
 
 // const history = useHistory();
 class Login extends React.Component<LoginProps> {
-
   submitForm(e) {
     e.preventDefault();
   }
@@ -46,7 +60,11 @@ class Login extends React.Component<LoginProps> {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form onSubmit={this.submitForm.bind(this)} className={classes.form} method="POST">
+          <form
+            onSubmit={this.submitForm.bind(this)}
+            className={classes.form}
+            method="POST"
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -85,7 +103,8 @@ class Login extends React.Component<LoginProps> {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}>
+                className={classes.submit}
+              >
                 Sign In
               </Button>
             </NavLink>
@@ -102,11 +121,10 @@ class Login extends React.Component<LoginProps> {
               </Grid>
             </Grid>
           </form>
-
         </div>
       </Container>
     );
   }
 }
 
-export default withStyles(styles)(Login);  
+export default withStyles(styles)(Login);

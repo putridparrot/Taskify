@@ -1,18 +1,24 @@
 import { action } from "typesafe-actions";
 import ActionTypes from "./actionTypes";
 import { TaskList } from "../Dto/TaskList";
+import { TaskItem } from "../Dto/TaskItem";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setSelectedTaskGroup(selectedTaskList: TaskList) {
-  return action(ActionTypes.SET_SELECTED_TASK_GROUP, selectedTaskList);
+export function setTaskLists(taskLists: TaskList[]) {
+  return action(ActionTypes.SET_TASK_LISTS, taskLists);
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setSystemTaskLists(systemTaskLists: any) {
-  return action(ActionTypes.SET_SYSTEM_TASK_LISTS, systemTaskLists);
+export function setSelectedTaskList(selectedTaskList: TaskList) {
+  return action(ActionTypes.SET_SELECTED_TASK_LIST, selectedTaskList);
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setUserTaskLists(userTaskLists: any) {
-  return action(ActionTypes.SET_USER_TASK_LISTS, userTaskLists);
+export function setTaskCompleted(task: TaskItem) {
+  return action(ActionTypes.SET_TASK_COMPLETED, task);
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function setTaskImportant(task: TaskItem) {
+  return action(ActionTypes.SET_TASK_IMPORTANT, task);
 }
