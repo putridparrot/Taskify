@@ -10,6 +10,7 @@ import { TaskList } from "../Dto/TaskList";
 export interface TaskGroupsProps {
   taskLists: TaskList[] | null;
   setSelectedTaskGroup?: (selected: TaskList) => void;
+  selectedTaskList?: TaskList;
 }
 
 export default function TaskGroups(props: TaskGroupsProps): ReactElement {
@@ -21,7 +22,7 @@ export default function TaskGroups(props: TaskGroupsProps): ReactElement {
     }
   }
 
-  const { taskLists } = props;
+  const { taskLists, selectedTaskList } = props;
 
   return (
     <List>
@@ -29,6 +30,7 @@ export default function TaskGroups(props: TaskGroupsProps): ReactElement {
         return (
           <ListItem
             button
+            selected={task === selectedTaskList}
             key={task.name}
             onClick={() => handleTaskListSelected(task)}
           >

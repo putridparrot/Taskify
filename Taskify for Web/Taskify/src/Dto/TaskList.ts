@@ -1,5 +1,5 @@
-import {TaskListSpecification} from "./TaskListSpecification";
-import {TaskItem} from "./TaskItem";
+import { TaskListSpecification } from "./TaskListSpecification";
+import { TaskItem } from "./TaskItem";
 
 export interface TaskList {
   id: number;
@@ -7,5 +7,6 @@ export interface TaskList {
   tasks: TaskItem[];
   specification: TaskListSpecification;
   isSelected: boolean;
-  iconName: string;  
+  iconName: string;
+  backgroundColour?: string;
 }

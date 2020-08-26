@@ -13,12 +13,12 @@ namespace Taskify.Data.Repositories
         {
             _taskLists = new List<TaskList>
             {
-                new TaskList(Guid.NewGuid().ToString(), "My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
-                new TaskList(Guid.NewGuid().ToString(),"Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
-                new TaskList(Guid.NewGuid().ToString(),"Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),
-                new TaskList(Guid.NewGuid().ToString(),"Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou"),
-                new TaskList(Guid.NewGuid().ToString(),"Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged"),
-                new TaskList(Guid.NewGuid().ToString(),"Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks"),
+                new TaskList(Guid.NewGuid().ToString(), "My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay", "d7ccc8"),
+                new TaskList(Guid.NewGuid().ToString(),"Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important", "fce4ec"),
+                new TaskList(Guid.NewGuid().ToString(),"Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned", "e0f2f1"),
+                new TaskList(Guid.NewGuid().ToString(),"Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou", "e8f5e9"),
+                new TaskList(Guid.NewGuid().ToString(),"Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged", "ffe0b2"),
+                new TaskList(Guid.NewGuid().ToString(),"Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks", "9fa8da"),
                 
                 // user added
                 new TaskList(Guid.NewGuid().ToString(),"UserTasks1", new TaskListSpecification {CanDelete = true, IsUserGenerated = true}),
@@ -27,7 +27,12 @@ namespace Taskify.Data.Repositories
 
             PopulateDemoTasks1(_taskLists[0]);
             PopulateDemoTasks2(_taskLists[1]);
+            PopulateDemoTasks2(_taskLists[2]);
+            PopulateDemoTasks2(_taskLists[3]);
+            PopulateDemoTasks2(_taskLists[4]);
+            PopulateDemoTasks2(_taskLists[5]);
             PopulateDemoTasks3(_taskLists[6]);
+            PopulateDemoTasks3(_taskLists[7]);
         }
 
         private void PopulateDemoTasks1(TaskList taskList)

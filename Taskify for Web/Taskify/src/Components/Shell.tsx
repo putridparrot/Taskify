@@ -39,12 +39,18 @@ const useStyles = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
-      // backgroundColor: "pink",
       minHeight: "100vh",
       overflow: "auto",
     },
   })
 );
+
+function ensureValidColour(colour: string) {
+  if (colour == null) {
+    return "#ffffff";
+  }
+  return !colour.startsWith("#") ? `#${colour}` : colour;
+}
 
 function Shell(props: any): ReactElement {
   const {
@@ -100,6 +106,15 @@ function Shell(props: any): ReactElement {
     (tl) => tl.specification.isUserGenerated
   );
 
+  // TODO: this needs to be supplied by smart list styles
+  // #fce4ec nice pale pink for Important
+  // #e0f2f1 planned
+  // "#e8f5e9" assigned to
+  // #9fa8da tasks
+  // #ffe0b2 maybe for flagged
+  // #b2ebf2 user defined
+  // should be stored with task list
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -123,12 +138,23 @@ function Shell(props: any): ReactElement {
             userTaskGroups={userTaskList}
             systemTaskGroups={systemTaskList}
             setSelectedTaskGroup={setSelectedTaskList}
+            selectedTaskList={selectedTaskList}
           />
         </div>
       </Drawer>
-      <main className={classes.content}>
+      <main
+        className={classes.content}
+        style={{
+          backgroundColor: ensureValidColour(
+            selectedTaskList?.backgroundColour
+          ),
+        }}
+      >
         <Toolbar />
         <SelectedTaskDetail
+          backgroundColour={ensureValidColour(
+            selectedTaskList?.backgroundColour
+          )}
           selected={selectedTaskList}
           completedClicked={onTaskCompleted}
           importantClicked={onTaskImportant}

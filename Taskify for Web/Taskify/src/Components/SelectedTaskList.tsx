@@ -14,6 +14,9 @@ import {
   Grid,
   InputBase,
   Paper,
+  Divider,
+  darken,
+  useTheme,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { StarBorder, Star } from "@material-ui/icons";
@@ -29,8 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     header: {
       width: "100%",
-      padding: theme.spacing(1, 0, 1),
-      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing(1, 0, 3),
     },
     input: {
       marginLeft: theme.spacing(1),
@@ -42,8 +44,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "white",
     },
     divider: {
-      height: 28,
-      margin: 4,
+      height: 3,
+      //      backgroundColor: theme.palette.background.default
     },
     footer: {
       position: "fixed",
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export interface SelectedTaskDetailProps {
   selected?: TaskList;
+  backgroundColour?: string;
   completedClicked?: (task: TaskItem) => void;
   importantClicked?: (task: TaskItem) => void;
 }
@@ -69,8 +72,20 @@ export default function SelectedTaskDetail(
   props: SelectedTaskDetailProps
 ): ReactElement {
   const classes = useStyles();
+  const theme = useTheme();
 
-  const { selected, completedClicked, importantClicked } = props;
+  const {
+    selected,
+    completedClicked,
+    importantClicked,
+    backgroundColour,
+  } = props;
+  const footerBackgroundColour = darken(
+    backgroundColour != null
+      ? backgroundColour
+      : theme.palette.background.paper,
+    0.4
+  );
 
   function onCompletedClicked(task: TaskItem) {
     if (completedClicked != null) {
@@ -103,35 +118,46 @@ export default function SelectedTaskDetail(
         </Grid>
       )}
       {hasTasks && (
-        <List className={classes.root}>
+        <List className={classes.root} disablePadding>
           {selected?.tasks?.map((task) => {
             return (
-              <ListItem key={task.id}>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={task.isCompleted}
-                    tabIndex={-1}
-                    disableRipple
-                    onChange={() => onCompletedClicked(task)}
-                  />
-                </ListItemIcon>
-                <ListItemText primary={task.text} />
-                <ListItemSecondaryAction>
-                  <IconButton onClick={() => onImportantClicked(task)}>
-                    {task.isImportant ? (
-                      <Star style={{ color: "red" }} />
-                    ) : (
-                      <StarBorder />
-                    )}
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
+              <div key={task.id}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      checked={task.isCompleted}
+                      tabIndex={-1}
+                      disableRipple
+                      onChange={() => onCompletedClicked(task)}
+                    />
+                  </ListItemIcon>
+                  <ListItemText primary={task.text} />
+                  <ListItemSecondaryAction>
+                    <IconButton onClick={() => onImportantClicked(task)}>
+                      {task.isImportant ? (
+                        <Star style={{ color: "red" }} />
+                      ) : (
+                        <StarBorder />
+                      )}
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <Divider
+                  className={classes.divider}
+                  style={{ backgroundColor: backgroundColour }}
+                />
+              </div>
             );
           })}
         </List>
       )}
-      <Paper component="form" className={classes.footer} elevation={3}>
+      <Paper
+        component="form"
+        className={classes.footer}
+        elevation={3}
+        style={{ backgroundColor: footerBackgroundColour }}
+      >
         <IconButton className={classes.iconButton} aria-label="add">
           <AddIcon />
         </IconButton>
