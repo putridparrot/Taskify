@@ -25,44 +25,51 @@ namespace Taskify.Data.Repositories
                 new TaskList(Guid.NewGuid().ToString(),"UserTasks2", new TaskListSpecification {CanDelete = true, IsUserGenerated = true})
             };
 
-            PopulateDemoTasks1(_taskLists[0]);
-            PopulateDemoTasks2(_taskLists[1]);
-            PopulateDemoTasks2(_taskLists[2]);
-            PopulateDemoTasks2(_taskLists[3]);
-            PopulateDemoTasks2(_taskLists[4]);
-            PopulateDemoTasks2(_taskLists[5]);
-            PopulateDemoTasks3(_taskLists[6]);
-            PopulateDemoTasks3(_taskLists[7]);
+            PopulateDemoTasks();
         }
 
-        private void PopulateDemoTasks1(TaskList taskList)
+        private void PopulateDemoTasks()
         {
-            taskList.Tasks.AddRange(new []
+            _taskLists[0].Tasks.AddRange(new []
             {
                 new TaskItem(Guid.NewGuid().ToString(), "Write code to view tasks for selected group"),
                 new TaskItem(Guid.NewGuid().ToString(), "Add a task to a group"),
                 new TaskItem(Guid.NewGuid().ToString(), "Delete a user defined group")
             });
-        }
-
-        private void PopulateDemoTasks2(TaskList taskList)
-        {
-            taskList.Tasks.AddRange(new[]
+            _taskLists[1].Tasks.AddRange(new[]
+            {
+                new TaskItem(Guid.NewGuid().ToString(), "This was a test")
+            });
+            _taskLists[2].Tasks.AddRange(new[]
+            {
+                new TaskItem(Guid.NewGuid().ToString(), "Testing times"),
+                new TaskItem(Guid.NewGuid().ToString(), "Hello Taskify")
+            });
+            _taskLists[3].Tasks.AddRange(new[]
             {
                 new TaskItem(Guid.NewGuid().ToString(), "Make this work")
             });
-        }
-
-        private void PopulateDemoTasks3(TaskList taskList)
-        {
-            taskList.Tasks.AddRange(new[]
+            _taskLists[4].Tasks.AddRange(new[]
+            {
+                new TaskItem(Guid.NewGuid().ToString(), "This should work")
+            });
+            _taskLists[5].Tasks.AddRange(new[]
+            {
+                new TaskItem(Guid.NewGuid().ToString(), "This never worked")
+            });
+            _taskLists[6].Tasks.AddRange(new[]
             {
                 new TaskItem(Guid.NewGuid().ToString(), "User task 1"),
                 new TaskItem(Guid.NewGuid().ToString(), "User task 2"),
                 new TaskItem(Guid.NewGuid().ToString(), "User task 3")
             });
-        }
 
+            _taskLists[7].Tasks.AddRange(new[]
+            {
+                new TaskItem(Guid.NewGuid().ToString(), "Another test task 1"),
+                new TaskItem(Guid.NewGuid().ToString(), "Another test task 2"),
+            });
+        }
 
         public List<TaskList> FetchLists()
         {
