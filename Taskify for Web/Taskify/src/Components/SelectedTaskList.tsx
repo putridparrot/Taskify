@@ -20,6 +20,8 @@ import {
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { StarBorder, Star } from "@material-ui/icons";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import { TaskList } from "../Dto/TaskList";
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskItem } from "../Dto/TaskItem";
@@ -59,6 +61,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+const initialState = {
+  mouseX: null,
+  mouseY: null,
+};
+
 export interface SelectedTaskDetailProps {
   selected?: TaskList;
   backgroundColour?: string;
@@ -73,6 +80,10 @@ export default function SelectedTaskDetail(
   const theme = useTheme();
   const targetRef: any = useRef(null);
   const [relativeWidth, setRelativeWidth] = useState(0);
+  const [state, setState] = React.useState<{
+    mouseX: null | number;
+    mouseY: null | number;
+  }>(initialState);
 
   useLayoutEffect(() => {
     function updateWidth() {
@@ -92,6 +103,7 @@ export default function SelectedTaskDetail(
     importantClicked,
     backgroundColour,
   } = props;
+
   const footerBackgroundColour = darken(
     backgroundColour != null
       ? backgroundColour
@@ -109,6 +121,18 @@ export default function SelectedTaskDetail(
     if (importantClicked != null) {
       importantClicked(task);
     }
+  }
+
+  function onContextMenu(event: React.MouseEvent<HTMLDivElement>) {
+    event.preventDefault();
+    setState({
+      mouseX: event.clientX - 2,
+      mouseY: event.clientY - 4,
+    });
+  }
+
+  function handleCloseContextMenu() {
+    setState(initialState);
   }
 
   const hasTasks =
@@ -133,7 +157,7 @@ export default function SelectedTaskDetail(
         <List className={classes.root} disablePadding>
           {selected?.tasks?.map((task) => {
             return (
-              <div key={task.id}>
+              <div key={task.id} onContextMenu={onContextMenu}>
                 <ListItem button>
                   <ListItemIcon>
                     <Checkbox
@@ -182,6 +206,34 @@ export default function SelectedTaskDetail(
           inputProps={{ "aria-label": "add a task" }}
         />
       </Paper>
+      <Menu
+        keepMounted
+        open={state.mouseY !== null}
+        onClose={handleCloseContextMenu}
+        anchorReference="anchorPosition"
+        anchorPosition={
+          state.mouseY !== null && state.mouseX !== null
+            ? { top: state.mouseY, left: state.mouseX }
+            : undefined
+        }
+      >
+        <MenuItem>
+          {/* <ListItemIcon>
+            <Star fontSize="small" />
+          </ListItemIcon> */}
+          Add to My Day
+        </MenuItem>
+        <MenuItem>Mark as Important</MenuItem>
+        <MenuItem>Mark as Completed</MenuItem>
+        <Divider />
+        <MenuItem>Due today</MenuItem>
+        <MenuItem>Due tomorrow</MenuItem>
+        <MenuItem>Pick a date</MenuItem>
+        <Divider />
+        <MenuItem>Move task to...</MenuItem>
+        <Divider />
+        <MenuItem>Delete task</MenuItem>
+      </Menu>
     </div>
   );
 }

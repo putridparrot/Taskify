@@ -4,6 +4,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import "reflect-metadata";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import { Divider } from "@material-ui/core";
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskList } from "../Dto/TaskList";
 
@@ -13,7 +16,17 @@ export interface TaskGroupsProps {
   selectedTaskList?: TaskList;
 }
 
+const initialState = {
+  mouseX: null,
+  mouseY: null,
+};
+
 export default function TaskGroups(props: TaskGroupsProps): ReactElement {
+  const [state, setState] = React.useState<{
+    mouseX: null | number;
+    mouseY: null | number;
+  }>(initialState);
+
   function handleTaskListSelected(taskList: TaskList): void {
     const { setSelectedTaskGroup } = props;
 
@@ -22,23 +35,54 @@ export default function TaskGroups(props: TaskGroupsProps): ReactElement {
     }
   }
 
+  function onContextMenu(event: React.MouseEvent<HTMLDivElement>) {
+    event.preventDefault();
+    setState({
+      mouseX: event.clientX - 2,
+      mouseY: event.clientY - 4,
+    });
+  }
+
+  function handleCloseContextMenu() {
+    setState(initialState);
+  }
+
   const { taskLists, selectedTaskList } = props;
 
   return (
-    <List>
-      {taskLists?.map((task, _index) => {
-        return (
-          <ListItem
-            button
-            selected={task === selectedTaskList}
-            key={task.name}
-            onClick={() => handleTaskListSelected(task)}
-          >
-            <ListItemIcon>{IconRetriever.map(task.iconName)}</ListItemIcon>
-            <ListItemText primary={task.name} />
-          </ListItem>
-        );
-      })}
-    </List>
+    <div>
+      <List>
+        {taskLists?.map((task, _index) => {
+          return (
+            <ListItem
+              onContextMenu={onContextMenu}
+              button
+              selected={task === selectedTaskList}
+              key={task.name}
+              onClick={() => handleTaskListSelected(task)}
+            >
+              <ListItemIcon>{IconRetriever.map(task.iconName)}</ListItemIcon>
+              <ListItemText primary={task.name} />
+            </ListItem>
+          );
+        })}
+      </List>
+      <Menu
+        keepMounted
+        open={state.mouseY !== null}
+        onClose={handleCloseContextMenu}
+        anchorReference="anchorPosition"
+        anchorPosition={
+          state.mouseY !== null && state.mouseX !== null
+            ? { top: state.mouseY, left: state.mouseX }
+            : undefined
+        }
+      >
+        <MenuItem>Rename list</MenuItem>
+        <MenuItem>Duplicate list</MenuItem>
+        <Divider />
+        <MenuItem>Delete list</MenuItem>
+      </Menu>
+    </div>
   );
 }
