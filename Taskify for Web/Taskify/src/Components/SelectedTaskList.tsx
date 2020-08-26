@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState, useLayoutEffect, useRef } from "react";
 import {
   makeStyles,
   Theme,
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(1),
       flex: 1,
       color: "white",
+      verticalAlign: "middle",
     },
     iconButton: {
       left: 0,
@@ -45,13 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     divider: {
       height: 3,
-      //      backgroundColor: theme.palette.background.default
     },
     footer: {
       position: "fixed",
       bottom: 0,
-      backgroundColor: theme.palette.primary.light,
-      width: "calc(100% - 285px)",
       marginBottom: "10px",
       textAlign: "left",
     },
@@ -73,6 +71,20 @@ export default function SelectedTaskDetail(
 ): ReactElement {
   const classes = useStyles();
   const theme = useTheme();
+  const targetRef: any = useRef(null);
+  const [relativeWidth, setRelativeWidth] = useState(0);
+
+  useLayoutEffect(() => {
+    function updateWidth() {
+      if (targetRef != null && targetRef.current != null) {
+        setRelativeWidth(targetRef.current.offsetWidth);
+      }
+    }
+
+    window.addEventListener("resize", updateWidth);
+    updateWidth();
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const {
     selected,
@@ -103,7 +115,7 @@ export default function SelectedTaskDetail(
     selected != null && selected.tasks != null && selected.tasks.length > 0;
 
   return (
-    <div>
+    <div ref={targetRef}>
       {selected != null && (
         <Grid
           container
@@ -156,7 +168,10 @@ export default function SelectedTaskDetail(
         component="form"
         className={classes.footer}
         elevation={3}
-        style={{ backgroundColor: footerBackgroundColour }}
+        style={{
+          backgroundColor: footerBackgroundColour,
+          width: relativeWidth,
+        }}
       >
         <IconButton className={classes.iconButton} aria-label="add">
           <AddIcon />
