@@ -27,6 +27,7 @@ import {
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
 import { TaskItem } from "../Dto/TaskItem";
+import TaskOptions from "./TaskOptions";
 
 const drawerWidth = 240;
 
@@ -158,6 +159,8 @@ function Shell(props: any): ReactElement {
     </div>
   );
 
+  const openTask = false; // selectedTaskList?.name === "Important";
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -236,6 +239,7 @@ function Shell(props: any): ReactElement {
           importantClicked={onTaskImportant}
         />
       </main>
+      <TaskOptions open={openTask} />
     </div>
   );
 }
