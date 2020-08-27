@@ -2,7 +2,7 @@ import { TaskListSpecification } from "./TaskListSpecification";
 import { TaskItem } from "./TaskItem";
 
 export interface TaskList {
-  id: number;
+  id: string;
   name: string;
   tasks: TaskItem[];
   specification: TaskListSpecification;

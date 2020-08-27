@@ -7,7 +7,7 @@ import TaskGroupsList from "../Components/TaskGroupsList";
 
 const systemTasks: TaskList[] = [
   {
-    id: 0,
+    id: "0",
     name: "My Tasks",
     specification: { isUserGenerated: false },
     tasks: [],
@@ -15,7 +15,7 @@ const systemTasks: TaskList[] = [
     iconName: "MyDay",
   },
   {
-    id: 1,
+    id: "1",
     name: "Important",
     specification: { isUserGenerated: false },
     tasks: [],
@@ -23,7 +23,7 @@ const systemTasks: TaskList[] = [
     iconName: "Important",
   },
   {
-    id: 2,
+    id: "2",
     name: "Planned",
     specification: { isUserGenerated: false },
     tasks: [],
@@ -34,7 +34,7 @@ const systemTasks: TaskList[] = [
 
 const userTasks: TaskList[] = [
   {
-    id: 3,
+    id: "3",
     name: "User 1",
     specification: { isUserGenerated: false },
     tasks: [],
@@ -42,7 +42,7 @@ const userTasks: TaskList[] = [
     iconName: "User",
   },
   {
-    id: 4,
+    id: "4",
     name: "User 2",
     specification: { isUserGenerated: false },
     tasks: [],

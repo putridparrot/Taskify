@@ -6,7 +6,7 @@ import { TaskList } from "../Dto/TaskList";
 
 const taskList: TaskList[] = [
   {
-    id: 0,
+    id: "0",
     name: "My Tasks",
     specification: { isUserGenerated: false },
     tasks: [],
@@ -14,7 +14,7 @@ const taskList: TaskList[] = [
     iconName: "MyDay",
   },
   {
-    id: 1,
+    id: "1",
     name: "Important",
     specification: { isUserGenerated: false },
     tasks: [],
@@ -22,7 +22,7 @@ const taskList: TaskList[] = [
     iconName: "Important",
   },
   {
-    id: 2,
+    id: "2",
     name: "Planned",
     specification: { isUserGenerated: false },
     tasks: [],

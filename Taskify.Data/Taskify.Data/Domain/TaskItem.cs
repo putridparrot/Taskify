@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Taskify.Data.Domain
 {
@@ -22,5 +23,7 @@ namespace Taskify.Data.Domain
         public List<TaskStep> Steps { get; set; }
         public TaskItemSchedule Schedule { get; set; }
         public bool IsCompleted { get; set; }
+        public DateTime Created { get; set; }
+        public bool IsMyDay { get; set; }
     }
 }

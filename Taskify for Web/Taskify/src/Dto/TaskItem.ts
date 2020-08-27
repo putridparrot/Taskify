@@ -11,4 +11,5 @@ export interface TaskItem {
   steps?: TaskStep[];
   schedule?: TaskItemSchedule;
   isCompleted?: boolean;
+  isMyDay?: boolean;
 }
