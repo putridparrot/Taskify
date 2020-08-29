@@ -15,6 +15,31 @@ import {
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskList } from "../Dto/TaskList";
 
+function getMenuItems(
+  task: TaskList,
+  handleHandleClose: () => void
+): ReactElement[] {
+  const menuItems = [
+    <MenuItem onClick={handleHandleClose}>Print list</MenuItem>,
+  ];
+
+  if (task.specification?.isUserGenerated) {
+    menuItems.push(<Divider />);
+    menuItems.push(
+      <MenuItem onClick={handleHandleClose}>Rename list</MenuItem>
+    );
+    menuItems.push(
+      <MenuItem onClick={handleHandleClose}>Duplicate list</MenuItem>
+    );
+    menuItems.push(<Divider />);
+    menuItems.push(
+      <MenuItem onClick={handleHandleClose}>Delete list</MenuItem>
+    );
+  }
+
+  return menuItems;
+}
+
 export interface TaskGroupsProps {
   taskLists: TaskList[] | null;
   setSelectedTaskGroup?: (selected: TaskList) => void;
@@ -28,7 +53,7 @@ export default function (props: TaskGroupsProps): ReactElement {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleHandleClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
@@ -49,14 +74,14 @@ export default function (props: TaskGroupsProps): ReactElement {
           return (
             <ListItem
               button
-              selected={task === selectedTaskList}
+              selected={task.id === selectedTaskList?.id}
               key={task.name}
               onClick={() => handleTaskListSelected(task)}
             >
               <ListItemIcon>{IconRetriever.map(task.iconName)}</ListItemIcon>
               <ListItemText primary={task.name} />
               <ListItemSecondaryAction>
-                {task === selectedTaskList && (
+                {task.id === selectedTaskList?.id && (
                   <IconButton onClick={handleHandleClick}>
                     <MenuIcon />
                   </IconButton>
@@ -67,14 +92,9 @@ export default function (props: TaskGroupsProps): ReactElement {
                   anchorEl={anchorEl}
                   keepMounted
                   open={Boolean(anchorEl)}
-                  onClose={handleHandleClose}
+                  onClose={handleClose}
                 >
-                  <MenuItem onClick={handleHandleClose}>Rename list</MenuItem>
-                  <MenuItem onClick={handleHandleClose}>
-                    Duplicate list
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem onClick={handleHandleClose}>Delete list</MenuItem>
+                  {getMenuItems(task, handleClose)}
                 </Menu>
               </ListItemSecondaryAction>
             </ListItem>

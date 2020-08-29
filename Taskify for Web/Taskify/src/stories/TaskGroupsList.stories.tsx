@@ -11,7 +11,6 @@ const systemTasks: TaskList[] = [
     name: "My Tasks",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "MyDay",
   },
   {
@@ -19,7 +18,6 @@ const systemTasks: TaskList[] = [
     name: "Important",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "Important",
   },
   {
@@ -27,7 +25,6 @@ const systemTasks: TaskList[] = [
     name: "Planned",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "Planned",
   },
 ];
@@ -38,7 +35,6 @@ const userTasks: TaskList[] = [
     name: "User 1",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "User",
   },
   {
@@ -46,7 +42,6 @@ const userTasks: TaskList[] = [
     name: "User 2",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "User",
   },
 ];

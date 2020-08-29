@@ -8,7 +8,6 @@ const taskList: TaskList = {
   id: "0",
   name: "User1",
   tasks: [],
-  isSelected: true,
   iconName: "User",
   specification: { isUserGenerated: true },
 };

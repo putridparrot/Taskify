@@ -25,7 +25,6 @@ namespace Taskify.Data.Domain
         public List<TaskItem> Tasks { get; set; }
 
         public TaskListSpecification Specification { get; set; }
-        public bool IsSelected { get; set; }
 
         public string IconName { get; set; }
         public string BackgroundColour { get; set; }

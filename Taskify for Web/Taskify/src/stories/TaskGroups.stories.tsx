@@ -10,7 +10,6 @@ const taskList: TaskList[] = [
     name: "My Tasks",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "MyDay",
   },
   {
@@ -18,7 +17,6 @@ const taskList: TaskList[] = [
     name: "Important",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "Important",
   },
   {
@@ -26,7 +24,6 @@ const taskList: TaskList[] = [
     name: "Planned",
     specification: { isUserGenerated: false },
     tasks: [],
-    isSelected: false,
     iconName: "Planned",
   },
 ];

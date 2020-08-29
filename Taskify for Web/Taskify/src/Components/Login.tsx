@@ -42,14 +42,60 @@ export interface LoginProps {
   classes;
 }
 
+interface LoginState {
+  userName: string;
+  password: string;
+}
+
 // const history = useHistory();
-class Login extends React.Component<LoginProps> {
+class Login extends React.Component<LoginProps, LoginState> {
+  private userName: string;
+  private password: string;
+
+  constructor(props) {
+    super(props);
+
+    this.userName = "";
+    this.password = "";
+
+    // this.state = {
+    //   userName: "",
+    //   password: ""
+    // };
+
+    this.authenticate = this.authenticate.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+  }
+
   submitForm(e) {
+    e.preventDefault();
+  }
+
+  handleUsernameChange(event) {
+    this.userName = event.target.value;
+
+    // this.setState({
+    //   userName: event.target.value
+    // });
+  }
+
+  handlePasswordChange(event) {
+    this.password = event.target.value;
+    // this.setState({
+    //   password: event.target.value
+    // });
+  }
+
+  authenticate(e) {
+    //    const { userName, password } = this.state;
+    console.log(`Nav Link Clicked.. ${this.userName} ${this.password}`);
     e.preventDefault();
   }
 
   render() {
     const { classes } = this.props;
+    //    const { userName, password } = this.state;
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -66,6 +112,7 @@ class Login extends React.Component<LoginProps> {
             method="POST"
           >
             <TextField
+              value={this.userName}
               variant="outlined"
               margin="normal"
               required
@@ -74,6 +121,7 @@ class Login extends React.Component<LoginProps> {
               label="Email Address"
               name="email"
               autoComplete="email"
+              onChange={this.handleUsernameChange}
               autoFocus
               InputProps={{
                 startAdornment: (
@@ -92,13 +140,15 @@ class Login extends React.Component<LoginProps> {
               label="Password"
               type="password"
               id="password"
+              value={this.password}
+              onChange={this.handlePasswordChange}
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <NavLink to="/app">
+            <NavLink to="/app" onClick={this.authenticate}>
               <Button
                 fullWidth
                 variant="contained"

@@ -6,7 +6,6 @@ export interface TaskList {
   name: string;
   tasks: TaskItem[];
   specification: TaskListSpecification;
-  isSelected: boolean;
   iconName: string;
   backgroundColour?: string;
 }
