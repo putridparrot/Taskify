@@ -69,6 +69,7 @@ export default function (props: TaskOptionsProps): ReactElement {
     <Drawer
       className={openTaskDrawer ? classes.taskDrawer : classes.taskDrawerClosed}
       variant="temporary"
+      //      variant="permanent"
       anchor="right"
       open={openTaskDrawer}
       classes={{
