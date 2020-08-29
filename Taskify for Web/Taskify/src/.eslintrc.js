@@ -6,20 +6,20 @@ module.exports = {
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin
     "airbnb-typescript",
     "prettier",
-    "plugin:compat/recommended"
+    "plugin:compat/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: "module", // Allows for the use of imports
     ecmaFeatures: {
-      jsx: true // Allows for the parsing of JSX
+      jsx: true, // Allows for the parsing of JSX
     },
-    project: "./tsconfig.json"
+    project: "./tsconfig.json",
   },
   settings: {
     react: {
-      version: "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-    }
+      version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
   },
   rules: {
     "linebreak-style": "off",
@@ -50,9 +50,9 @@ module.exports = {
           ".storybook/**",
           "**/*.stories.**",
           "__tests__/**",
-          "**/*.test.**"
-        ]
-      }
+          "**/*.test.**",
+        ],
+      },
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -65,28 +65,25 @@ module.exports = {
     "react/state-in-constructor": "off",
     "react/static-property-placement": "off",
     "react/jsx-props-no-spreading": "off",
-    "max-classes-per-file": "off" // tend to agree with this to a point, but this will cause lots of changes so disabling for now
+    "max-classes-per-file": "off", // tend to agree with this to a point, but this will cause lots of changes so disabling for now
+    "@typescript-eslint/lines-between-class-members": "off",
   },
   env: {
-    browser: true
+    browser: true,
   },
   overrides: [
     {
       files: ["**/*.test.tsx", "**/*.test.ts", "**/*.tests.ts"],
       env: {
-        jest: true
-      }
+        jest: true,
+      },
     },
     {
       files: ["**/*.tsx"],
       rules: {
-        "react/prop-types": "off"
-      }
-    }
+        "react/prop-types": "off",
+      },
+    },
   ],
-  "ignorePatterns": [
-    "serviceWorker.ts",
-    "**/*.d.ts",
-    "react-app-env.d.ts"
-  ]
+  ignorePatterns: ["serviceWorker.ts", "**/*.d.ts", "react-app-env.d.ts"],
 };
