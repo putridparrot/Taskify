@@ -5,40 +5,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import "reflect-metadata";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
-import {
-  Divider,
-  ListItemSecondaryAction,
-  IconButton,
-} from "@material-ui/core";
+import { ListItemSecondaryAction, IconButton } from "@material-ui/core";
 import IconRetriever from "../Helpers/IconRetriever";
+import TaskGroupMenuItems from "./TaskGroupMenuItems";
 import { TaskList } from "../Dto/TaskList";
-
-function getMenuItems(
-  task: TaskList,
-  handleHandleClose: () => void
-): ReactElement[] {
-  const menuItems = [
-    <MenuItem onClick={handleHandleClose}>Print list</MenuItem>,
-  ];
-
-  if (task.specification?.isUserGenerated) {
-    menuItems.push(<Divider />);
-    menuItems.push(
-      <MenuItem onClick={handleHandleClose}>Rename list</MenuItem>
-    );
-    menuItems.push(
-      <MenuItem onClick={handleHandleClose}>Duplicate list</MenuItem>
-    );
-    menuItems.push(<Divider />);
-    menuItems.push(
-      <MenuItem onClick={handleHandleClose}>Delete list</MenuItem>
-    );
-  }
-
-  return menuItems;
-}
 
 export interface TaskGroupsProps {
   taskLists: TaskList[] | null;
@@ -94,7 +65,7 @@ export default function (props: TaskGroupsProps): ReactElement {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {getMenuItems(task, handleClose)}
+                  {TaskGroupMenuItems(task, handleClose)}
                 </Menu>
               </ListItemSecondaryAction>
             </ListItem>
