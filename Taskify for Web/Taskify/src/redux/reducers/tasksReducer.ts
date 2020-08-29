@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import ActionTypes from "../actionTypes";
 import { TaskList } from "../../Dto/TaskList";
 import { TaskItem } from "../../Dto/TaskItem";
@@ -31,6 +32,28 @@ const toggleTaskImportant = (
   }
 
   return tasks != null ? [...tasks] : undefined;
+};
+
+const addTask = (
+  tasks?: TaskList[],
+  selected?: TaskList,
+  newTask?: TaskItem
+): TaskList[] | undefined => {
+  if (tasks != null) {
+    if (selected != null && newTask != null) {
+      if (selected.tasks == null) {
+        selected.tasks = [];
+      }
+      selected.tasks.push({
+        ...newTask,
+        id: uuidv4(),
+      });
+    }
+
+    return [...tasks];
+  }
+
+  return undefined;
 };
 
 const getMyDay = (
@@ -122,6 +145,15 @@ export default function tasksReducer(
       return {
         ...state,
         taskLists: toggleTaskImportant(state.taskLists, action.payload),
+      };
+    case ActionTypes.ADD_TASK:
+      return {
+        ...state,
+        taskLists: addTask(
+          state.taskLists,
+          action.payload.selected,
+          action.payload.task
+        ),
       };
     default:
       return state;

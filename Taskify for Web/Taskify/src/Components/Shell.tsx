@@ -24,6 +24,7 @@ import {
   toggleTaskCompleted,
   toggleTaskImportant,
   setTaskLists,
+  addTask,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
 import { TaskItem } from "../Dto/TaskItem";
@@ -94,6 +95,8 @@ function Shell(props: any): ReactElement {
     toggleTaskImportant,
     // eslint-disable-next-line no-shadow
     setTaskLists,
+    // eslint-disable-next-line no-shadow
+    addTask,
   } = props;
 
   useEffect(() => {
@@ -235,6 +238,7 @@ function Shell(props: any): ReactElement {
             selectedTaskList?.backgroundColour
           )}
           selected={selectedTaskList}
+          addTask={addTask}
           completedClicked={onTaskCompleted}
           importantClicked={onTaskImportant}
         />
@@ -254,6 +258,7 @@ const mapDispatchToProps = {
   setSelectedTaskList,
   toggleTaskImportant,
   toggleTaskCompleted,
+  addTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

@@ -3,22 +3,35 @@ import ActionTypes from "./actionTypes";
 import { TaskList } from "../Dto/TaskList";
 import { TaskItem } from "../Dto/TaskItem";
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setTaskLists(taskLists: TaskList[]) {
+interface ActionReturn<P> {
+  type: ActionTypes;
+  payload: P;
+}
+
+export function setTaskLists(taskLists: TaskList[]): ActionReturn<TaskList[]> {
   return action(ActionTypes.SET_TASK_LISTS, taskLists);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function setSelectedTaskList(selectedTaskList: TaskList) {
+export function setSelectedTaskList(
+  selectedTaskList: TaskList
+): ActionReturn<TaskList> {
   return action(ActionTypes.SET_SELECTED_TASK_LIST, selectedTaskList);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function toggleTaskCompleted(task: TaskItem) {
+export function toggleTaskCompleted(task: TaskItem): ActionReturn<TaskItem> {
   return action(ActionTypes.TOGGLE_TASK_COMPLETED, task);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function toggleTaskImportant(task: TaskItem) {
+export function toggleTaskImportant(task: TaskItem): ActionReturn<TaskItem> {
   return action(ActionTypes.TOGGLE_TASK_IMPORTANT, task);
+}
+
+export function addTask(
+  selected: TaskList,
+  task: TaskItem
+): ActionReturn<{ selected; task }> {
+  return action(ActionTypes.ADD_TASK, {
+    selected,
+    task,
+  });
 }

@@ -24,7 +24,8 @@
     "redux": "^4.0.5",
     "reflect-metadata": "^0.1.13",
     "typesafe-actions": "^5.1.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

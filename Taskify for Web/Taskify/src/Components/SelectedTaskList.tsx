@@ -25,6 +25,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { TaskList } from "../Dto/TaskList";
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskItem } from "../Dto/TaskItem";
+import getContrast from "../Helpers/getContrast";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,6 +42,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: 1,
       color: "white",
       verticalAlign: "middle",
+      // TODO: this needs to be calculated based upon the icon
+      width: "90%",
     },
     iconButton: {
       left: 0,
@@ -71,6 +74,7 @@ export interface SelectedTaskDetailProps {
   backgroundColour?: string;
   completedClicked?: (task: TaskItem) => void;
   importantClicked?: (task: TaskItem) => void;
+  addTask?: (selected: TaskList, newTask: TaskItem) => void;
 }
 
 export default function SelectedTaskDetail(
@@ -111,6 +115,8 @@ export default function SelectedTaskDetail(
     0.4
   );
 
+  const footerTextColour = getContrast(footerBackgroundColour);
+
   function onCompletedClicked(task: TaskItem) {
     if (completedClicked != null) {
       completedClicked(task);
@@ -133,6 +139,22 @@ export default function SelectedTaskDetail(
 
   function handleCloseContextMenu() {
     setState(initialState);
+  }
+
+  function checkForEnter(event: React.KeyboardEvent<HTMLDivElement>) {
+    const { addTask } = props;
+
+    if (event.key === "Enter") {
+      // we don't want enter to refresh page so handle it
+      event.preventDefault();
+      if (selected != null && addTask != null) {
+        const target = event.target as any;
+        addTask(selected, {
+          id: "new",
+          text: target.value,
+        });
+      }
+    }
   }
 
   const hasTasks =
@@ -201,9 +223,13 @@ export default function SelectedTaskDetail(
           <AddIcon />
         </IconButton>
         <InputBase
+          onKeyPress={checkForEnter}
           className={classes.input}
           placeholder="Add a task"
-          inputProps={{ "aria-label": "add a task" }}
+          inputProps={{
+            "aria-label": "add a task",
+            style: { color: footerTextColour },
+          }}
         />
       </Paper>
       <Menu
