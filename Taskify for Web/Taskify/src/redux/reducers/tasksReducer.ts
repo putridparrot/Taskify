@@ -56,6 +56,25 @@ const addTask = (
   return undefined;
 };
 
+const deleteTask = (
+  tasks?: TaskList[],
+  selected?: TaskList,
+  taskToDelete?: TaskItem
+): TaskList[] | undefined => {
+  if (tasks != null) {
+    if (selected != null && taskToDelete != null) {
+      const idx = selected.tasks.indexOf(taskToDelete);
+      if (idx >= 0) {
+        selected.tasks.splice(idx);
+      }
+    }
+
+    return [...tasks];
+  }
+
+  return undefined;
+};
+
 const getMyDay = (
   selectedTaskList: TaskList,
   tasksLists?: TaskList[]
@@ -150,6 +169,15 @@ export default function tasksReducer(
       return {
         ...state,
         taskLists: addTask(
+          state.taskLists,
+          action.payload.selected,
+          action.payload.task
+        ),
+      };
+    case ActionTypes.DELETE_TASK:
+      return {
+        ...state,
+        taskLists: deleteTask(
           state.taskLists,
           action.payload.selected,
           action.payload.task

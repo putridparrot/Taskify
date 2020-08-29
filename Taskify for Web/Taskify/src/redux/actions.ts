@@ -35,3 +35,13 @@ export function addTask(
     task,
   });
 }
+
+export function deleteTask(
+  selected: TaskList,
+  task: TaskItem
+): ActionReturn<{ selected; task }> {
+  return action(ActionTypes.DELETE_TASK, {
+    selected,
+    task,
+  });
+}

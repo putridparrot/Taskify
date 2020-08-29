@@ -3,13 +3,8 @@ import {
   makeStyles,
   Theme,
   createStyles,
-  ListItem,
   List,
-  ListItemText,
-  ListItemSecondaryAction,
   IconButton,
-  ListItemIcon,
-  Checkbox,
   Typography,
   Grid,
   InputBase,
@@ -19,13 +14,11 @@ import {
   useTheme,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { StarBorder, Star } from "@material-ui/icons";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import { TaskList } from "../Dto/TaskList";
 import IconRetriever from "../Helpers/IconRetriever";
 import { TaskItem } from "../Dto/TaskItem";
 import getContrast from "../Helpers/getContrast";
+import TaskListItem from "./TaskListItem";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,11 +57,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const initialState = {
-  mouseX: null,
-  mouseY: null,
-};
-
 export interface SelectedTaskDetailProps {
   selected?: TaskList;
   backgroundColour?: string;
@@ -84,10 +72,6 @@ export default function SelectedTaskDetail(
   const theme = useTheme();
   const targetRef: any = useRef(null);
   const [relativeWidth, setRelativeWidth] = useState(0);
-  const [state, setState] = React.useState<{
-    mouseX: null | number;
-    mouseY: null | number;
-  }>(initialState);
 
   useLayoutEffect(() => {
     function updateWidth() {
@@ -116,30 +100,6 @@ export default function SelectedTaskDetail(
   );
 
   const footerTextColour = getContrast(footerBackgroundColour);
-
-  function onCompletedClicked(task: TaskItem) {
-    if (completedClicked != null) {
-      completedClicked(task);
-    }
-  }
-
-  function onImportantClicked(task: TaskItem) {
-    if (importantClicked != null) {
-      importantClicked(task);
-    }
-  }
-
-  function onContextMenu(event: React.MouseEvent<HTMLDivElement>) {
-    event.preventDefault();
-    setState({
-      mouseX: event.clientX - 2,
-      mouseY: event.clientY - 4,
-    });
-  }
-
-  function handleCloseContextMenu() {
-    setState(initialState);
-  }
 
   function checkForEnter(event: React.KeyboardEvent<HTMLDivElement>) {
     const { addTask } = props;
@@ -179,28 +139,12 @@ export default function SelectedTaskDetail(
         <List className={classes.root} disablePadding>
           {selected?.tasks?.map((task) => {
             return (
-              <div key={task.id} onContextMenu={onContextMenu}>
-                <ListItem button>
-                  <ListItemIcon>
-                    <Checkbox
-                      edge="start"
-                      checked={task.isCompleted}
-                      tabIndex={-1}
-                      disableRipple
-                      onChange={() => onCompletedClicked(task)}
-                    />
-                  </ListItemIcon>
-                  <ListItemText primary={task.text} />
-                  <ListItemSecondaryAction>
-                    <IconButton onClick={() => onImportantClicked(task)}>
-                      {task.isImportant ? (
-                        <Star style={{ color: "red" }} />
-                      ) : (
-                        <StarBorder />
-                      )}
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
+              <div key={task.id}>
+                <TaskListItem
+                  task={task}
+                  completedClicked={completedClicked}
+                  importantClicked={importantClicked}
+                />
                 <Divider
                   className={classes.divider}
                   style={{ backgroundColor: backgroundColour }}
@@ -232,34 +176,6 @@ export default function SelectedTaskDetail(
           }}
         />
       </Paper>
-      <Menu
-        keepMounted
-        open={state.mouseY !== null}
-        onClose={handleCloseContextMenu}
-        anchorReference="anchorPosition"
-        anchorPosition={
-          state.mouseY !== null && state.mouseX !== null
-            ? { top: state.mouseY, left: state.mouseX }
-            : undefined
-        }
-      >
-        <MenuItem>
-          {/* <ListItemIcon>
-            <Star fontSize="small" />
-          </ListItemIcon> */}
-          Add to My Day
-        </MenuItem>
-        <MenuItem>Mark as Important</MenuItem>
-        <MenuItem>Mark as Completed</MenuItem>
-        <Divider />
-        <MenuItem>Due today</MenuItem>
-        <MenuItem>Due tomorrow</MenuItem>
-        <MenuItem>Pick a date</MenuItem>
-        <Divider />
-        <MenuItem>Move task to...</MenuItem>
-        <Divider />
-        <MenuItem>Delete task</MenuItem>
-      </Menu>
     </div>
   );
 }
