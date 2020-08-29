@@ -15,8 +15,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { TaskItem } from "../Dto/TaskItem";
 
 export interface TaskListItemProps {
-  completedClicked?: (task: TaskItem) => void;
-  importantClicked?: (task: TaskItem) => void;
+  onCompletedClicked?: (task: TaskItem) => void;
+  onImportantClicked?: (task: TaskItem) => void;
+  onDeleteTask?: (task: TaskItem) => void;
   task: TaskItem;
 }
 
@@ -25,26 +26,33 @@ export default function (props: TaskListItemProps): React.ReactElement {
   // const [showMenu, setShowMenu] = React.useState(false);
   const showMenu = true;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleHandleClose = () => {
     setAnchorEl(null);
   };
 
-  const { completedClicked, importantClicked, task } = props;
+  const { onCompletedClicked, onImportantClicked, onDeleteTask, task } = props;
 
-  function onCompletedClicked() {
-    if (completedClicked != null) {
-      completedClicked(task);
+  function handleCompletedClicked() {
+    if (onCompletedClicked != null) {
+      onCompletedClicked(task);
     }
   }
 
-  function onImportantClicked() {
-    if (importantClicked != null) {
-      importantClicked(task);
+  function handleImportantClicked() {
+    if (onImportantClicked != null) {
+      onImportantClicked(task);
     }
+  }
+
+  function handleDeleteTask() {
+    if (onDeleteTask != null) {
+      onDeleteTask(task);
+    }
+    handleHandleClose();
   }
 
   return (
@@ -61,17 +69,17 @@ export default function (props: TaskListItemProps): React.ReactElement {
           checked={task.isCompleted}
           tabIndex={-1}
           disableRipple
-          onChange={() => onCompletedClicked()}
+          onChange={() => handleCompletedClicked()}
         />
       </ListItemIcon>
       <ListItemText primary={task.text} />
       <ListItemSecondaryAction>
         {showMenu && (
-          <IconButton onClick={handleClick}>
+          <IconButton onClick={handleHandleClick}>
             <MenuIcon />
           </IconButton>
         )}
-        <IconButton onClick={() => onImportantClicked()}>
+        <IconButton onClick={() => handleImportantClicked()}>
           {task.isImportant ? (
             <Star style={{ color: "red" }} />
           ) : (
@@ -84,19 +92,19 @@ export default function (props: TaskListItemProps): React.ReactElement {
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
-          onClose={handleClose}
+          onClose={handleHandleClose}
         >
-          <MenuItem onClick={handleClose}>Add to My Day</MenuItem>
-          <MenuItem onClick={handleClose}>Mark as Important</MenuItem>
-          <MenuItem onClick={handleClose}>Mark as Completed</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Add to My Day</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Mark as Important</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Mark as Completed</MenuItem>
           <Divider />
-          <MenuItem onClick={handleClose}>Due today</MenuItem>
-          <MenuItem onClick={handleClose}>Due tomorrow</MenuItem>
-          <MenuItem onClick={handleClose}>Pick a date</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Due today</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Due tomorrow</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Pick a date</MenuItem>
           <Divider />
-          <MenuItem onClick={handleClose}>Move task to...</MenuItem>
+          <MenuItem onClick={handleHandleClose}>Move task to...</MenuItem>
           <Divider />
-          <MenuItem onClick={handleClose}>Delete task</MenuItem>
+          <MenuItem onClick={handleDeleteTask}>Delete task</MenuItem>
         </Menu>
       </ListItemSecondaryAction>
     </ListItem>

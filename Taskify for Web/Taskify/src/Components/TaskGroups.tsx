@@ -21,7 +21,7 @@ const initialState = {
   mouseY: null,
 };
 
-export default function TaskGroups(props: TaskGroupsProps): ReactElement {
+export default function (props: TaskGroupsProps): ReactElement {
   const [state, setState] = React.useState<{
     mouseX: null | number;
     mouseY: null | number;
@@ -35,7 +35,7 @@ export default function TaskGroups(props: TaskGroupsProps): ReactElement {
     }
   }
 
-  function onContextMenu(event: React.MouseEvent<HTMLDivElement>) {
+  function handleContextMenu(event: React.MouseEvent<HTMLDivElement>) {
     event.preventDefault();
     setState({
       mouseX: event.clientX - 2,
@@ -55,7 +55,7 @@ export default function TaskGroups(props: TaskGroupsProps): ReactElement {
         {taskLists?.map((task, _index) => {
           return (
             <ListItem
-              onContextMenu={onContextMenu}
+              onContextMenu={handleContextMenu}
               button
               selected={task === selectedTaskList}
               key={task.name}

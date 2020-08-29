@@ -25,6 +25,7 @@ import {
   toggleTaskImportant,
   setTaskLists,
   addTask,
+  deleteTask,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
 import { TaskItem } from "../Dto/TaskItem";
@@ -97,6 +98,8 @@ function Shell(props: any): ReactElement {
     setTaskLists,
     // eslint-disable-next-line no-shadow
     addTask,
+    // eslint-disable-next-line no-shadow
+    deleteTask,
   } = props;
 
   useEffect(() => {
@@ -130,13 +133,13 @@ function Shell(props: any): ReactElement {
     setMobileOpen(false);
   };
 
-  function onTaskCompleted(task: TaskItem) {
+  function handleTaskCompleted(task: TaskItem) {
     if (toggleTaskCompleted != null) {
       toggleTaskCompleted(task);
     }
   }
 
-  function onTaskImportant(task: TaskItem) {
+  function handleTaskImportant(task: TaskItem) {
     if (toggleTaskImportant != null) {
       toggleTaskImportant(task);
     }
@@ -156,7 +159,7 @@ function Shell(props: any): ReactElement {
       <TaskGroupsList
         userTaskGroups={userTaskList}
         systemTaskGroups={systemTaskList}
-        setSelectedTaskGroup={setSelectedTaskList}
+        onSetSelectedTaskGroup={setSelectedTaskList}
         selectedTaskList={selectedTaskList}
       />
     </div>
@@ -238,9 +241,10 @@ function Shell(props: any): ReactElement {
             selectedTaskList?.backgroundColour
           )}
           selected={selectedTaskList}
-          addTask={addTask}
-          completedClicked={onTaskCompleted}
-          importantClicked={onTaskImportant}
+          onAddTask={addTask}
+          onDeleteTask={deleteTask}
+          onCompletedClicked={handleTaskCompleted}
+          onImportantClicked={handleTaskImportant}
         />
       </main>
       <TaskOptions open={openTask} />
@@ -259,6 +263,7 @@ const mapDispatchToProps = {
   toggleTaskImportant,
   toggleTaskCompleted,
   addTask,
+  deleteTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

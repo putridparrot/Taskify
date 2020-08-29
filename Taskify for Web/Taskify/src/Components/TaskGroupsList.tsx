@@ -7,16 +7,14 @@ export interface TaskGroupsListProps {
   systemTaskGroups: TaskList[];
   userTaskGroups: TaskList[];
   selectedTaskList?: TaskList;
-  setSelectedTaskGroup?: (selected: TaskList) => void;
+  onSetSelectedTaskGroup?: (selected: TaskList) => void;
 }
 
-export default function TaskGroupsList(
-  props: TaskGroupsListProps
-): ReactElement {
+export default function (props: TaskGroupsListProps): ReactElement {
   const {
     systemTaskGroups,
     userTaskGroups,
-    setSelectedTaskGroup,
+    onSetSelectedTaskGroup,
     selectedTaskList,
   } = props;
 
@@ -24,13 +22,13 @@ export default function TaskGroupsList(
     <>
       <TaskGroups
         taskLists={systemTaskGroups}
-        setSelectedTaskGroup={setSelectedTaskGroup}
+        setSelectedTaskGroup={onSetSelectedTaskGroup}
         selectedTaskList={selectedTaskList}
       />
       <Divider />
       <TaskGroups
         taskLists={userTaskGroups}
-        setSelectedTaskGroup={setSelectedTaskGroup}
+        setSelectedTaskGroup={onSetSelectedTaskGroup}
         selectedTaskList={selectedTaskList}
       />
     </>

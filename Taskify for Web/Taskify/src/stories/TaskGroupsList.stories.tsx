@@ -57,6 +57,6 @@ storiesOf("TaskGroupsList", module)
     <TaskGroupsList
       systemTaskGroups={systemTasks}
       userTaskGroups={userTasks}
-      setSelectedTaskGroup={action("Selected")}
+      onSetSelectedTaskGroup={action("Selected")}
     />
   ));

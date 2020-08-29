@@ -60,14 +60,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface SelectedTaskDetailProps {
   selected?: TaskList;
   backgroundColour?: string;
-  completedClicked?: (task: TaskItem) => void;
-  importantClicked?: (task: TaskItem) => void;
-  addTask?: (selected: TaskList, newTask: TaskItem) => void;
+  onCompletedClicked?: (task: TaskItem) => void;
+  onImportantClicked?: (task: TaskItem) => void;
+  onAddTask?: (selected: TaskList, newTask: TaskItem) => void;
+  onDeleteTask?: (selected: TaskList, task: TaskItem) => void;
 }
 
-export default function SelectedTaskDetail(
-  props: SelectedTaskDetailProps
-): ReactElement {
+export default function (props: SelectedTaskDetailProps): ReactElement {
   const classes = useStyles();
   const theme = useTheme();
   const targetRef: any = useRef(null);
@@ -87,8 +86,9 @@ export default function SelectedTaskDetail(
 
   const {
     selected,
-    completedClicked,
-    importantClicked,
+    onCompletedClicked,
+    onImportantClicked,
+    onDeleteTask,
     backgroundColour,
   } = props;
 
@@ -102,14 +102,14 @@ export default function SelectedTaskDetail(
   const footerTextColour = getContrast(footerBackgroundColour);
 
   function checkForEnter(event: React.KeyboardEvent<HTMLDivElement>) {
-    const { addTask } = props;
+    const { onAddTask } = props;
 
     if (event.key === "Enter") {
       // we don't want enter to refresh page so handle it
       event.preventDefault();
-      if (selected != null && addTask != null) {
+      if (selected != null && onAddTask != null) {
         const target = event.target as any;
-        addTask(selected, {
+        onAddTask(selected, {
           id: "new",
           text: target.value,
         });
@@ -142,8 +142,9 @@ export default function SelectedTaskDetail(
               <div key={task.id}>
                 <TaskListItem
                   task={task}
-                  completedClicked={completedClicked}
-                  importantClicked={importantClicked}
+                  onCompletedClicked={onCompletedClicked}
+                  onImportantClicked={onImportantClicked}
+                  onDeleteTask={(tsk) => onDeleteTask?.(selected, tsk)}
                 />
                 <Divider
                   className={classes.divider}

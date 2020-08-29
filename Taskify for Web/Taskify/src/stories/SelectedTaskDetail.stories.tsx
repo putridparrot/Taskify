@@ -15,8 +15,8 @@ const taskList: TaskList = {
 
 storiesOf("Selected", module)
   .add("Without Details", () => (
-    <SelectedTaskDetail addTask={action(`Add Task`)} />
+    <SelectedTaskDetail onAddTask={action(`Add Task`)} />
   ))
   .add("With Details", () => (
-    <SelectedTaskDetail selected={taskList} addTask={action(`Add Task`)} />
+    <SelectedTaskDetail selected={taskList} onAddTask={action(`Add Task`)} />
   ));
