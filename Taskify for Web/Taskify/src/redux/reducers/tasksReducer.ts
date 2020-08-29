@@ -65,7 +65,7 @@ const deleteTask = (
     if (selected != null && taskToDelete != null) {
       const idx = selected.tasks.indexOf(taskToDelete);
       if (idx >= 0) {
-        selected.tasks.splice(idx);
+        selected.tasks.splice(idx, 1);
       }
     }
 
