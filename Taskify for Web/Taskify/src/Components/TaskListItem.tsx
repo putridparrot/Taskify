@@ -18,6 +18,7 @@ export interface TaskListItemProps {
   onCompletedClicked?: (task: TaskItem) => void;
   onImportantClicked?: (task: TaskItem) => void;
   onDeleteTask?: (task: TaskItem) => void;
+  onDisplayProperties?: (task: TaskItem) => void;
   task: TaskItem;
 }
 
@@ -34,19 +35,13 @@ export default function (props: TaskListItemProps): React.ReactElement {
     setAnchorEl(null);
   };
 
-  const { onCompletedClicked, onImportantClicked, onDeleteTask, task } = props;
-
-  function handleCompletedClicked() {
-    if (onCompletedClicked != null) {
-      onCompletedClicked(task);
-    }
-  }
-
-  function handleImportantClicked() {
-    if (onImportantClicked != null) {
-      onImportantClicked(task);
-    }
-  }
+  const {
+    onCompletedClicked,
+    onImportantClicked,
+    onDeleteTask,
+    onDisplayProperties,
+    task,
+  } = props;
 
   function handleDeleteTask() {
     if (onDeleteTask != null) {
@@ -58,6 +53,7 @@ export default function (props: TaskListItemProps): React.ReactElement {
   return (
     <ListItem
       button
+      onClick={() => onDisplayProperties?.(task)}
       // onMouseOver={() => setShowMenu(true)}
       // onMouseOut={() => setShowMenu(false)}
       // onFocus={() => setShowMenu(true)}
@@ -69,7 +65,7 @@ export default function (props: TaskListItemProps): React.ReactElement {
           checked={task.isCompleted}
           tabIndex={-1}
           disableRipple
-          onChange={() => handleCompletedClicked()}
+          onChange={() => onCompletedClicked?.(task)}
         />
       </ListItemIcon>
       <ListItemText primary={task.text} />
@@ -79,7 +75,7 @@ export default function (props: TaskListItemProps): React.ReactElement {
             <MenuIcon />
           </IconButton>
         )}
-        <IconButton onClick={() => handleImportantClicked()}>
+        <IconButton onClick={() => onImportantClicked?.(task)}>
           {task.isImportant ? (
             <Star style={{ color: "red" }} />
           ) : (

@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export interface TaskOptionsProps {
   open: boolean;
+  onClose?: () => void;
 }
 
 export default function (props: TaskOptionsProps): ReactElement {
@@ -57,18 +58,17 @@ export default function (props: TaskOptionsProps): ReactElement {
     setOpenTaskDrawer(open);
   }, [props]);
 
-  // const handleTaskDrawerToggle = () => {
-  //   setOpenTaskDrawer(!openTaskDrawer);
-  // };
+  const { onClose } = props;
 
-  const handleTaskDrawerClose = () => {
+  function handleTaskDrawerClose() {
     setOpenTaskDrawer(false);
-  };
+    onClose?.();
+  }
 
   return (
     <Drawer
       className={openTaskDrawer ? classes.taskDrawer : classes.taskDrawerClosed}
-      variant="permanent"
+      variant="temporary"
       anchor="right"
       open={openTaskDrawer}
       classes={{

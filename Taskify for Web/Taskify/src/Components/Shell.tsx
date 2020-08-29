@@ -28,8 +28,7 @@ import {
   deleteTask,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
-import { TaskItem } from "../Dto/TaskItem";
-import TaskOptions from "./TaskOptions";
+import TaskProperties from "./TaskProperties";
 
 const drawerWidth = 240;
 
@@ -122,28 +121,9 @@ function Shell(props: any): ReactElement {
   }, [setSelectedTaskList, setTaskLists]);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [displayProperties, setDisplayProperties] = React.useState(false);
   const classes = useStyles();
   const theme = useTheme();
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const handleDrawerClose = () => {
-    setMobileOpen(false);
-  };
-
-  function handleTaskCompleted(task: TaskItem) {
-    if (toggleTaskCompleted != null) {
-      toggleTaskCompleted(task);
-    }
-  }
-
-  function handleTaskImportant(task: TaskItem) {
-    if (toggleTaskImportant != null) {
-      toggleTaskImportant(task);
-    }
-  }
 
   const { selectedTaskList, taskLists } = props;
 
@@ -165,8 +145,6 @@ function Shell(props: any): ReactElement {
     </div>
   );
 
-  const openTask = false; // selectedTaskList?.name === "Important";
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -176,7 +154,7 @@ function Shell(props: any): ReactElement {
             color="inherit"
             aria-label="open drawer"
             edge="start"
-            onClick={handleDrawerToggle}
+            onClick={() => setMobileOpen(!mobileOpen)}
             className={classes.menuButton}
           >
             <MenuIcon />
@@ -196,13 +174,13 @@ function Shell(props: any): ReactElement {
             }}
             anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
-            onClose={handleDrawerToggle}
+            onClose={() => setMobileOpen(!mobileOpen)}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
           >
             <div className={classes.drawerHeader}>
-              <IconButton onClick={handleDrawerClose}>
+              <IconButton onClick={() => setMobileOpen(false)}>
                 {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
@@ -243,11 +221,15 @@ function Shell(props: any): ReactElement {
           selected={selectedTaskList}
           onAddTask={addTask}
           onDeleteTask={deleteTask}
-          onCompletedClicked={handleTaskCompleted}
-          onImportantClicked={handleTaskImportant}
+          onCompletedClicked={(tsk) => toggleTaskCompleted?.(tsk)}
+          onImportantClicked={(tsk) => toggleTaskImportant?.(tsk)}
+          onDisplayProperties={() => setDisplayProperties(true)}
         />
       </main>
-      <TaskOptions open={openTask} />
+      <TaskProperties
+        open={displayProperties}
+        onClose={() => setDisplayProperties(false)}
+      />
     </div>
   );
 }

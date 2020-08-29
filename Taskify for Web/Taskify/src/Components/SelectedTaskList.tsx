@@ -64,6 +64,7 @@ export interface SelectedTaskDetailProps {
   onImportantClicked?: (task: TaskItem) => void;
   onAddTask?: (selected: TaskList, newTask: TaskItem) => void;
   onDeleteTask?: (selected: TaskList, task: TaskItem) => void;
+  onDisplayProperties?: (task: TaskItem) => void;
 }
 
 export default function (props: SelectedTaskDetailProps): ReactElement {
@@ -89,6 +90,7 @@ export default function (props: SelectedTaskDetailProps): ReactElement {
     onCompletedClicked,
     onImportantClicked,
     onDeleteTask,
+    onDisplayProperties,
     backgroundColour,
   } = props;
 
@@ -145,6 +147,7 @@ export default function (props: SelectedTaskDetailProps): ReactElement {
                   onCompletedClicked={onCompletedClicked}
                   onImportantClicked={onImportantClicked}
                   onDeleteTask={(tsk) => onDeleteTask?.(selected, tsk)}
+                  onDisplayProperties={onDisplayProperties}
                 />
                 <Divider
                   className={classes.divider}
