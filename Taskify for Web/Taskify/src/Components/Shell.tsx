@@ -26,9 +26,12 @@ import {
   setTaskLists,
   addTask,
   deleteTask,
+  addTaskList,
+  deleteTaskList,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
 import TaskProperties from "./TaskProperties";
+import NewTaskListDialog from "./NewTaskListDialog";
 
 const drawerWidth = 240;
 
@@ -99,6 +102,10 @@ function Shell(props: any): ReactElement {
     addTask,
     // eslint-disable-next-line no-shadow
     deleteTask,
+    // eslint-disable-next-line no-shadow
+    addTaskList,
+    // eslint-disable-next-line no-shadow
+    deleteTaskList,
   } = props;
 
   useEffect(() => {
@@ -122,6 +129,7 @@ function Shell(props: any): ReactElement {
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [displayProperties, setDisplayProperties] = React.useState(false);
+  const [showNewList, setShowNewList] = React.useState(false);
   const classes = useStyles();
   const theme = useTheme();
 
@@ -134,6 +142,19 @@ function Shell(props: any): ReactElement {
     (tl) => tl.specification.isUserGenerated
   );
 
+  function handleOnNewList() {
+    setShowNewList(true);
+  }
+
+  function handleNewListCancel() {
+    setShowNewList(false);
+  }
+
+  function handleNewListOk(newTaskList: string) {
+    addTaskList(newTaskList);
+    setShowNewList(false);
+  }
+
   const drawer = (
     <div className={classes.drawerContainer}>
       <TaskGroupsList
@@ -141,6 +162,8 @@ function Shell(props: any): ReactElement {
         systemTaskGroups={systemTaskList}
         onSetSelectedTaskGroup={setSelectedTaskList}
         selectedTaskList={selectedTaskList}
+        onNewList={handleOnNewList}
+        onDeleteList={deleteTaskList}
       />
     </div>
   );
@@ -230,6 +253,11 @@ function Shell(props: any): ReactElement {
         open={displayProperties}
         onClose={() => setDisplayProperties(false)}
       />
+      <NewTaskListDialog
+        show={showNewList}
+        onOk={handleNewListOk}
+        onCancel={handleNewListCancel}
+      />
     </div>
   );
 }
@@ -246,6 +274,8 @@ const mapDispatchToProps = {
   toggleTaskCompleted,
   addTask,
   deleteTask,
+  addTaskList,
+  deleteTaskList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

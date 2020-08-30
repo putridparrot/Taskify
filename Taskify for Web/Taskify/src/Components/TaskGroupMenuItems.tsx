@@ -4,23 +4,25 @@ import { TaskList } from "../Dto/TaskList";
 
 export default (
   task: TaskList,
-  handleHandleClose: () => void
+  handleCommand: (id: string) => void
 ): ReactElement[] => {
   const menuItems = [
-    <MenuItem onClick={handleHandleClose}>Print list</MenuItem>,
+    <MenuItem onClick={() => handleCommand("Print")}>Print list</MenuItem>,
   ];
 
   if (task.specification?.isUserGenerated) {
     menuItems.push(<Divider />);
     menuItems.push(
-      <MenuItem onClick={handleHandleClose}>Rename list</MenuItem>
+      <MenuItem onClick={() => handleCommand("Rename")}>Rename list</MenuItem>
     );
     menuItems.push(
-      <MenuItem onClick={handleHandleClose}>Duplicate list</MenuItem>
+      <MenuItem onClick={() => handleCommand("Duplicate")}>
+        Duplicate list
+      </MenuItem>
     );
     menuItems.push(<Divider />);
     menuItems.push(
-      <MenuItem onClick={handleHandleClose}>Delete list</MenuItem>
+      <MenuItem onClick={() => handleCommand("Delete")}>Delete list</MenuItem>
     );
   }
 

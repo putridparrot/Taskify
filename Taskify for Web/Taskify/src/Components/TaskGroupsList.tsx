@@ -14,6 +14,8 @@ export interface TaskGroupsListProps {
   userTaskGroups: TaskList[];
   selectedTaskList?: TaskList;
   onSetSelectedTaskGroup?: (selected: TaskList) => void;
+  onNewList?: () => void;
+  onDeleteList?: (selected?: TaskList) => void;
 }
 
 export default function (props: TaskGroupsListProps): ReactElement {
@@ -22,7 +24,19 @@ export default function (props: TaskGroupsListProps): ReactElement {
     userTaskGroups,
     onSetSelectedTaskGroup,
     selectedTaskList,
+    onNewList,
+    onDeleteList,
   } = props;
+
+  function handleCommand(id: string) {
+    switch (id) {
+      case "Delete":
+        onDeleteList?.(selectedTaskList);
+        break;
+      default:
+        break;
+    }
+  }
 
   return (
     <>
@@ -36,8 +50,9 @@ export default function (props: TaskGroupsListProps): ReactElement {
         taskLists={userTaskGroups}
         setSelectedTaskGroup={onSetSelectedTaskGroup}
         selectedTaskList={selectedTaskList}
+        onCommand={handleCommand}
       />
-      <ListItem button>
+      <ListItem button onClick={onNewList}>
         <ListItemIcon>
           <AddIcon style={{ color: "gray" }} />
         </ListItemIcon>

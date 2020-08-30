@@ -45,3 +45,19 @@ export function deleteTask(
     task,
   });
 }
+
+export function addTaskList(
+  newTaskList: string
+): ActionReturn<{ newTaskList }> {
+  return action(ActionTypes.ADD_TASKLIST, {
+    newTaskList,
+  });
+}
+
+export function deleteTaskList(
+  selected?: TaskList
+): ActionReturn<{ selected }> {
+  return action(ActionTypes.DELETE_TASKLIST, {
+    selected,
+  });
+}

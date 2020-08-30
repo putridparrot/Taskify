@@ -34,6 +34,40 @@ const toggleTaskImportant = (
   return tasks != null ? [...tasks] : undefined;
 };
 
+const addTaskList = (taskLists?: TaskList[], newTaskList?: string) => {
+  if (taskLists == null || newTaskList == null) {
+    return taskLists;
+  }
+
+  taskLists.push({
+    id: uuidv4(),
+    name: newTaskList,
+    iconName: "User",
+    specification: {
+      isUserGenerated: true,
+    },
+    tasks: [],
+  });
+
+  return [...taskLists];
+};
+
+const deleteTaskList = (
+  taskLists?: TaskList[],
+  toDeleteTaskList?: TaskList
+) => {
+  if (taskLists == null || toDeleteTaskList == null) {
+    return taskLists;
+  }
+
+  const idx = taskLists.indexOf(toDeleteTaskList);
+  if (idx >= 0) {
+    taskLists.splice(idx, 1);
+  }
+
+  return [...taskLists];
+};
+
 const addTask = (
   tasks?: TaskList[],
   selected?: TaskList,
@@ -182,6 +216,16 @@ export default function tasksReducer(
           action.payload.selected,
           action.payload.task
         ),
+      };
+    case ActionTypes.ADD_TASKLIST:
+      return {
+        ...state,
+        taskLists: addTaskList(state.taskLists, action.payload.newTaskList),
+      };
+    case ActionTypes.DELETE_TASKLIST:
+      return {
+        ...state,
+        taskLists: deleteTaskList(state.taskLists, action.payload.selected),
       };
     default:
       return state;

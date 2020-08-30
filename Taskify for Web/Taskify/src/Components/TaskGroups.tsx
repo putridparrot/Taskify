@@ -15,10 +15,13 @@ export interface TaskGroupsProps {
   taskLists: TaskList[] | null;
   setSelectedTaskGroup?: (selected: TaskList) => void;
   selectedTaskList?: TaskList;
+  onCommand?: (id: string) => void;
 }
 
 export default function (props: TaskGroupsProps): ReactElement {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const { taskLists, selectedTaskList, onCommand } = props;
 
   const handleHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,6 +31,11 @@ export default function (props: TaskGroupsProps): ReactElement {
     setAnchorEl(null);
   };
 
+  function handleCommand(id: string) {
+    handleClose();
+    onCommand?.(id);
+  }
+
   function handleTaskListSelected(taskList: TaskList): void {
     const { setSelectedTaskGroup } = props;
 
@@ -35,8 +43,6 @@ export default function (props: TaskGroupsProps): ReactElement {
       setSelectedTaskGroup(taskList);
     }
   }
-
-  const { taskLists, selectedTaskList } = props;
 
   return (
     <div>
@@ -65,7 +71,7 @@ export default function (props: TaskGroupsProps): ReactElement {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {TaskGroupMenuItems(task, handleClose)}
+                  {TaskGroupMenuItems(task, handleCommand)}
                 </Menu>
               </ListItemSecondaryAction>
             </ListItem>
