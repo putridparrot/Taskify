@@ -3,6 +3,8 @@ import ActionTypes from "../actionTypes";
 import { TaskList } from "../../Dto/TaskList";
 import { TaskItem } from "../../Dto/TaskItem";
 
+const defaultBackground = "#e0e0e0";
+
 interface TaskifyState {
   taskLists?: TaskList[];
   systemTaskLists?: TaskList[];
@@ -46,6 +48,7 @@ const addTaskList = (taskLists?: TaskList[], newTaskList?: string) => {
     specification: {
       isUserGenerated: true,
     },
+    backgroundColour: defaultBackground,
     tasks: [],
   });
 
@@ -64,6 +67,46 @@ const deleteTaskList = (
   if (idx >= 0) {
     taskLists.splice(idx, 1);
   }
+
+  return [...taskLists];
+};
+
+const renameTaskList = (
+  taskLists?: TaskList[],
+  toRenameTaskList?: TaskList,
+  newName?: string
+) => {
+  if (taskLists == null || toRenameTaskList == null) {
+    return taskLists;
+  }
+
+  const idx = taskLists.indexOf(toRenameTaskList);
+  if (idx >= 0) {
+    taskLists[idx].name = newName!;
+  }
+
+  return [...taskLists];
+};
+
+const duplicateTaskList = (
+  taskLists?: TaskList[],
+  toDuplicateTaskList?: TaskList,
+  newName?: string
+) => {
+  if (taskLists == null || toDuplicateTaskList == null) {
+    return taskLists;
+  }
+
+  taskLists.push({
+    id: uuidv4(),
+    name: newName!,
+    iconName: "User",
+    specification: {
+      isUserGenerated: true,
+    },
+    backgroundColour: defaultBackground,
+    tasks: toDuplicateTaskList.tasks.map((t) => ({ ...t })),
+  });
 
   return [...taskLists];
 };
@@ -217,15 +260,34 @@ export default function tasksReducer(
           action.payload.task
         ),
       };
-    case ActionTypes.ADD_TASKLIST:
+    case ActionTypes.ADD_TASKLIST: {
       return {
         ...state,
         taskLists: addTaskList(state.taskLists, action.payload.newTaskList),
       };
+    }
     case ActionTypes.DELETE_TASKLIST:
       return {
         ...state,
         taskLists: deleteTaskList(state.taskLists, action.payload.selected),
+      };
+    case ActionTypes.RENAME_TASKLIST:
+      return {
+        ...state,
+        taskLists: renameTaskList(
+          state.taskLists,
+          action.payload.selected,
+          action.payload.newName
+        ),
+      };
+    case ActionTypes.DUPLICATE_TASKLIST:
+      return {
+        ...state,
+        taskLists: duplicateTaskList(
+          state.taskLists,
+          action.payload.selected,
+          action.payload.newName
+        ),
       };
     default:
       return state;

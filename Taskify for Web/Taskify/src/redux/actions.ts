@@ -61,3 +61,23 @@ export function deleteTaskList(
     selected,
   });
 }
+
+export function renameTaskList(
+  selected?: TaskList,
+  newName?: string
+): ActionReturn<{ selected }> {
+  return action(ActionTypes.RENAME_TASKLIST, {
+    selected,
+    newName,
+  });
+}
+
+export function duplicateTaskList(
+  selected?: TaskList,
+  newName?: string
+): ActionReturn<{ selected }> {
+  return action(ActionTypes.DUPLICATE_TASKLIST, {
+    selected,
+    newName,
+  });
+}
