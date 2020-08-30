@@ -28,10 +28,12 @@ import {
   deleteTask,
   addTaskList,
   deleteTaskList,
+  renameTaskList,
+  duplicateTaskList,
 } from "../redux/actions";
 import TaskGroupsList from "./TaskGroupsList";
 import TaskProperties from "./TaskProperties";
-import NewTaskListDialog from "./NewTaskListDialog";
+import TaskListDialog, { TaskDialogContext } from "./TaskListDialog";
 
 const drawerWidth = 240;
 
@@ -106,6 +108,10 @@ function Shell(props: any): ReactElement {
     addTaskList,
     // eslint-disable-next-line no-shadow
     deleteTaskList,
+    // eslint-disable-next-line no-shadow
+    renameTaskList,
+    // eslint-disable-next-line no-shadow
+    duplicateTaskList,
   } = props;
 
   useEffect(() => {
@@ -129,7 +135,10 @@ function Shell(props: any): ReactElement {
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [displayProperties, setDisplayProperties] = React.useState(false);
-  const [showNewList, setShowNewList] = React.useState(false);
+  const [showDialog, setShowDialog] = React.useState(false);
+  const [dialogContext, setDialogContext] = React.useState(
+    TaskDialogContext.NONE
+  );
   const classes = useStyles();
   const theme = useTheme();
 
@@ -142,17 +151,30 @@ function Shell(props: any): ReactElement {
     (tl) => tl.specification.isUserGenerated
   );
 
-  function handleOnNewList() {
-    setShowNewList(true);
+  function handleShowDialog(context: TaskDialogContext) {
+    setDialogContext(context);
+    setShowDialog(true);
   }
 
-  function handleNewListCancel() {
-    setShowNewList(false);
+  function handleDialogCancel() {
+    setShowDialog(false);
   }
 
-  function handleNewListOk(newTaskList: string) {
-    addTaskList(newTaskList);
-    setShowNewList(false);
+  function handleDialogAccept(context: TaskDialogContext, name: string) {
+    switch (dialogContext) {
+      case TaskDialogContext.NEW:
+        addTaskList(name);
+        break;
+      case TaskDialogContext.RENAME:
+        renameTaskList(selectedTaskList, name);
+        break;
+      case TaskDialogContext.DUPLICATE:
+        duplicateTaskList(selectedTaskList, name);
+        break;
+      default:
+        break;
+    }
+    setShowDialog(false);
   }
 
   const drawer = (
@@ -162,8 +184,10 @@ function Shell(props: any): ReactElement {
         systemTaskGroups={systemTaskList}
         onSetSelectedTaskGroup={setSelectedTaskList}
         selectedTaskList={selectedTaskList}
-        onNewList={handleOnNewList}
+        onNewList={() => handleShowDialog(TaskDialogContext.NEW)}
         onDeleteList={deleteTaskList}
+        onRenameList={() => handleShowDialog(TaskDialogContext.RENAME)}
+        onDuplicateList={() => handleShowDialog(TaskDialogContext.DUPLICATE)}
       />
     </div>
   );
@@ -253,10 +277,11 @@ function Shell(props: any): ReactElement {
         open={displayProperties}
         onClose={() => setDisplayProperties(false)}
       />
-      <NewTaskListDialog
-        show={showNewList}
-        onOk={handleNewListOk}
-        onCancel={handleNewListCancel}
+      <TaskListDialog
+        context={dialogContext}
+        show={showDialog}
+        onOk={handleDialogAccept}
+        onCancel={handleDialogCancel}
       />
     </div>
   );
@@ -276,6 +301,8 @@ const mapDispatchToProps = {
   deleteTask,
   addTaskList,
   deleteTaskList,
+  renameTaskList,
+  duplicateTaskList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shell);

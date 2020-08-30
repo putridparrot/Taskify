@@ -16,6 +16,8 @@ export interface TaskGroupsListProps {
   onSetSelectedTaskGroup?: (selected: TaskList) => void;
   onNewList?: () => void;
   onDeleteList?: (selected?: TaskList) => void;
+  onRenameList?: (selected?: TaskList, newName?: string) => void;
+  onDuplicateList?: (selected?: TaskList, newName?: string) => void;
 }
 
 export default function (props: TaskGroupsListProps): ReactElement {
@@ -26,12 +28,20 @@ export default function (props: TaskGroupsListProps): ReactElement {
     selectedTaskList,
     onNewList,
     onDeleteList,
+    onRenameList,
+    onDuplicateList,
   } = props;
 
   function handleCommand(id: string) {
     switch (id) {
       case "Delete":
         onDeleteList?.(selectedTaskList);
+        break;
+      case "Duplicate":
+        onDuplicateList?.(selectedTaskList, `${selectedTaskList?.name}1`);
+        break;
+      case "Rename":
+        onRenameList?.(selectedTaskList, `${selectedTaskList?.name}1`);
         break;
       default:
         break;
