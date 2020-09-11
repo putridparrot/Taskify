@@ -2,7 +2,7 @@
 
 namespace Taskify.Events
 {
-    public class TaskListSelectedEvent: PubSubEvent<int>
+    public class TaskListSelectedEvent: PubSubEvent<string>
     {
         
     }

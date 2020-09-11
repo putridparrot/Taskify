@@ -1,7 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using Prism.Events;
 using Prism.Mvvm;
 using Taskify.Events;
+using Taskify.Presentation;
 using Taskify.Service.Client.Services;
 
 namespace Taskify.ViewModels
@@ -16,7 +19,7 @@ namespace Taskify.ViewModels
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;
-            TaskLists = new ObservableCollection<TaskListViewModel>();
+            TaskLists = new ExtendedObservableCollection<TaskListViewModel>();
             Refresh();
         }
 
@@ -37,18 +40,17 @@ namespace Taskify.ViewModels
         private async void Refresh()
         {
             var lists = await _dataService.GetTaskLists();
-            lists.ForEach(l =>
+            TaskLists.AddRange(lists.Select(l => new TaskListViewModel
             {
-                var taskListViewModel = new TaskListViewModel()
-                {
-                    Name = l.Name,
-                    Id = l.Id
-                };
-                TaskLists.Add(taskListViewModel);
-            });
-            
+                Name = l.Name,
+                Id = l.Id,
+                BackgroundColour = l.BackgroundColour,
+                IconName = l.IconName,
+                IsUserGenerated = l.Specification?.IsUserGenerated ?? false
+            }));
+            RaisePropertyChanged(nameof(TaskLists));
         }
 
-        public ObservableCollection<TaskListViewModel> TaskLists { get; private set; }
+        public ExtendedObservableCollection<TaskListViewModel> TaskLists { get; private set; }
     }
 }

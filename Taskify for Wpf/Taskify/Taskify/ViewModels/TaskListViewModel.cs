@@ -3,16 +3,22 @@ using Taskify.Behaviours;
 
 namespace Taskify.ViewModels
 {
-    public class TaskListViewModel: BindableBase, ISelectableItem
+    public class TaskListViewModel : BindableBase, ISelectableItem
     {
-        public string Name { get; set; }
-        public int Id { get; set; }
+        private bool _isSelected;
 
-        private bool isSelected;
+        public string Name { get; set; }
+        public string Id { get; set; }
+
         public bool IsSelected
         {
-            get => this.isSelected;
-            set => this.SetProperty(ref this.isSelected, value, "IsSelected");
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
         }
+
+        public bool IsUserGenerated { get; set; }
+        public string IconName { get; set; }
+        public string BackgroundColour { get; set; }
+
     }
 }
