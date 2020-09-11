@@ -194,6 +194,7 @@
     <Compile Include="Controls\TasksViewUserControl.xaml.cs">
       <DependentUpon>TasksViewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StringToBrushConverter.cs" />
     <Compile Include="Converters\TaskListToMenuConverter.cs" />
     <Compile Include="Events\TaskListSelectedEvent.cs" />
     <Compile Include="PutridParrot\Presentation\ExtendedObservableCollection.cs" />

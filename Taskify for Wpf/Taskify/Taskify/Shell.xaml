@@ -55,21 +55,36 @@
         <Grid Grid.Row="0">
             <mah:HamburgerMenu
                 HamburgerWidth="48"
+                ItemInvoked="HamburgerMenu_OnItemInvoked"
                 ItemTemplate="{StaticResource MenuItemTemplate}"
                 Style="{StaticResource MahApps.Styles.HamburgerMenu.Ripple}"
                 ItemsSource="{Binding TaskListDetailViewModel.TaskLists, Converter={converters:TaskListToMenuConverter}}"
                 IsPaneOpen="True">
 
-                <!--<mah:HamburgerMenu.ItemsSource>
-                    <mah:HamburgerMenuItemCollection>
-                        <mah:HamburgerMenuIconItem Icon="{iconPacks:Material Kind=Home}" Label="Home">
-                        </mah:HamburgerMenuIconItem>
-                        <mah:HamburgerMenuIconItem Icon="{iconPacks:Material Kind=AccountCircle}" Label="Private">
-                        </mah:HamburgerMenuIconItem>
-                        <mah:HamburgerMenuIconItem Icon="{iconPacks:Octicons Kind=Briefcase}" Label="Briefcase">
-                        </mah:HamburgerMenuIconItem>
-                    </mah:HamburgerMenuItemCollection>
-                </mah:HamburgerMenu.ItemsSource>-->
+
+                <mah:HamburgerMenu.ContentTemplate>
+                    <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
+                        <Grid Margin="20 0 0 0" Background="{Binding Tag, Converter={converters:StringToBrushConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Margin="0 15 0 5"
+                                       Padding="0"
+                                       FontFamily="{DynamicResource MahApps.Fonts.Family.Header}"
+                                       FontSize="{DynamicResource MahApps.Font.Size.Header}"
+                                       Text="{Binding Label}" />
+                            <ScrollViewer Grid.Row="1"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="Auto">
+                                <ContentControl Content="{Binding Tag}" Focusable="False" />
+                            </ScrollViewer>
+                        </Grid>
+                    </DataTemplate>
+
+                </mah:HamburgerMenu.ContentTemplate>
 
             </mah:HamburgerMenu>
         </Grid>

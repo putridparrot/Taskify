@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 using MahApps.Metro.Controls;
@@ -33,9 +30,10 @@ namespace Taskify.Converters
                     {
                         Icon = new PackIconMaterial
                         {
-                            Kind = GetIcon(taskListViewModel.IconName)
+                            Kind = GetIcon(taskListViewModel)
                         },
-                        Label = taskListViewModel.Name
+                        Label = taskListViewModel.Name,
+                        Tag = taskListViewModel.BackgroundColour
                     };
 
                     menuItems.Add(menuItem);
@@ -51,24 +49,22 @@ namespace Taskify.Converters
                         {
                             Icon = new PackIconMaterial
                             {
-                                Kind = GetIcon(taskListViewModel.IconName)
+                                Kind = GetIcon(taskListViewModel)
                             },
-                            Label = taskListViewModel.Name
+                            Label = taskListViewModel.Name,
+                            Tag = taskListViewModel.BackgroundColour
                         };
 
                         menuItems.Add(menuItem);
                     }
                 }
-
             }
-
-
             return menuItems;
         }
 
-        private PackIconMaterialKind GetIcon(string iconName)
+        private PackIconMaterialKind GetIcon(TaskListViewModel taskListViewModel)
         {
-            switch (iconName)
+            switch (taskListViewModel.IconName)
             {
                 case "MyDay":
                     return PackIconMaterialKind.WeatherSunny;
@@ -88,4 +84,5 @@ namespace Taskify.Converters
             throw new NotImplementedException();
         }
     }
+
 }
