@@ -35,7 +35,6 @@ namespace Taskify.Converters
                         Label = taskListViewModel.Name,
                         Tag = taskListViewModel.BackgroundColour
                     };
-
                     menuItems.Add(menuItem);
                 }
 

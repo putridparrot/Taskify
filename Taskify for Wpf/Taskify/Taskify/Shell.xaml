@@ -59,27 +59,34 @@
                 ItemTemplate="{StaticResource MenuItemTemplate}"
                 Style="{StaticResource MahApps.Styles.HamburgerMenu.Ripple}"
                 ItemsSource="{Binding TaskListDetailViewModel.TaskLists, Converter={converters:TaskListToMenuConverter}}"
+                SelectedIndex="0"
                 IsPaneOpen="True">
-
 
                 <mah:HamburgerMenu.ContentTemplate>
                     <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
-                        <Grid Margin="20 0 0 0" Background="{Binding Tag, Converter={converters:StringToBrushConverter}}">
+                        <Grid Margin="0 0 0 0" Background="{Binding Tag, Converter={converters:StringToBrushConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0"
-                                       Margin="0 15 0 5"
-                                       Padding="0"
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10 15 0 5">
+                                <iconPacks:PackIconMaterial Kind="HomeOutline"
+                                                            Height="24"
+                                                            Width="24"
+                                                            VerticalAlignment="Center"/>
+                                <TextBlock 
+                                       Margin="10,0,0,0"
                                        FontFamily="{DynamicResource MahApps.Fonts.Family.Header}"
                                        FontSize="{DynamicResource MahApps.Font.Size.Header}"
                                        Text="{Binding Label}" />
+                            </StackPanel>
                             <ScrollViewer Grid.Row="1"
                                           Focusable="False"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="Auto">
-                                <ContentControl Content="{Binding Tag}" Focusable="False" />
+                                <ContentControl 
+                                    Margin="10,0"
+                                    Content="{Binding Tag}" Focusable="False" />
                             </ScrollViewer>
                         </Grid>
                     </DataTemplate>
