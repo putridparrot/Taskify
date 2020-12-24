@@ -1,4 +1,5 @@
-import {EventEmitter} from "events";
+import { EventEmitter } from "events";
 
-export const taskEmitter = new EventEmitter();
+const taskEmitter = new EventEmitter();
 
+export default taskEmitter;

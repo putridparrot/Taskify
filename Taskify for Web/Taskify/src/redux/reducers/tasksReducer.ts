@@ -222,6 +222,7 @@ const getSelectedTaskList = (
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function tasksReducer(
   state: TaskifyState = {},
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   action: any
 ): any {
   switch (action.type) {

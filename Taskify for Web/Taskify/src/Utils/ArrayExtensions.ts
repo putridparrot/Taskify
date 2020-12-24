@@ -1,15 +1,18 @@
-class ArrayExtensions
-{
-  static firstOrDefault = function<T> (array:Array<T> , predicate: Function) : T | null{
-  return array.reduce((prevValue:T | null, currentValue) => {
-    if (!prevValue) {
-      if (predicate(currentValue)) {
-        prevValue = currentValue;
+class ArrayExtensions {
+  static firstOrDefault = <T>(
+    array: Array<T>,
+    predicate: (T) => boolean
+  ): T | null => {
+    return array.reduce((prevValue: T | null, currentValue) => {
+      let pValue = prevValue;
+      if (!pValue) {
+        if (predicate(currentValue)) {
+          pValue = currentValue;
+        }
       }
-    }
-    return prevValue;
-  }, null);
-}    
+      return pValue;
+    }, null);
+  };
 }
 
-export {ArrayExtensions}
+export default ArrayExtensions;

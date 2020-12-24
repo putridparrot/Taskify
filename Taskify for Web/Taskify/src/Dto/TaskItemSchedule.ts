@@ -1,5 +1,5 @@
 export interface TaskItemSchedule {
-    id: number;
-    due: string; // datetime
-    reminder: string; // datetime
+  id: number;
+  due: string; // datetime
+  reminder: string; // datetime
 }

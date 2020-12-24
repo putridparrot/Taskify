@@ -41,6 +41,11 @@ module.exports = {
     "react/jsx-closing-bracket-location": "off", // quite restrictive formatting of HTML like elements
     "import/prefer-default-export": "warn", // requires a export default when single default, defaults to error seems harsh
     "react/jsx-one-expression-per-line": "off", // this is stupid when you have text on a new line, it things it should add another line ad infinitum
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-redeclare": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "react/require-default-props": "off",
     // this stops eslint requiring storybook in Dependencies, not devDependencies
     "import/no-extraneous-dependencies": [
       "error",

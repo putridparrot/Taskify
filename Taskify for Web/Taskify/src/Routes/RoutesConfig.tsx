@@ -1,4 +1,4 @@
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from "react-router-dom";
 import React from "react";
 import App from "../App";
 import LoginComponent from "../Components/Login";
@@ -9,6 +9,6 @@ export const routes = (
   <BrowserRouter>
     <Route path="/" component={LoginComponent} exact />
     <Route path="/signup" component={SignupComponent} />
-    <Route path="/app" component={App} />          
+    <Route path="/app" component={App} />
   </BrowserRouter>
 );

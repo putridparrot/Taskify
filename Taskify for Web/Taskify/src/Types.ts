@@ -1,6 +1,5 @@
-
-const Types={
-  ITaskServiceAgent : Symbol.for("ITaskServiceAgent")
+const Types = {
+  ITaskServiceAgent: Symbol.for("ITaskServiceAgent"),
 };
 
-export {Types};
+export default Types;

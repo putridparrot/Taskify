@@ -1,4 +1,4 @@
 export interface TaskNote {
-    id: number;
-    note: string;
+  id: number;
+  note: string;
 }

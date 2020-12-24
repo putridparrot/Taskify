@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import Toolbar from "@material-ui/core/Toolbar";
 import { ITaskServiceAgent } from "../ServiceAgents/ITaskServiceAgent";
 import applicationContainer from "../Container";
-import { Types } from "../Types";
+import Types from "../Types";
 import SelectedTaskDetail from "./SelectedTaskList";
 import {
   setSelectedTaskList,
@@ -120,6 +120,7 @@ function Shell(props: any): ReactElement {
     );
     taskServiceAgent?.fetchTaskLists((e, resp) => {
       if (e != null) {
+        // eslint-disable-next-line no-console
         console.log("Error Occured....");
       } else if (resp != null) {
         if (setTaskLists != null) {

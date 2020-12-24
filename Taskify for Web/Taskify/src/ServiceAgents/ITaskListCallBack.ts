@@ -1,5 +1,5 @@
-import {TaskList} from "../Dto/TaskList";
+import { TaskList } from "../Dto/TaskList";
 
-export interface ITaskListCallBack {
-    (error: String | null, result?: TaskList[] | null) : void    
+export default interface ITaskListCallBack {
+  (error: string | null, result?: TaskList[] | null): void;
 }

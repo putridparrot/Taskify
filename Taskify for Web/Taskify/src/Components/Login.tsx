@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   withStyles,
   Container,
@@ -15,7 +16,6 @@ import {
 import { createStyles } from "@material-ui/core/styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import EmailIcon from "@material-ui/icons/Email";
-import { NavLink } from "react-router-dom";
 
 const styles = (theme) =>
   createStyles({
@@ -49,19 +49,19 @@ interface LoginState {
 
 // const history = useHistory();
 class Login extends React.Component<LoginProps, LoginState> {
-  private userName: string;
-  private password: string;
+  // private userName: string;
+  // private password: string;
 
   constructor(props) {
     super(props);
 
-    this.userName = "";
-    this.password = "";
+    // this.userName = "";
+    // this.password = "";
 
-    // this.state = {
-    //   userName: "",
-    //   password: ""
-    // };
+    this.state = {
+      userName: "",
+      password: "",
+    };
 
     this.authenticate = this.authenticate.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -73,29 +73,30 @@ class Login extends React.Component<LoginProps, LoginState> {
   }
 
   handleUsernameChange(event) {
-    this.userName = event.target.value;
-
-    // this.setState({
-    //   userName: event.target.value
-    // });
+    // this.userName = event.target.value;
+    this.setState({
+      userName: event.target.value,
+    });
   }
 
   handlePasswordChange(event) {
-    this.password = event.target.value;
-    // this.setState({
-    //   password: event.target.value
-    // });
+    // this.password = event.target.value;
+    this.setState({
+      password: event.target.value,
+    });
   }
 
   authenticate(e) {
-    //    const { userName, password } = this.state;
-    console.log(`Nav Link Clicked.. ${this.userName} ${this.password}`);
+    const { userName, password } = this.state;
+    // eslint-disable-next-line no-console
+    console.log(`Nav Link Clicked.. ${userName} ${password}`);
     e.preventDefault();
   }
 
   render() {
     const { classes } = this.props;
-    //    const { userName, password } = this.state;
+
+    const { userName, password } = this.state;
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -112,7 +113,7 @@ class Login extends React.Component<LoginProps, LoginState> {
             method="POST"
           >
             <TextField
-              value={this.userName}
+              value={userName}
               variant="outlined"
               margin="normal"
               required
@@ -140,7 +141,7 @@ class Login extends React.Component<LoginProps, LoginState> {
               label="Password"
               type="password"
               id="password"
-              value={this.password}
+              value={password}
               onChange={this.handlePasswordChange}
               autoComplete="current-password"
             />
