@@ -92,7 +92,6 @@
                     </DataTemplate>
 
                 </mah:HamburgerMenu.ContentTemplate>
-
             </mah:HamburgerMenu>
         </Grid>
         <StatusBar Grid.Row="1">
