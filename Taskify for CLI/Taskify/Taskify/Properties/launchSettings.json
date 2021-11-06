@@ -2,7 +2,7 @@
   "profiles": {
     "Taskify": {
       "commandName": "Project",
-      "commandLineArgs": "lsg"
+      "commandLineArgs": "ls"
     }
   }
 }

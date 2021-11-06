@@ -12,7 +12,6 @@ namespace Taskify
             try
             {
                 Args.InvokeAction<Arguments>(args);
-                //var parsed = Args.Parse<Arguments>(args);
             }
             catch (ArgException ex)
             {
