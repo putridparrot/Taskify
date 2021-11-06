@@ -7,6 +7,5 @@ namespace Taskify.Data.Domain
         public int Id { get; set; }
         public DateTime? Due { get; set; }
         public DateTime? Reminder { get; set; }
-
     }
 }
