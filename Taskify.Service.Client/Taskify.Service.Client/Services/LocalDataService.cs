@@ -16,12 +16,12 @@ namespace Taskify.Service.Client.Services
         {
             _taskLists = new List<TaskList>
             {
-                new TaskList("My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
-                new TaskList("Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
-                new TaskList("Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),
-                new TaskList("Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou"),
-                new TaskList("Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged"),
-                new TaskList("Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks"),
+                new TaskList(Guid.NewGuid().ToString(), "My Day", new TaskListSpecification {CanDelete = false, IsUserGenerated = false}, iconName:"MyDay"),
+                new TaskList(Guid.NewGuid().ToString(), "Important", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Important"),
+                new TaskList(Guid.NewGuid().ToString(), "Planned", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Planned"),
+                new TaskList(Guid.NewGuid().ToString(), "Assigned to you", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"AssignedToYou"),
+                new TaskList(Guid.NewGuid().ToString(), "Flagged email", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Flagged"),
+                new TaskList(Guid.NewGuid().ToString(), "Tasks", new TaskListSpecification {CanDelete = false, IsUserGenerated = false},iconName:"Tasks"),
             };
         }
 
