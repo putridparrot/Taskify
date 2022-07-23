@@ -54,12 +54,12 @@ namespace Taskify
             await ArgumentsHelper.RenderTaskItems(_dataService.Value.IterateTaskLists(taskGroupIndex, 0, taskItem => taskItem.IsImportant));
         }
 
-        [ArgActionMethod,
-         ArgDescription("Lists assigned to you tasks")]
-        public async Task Lsa()
-        {
-            Console.WriteLine("lsa - not Implemented");
-        }
+        //[ArgActionMethod,
+        // ArgDescription("Lists assigned to you tasks")]
+        //public async Task Lsa()
+        //{
+        //    Console.WriteLine("lsa - not Implemented");
+        //}
 
         [ArgActionMethod,
          ArgDescription("Lists my day tasks")]
@@ -70,9 +70,27 @@ namespace Taskify
 
         [ArgActionMethod,
          ArgDescription("Mark a task as done")]
-        public async Task Done()
+        public async Task Done(int taskGroupIndex = 0, int taskIndex = 0)
         {
-            await ArgumentsHelper.RenderTaskItems(_dataService.Value.IterateTaskLists(0, 0, taskItem => taskItem.IsCompleted));
+            var taskGroups = await _dataService.Value.GetTaskLists();
+            if (taskGroupIndex > 0 && taskGroupIndex <= taskGroups.Count)
+            {
+                var taskGroup = taskGroups[taskGroupIndex - 1];
+                if (taskGroup != null && taskGroup.Tasks != null)
+                {
+                    if (taskIndex > 0 && taskIndex <= taskGroup.Tasks.Count)
+                    {
+                        var task = taskGroup.Tasks[taskIndex - 1];
+                        if (task != null)
+                        {
+                            // _dataService.Value.SetCompleted(task);
+                        }
+                    }
+                }
+            }
+
+            //await ArgumentsHelper.RenderTaskItems(_dataService.Value.IterateTaskLists(0, 0, taskItem => taskItem.IsCompleted));
+            Console.WriteLine("done - not Implemented");
         }
 
         [ArgActionMethod,
