@@ -67,7 +67,7 @@ export interface SelectedTaskDetailProps {
   onDisplayProperties?: (task: TaskItem) => void;
 }
 
-export default function (props: SelectedTaskDetailProps): ReactElement {
+export default function SelectedTaskList(props: SelectedTaskDetailProps): ReactElement {
   const classes = useStyles();
   const theme = useTheme();
   const targetRef: any = useRef(null);

@@ -7,22 +7,22 @@ export default (
   handleCommand: (id: string) => void
 ): ReactElement[] => {
   const menuItems = [
-    <MenuItem onClick={() => handleCommand("Print")}>Print list</MenuItem>,
+    <MenuItem key="print" onClick={() => handleCommand("Print")}>Print list</MenuItem>,
   ];
 
   if (task.specification?.isUserGenerated) {
     menuItems.push(<Divider />);
     menuItems.push(
-      <MenuItem onClick={() => handleCommand("Rename")}>Rename list</MenuItem>
+      <MenuItem key="rename" onClick={() => handleCommand("Rename")}>Rename list</MenuItem>
     );
     menuItems.push(
-      <MenuItem onClick={() => handleCommand("Duplicate")}>
+      <MenuItem key="duplicate" onClick={() => handleCommand("Duplicate")}>
         Duplicate list
       </MenuItem>
     );
     menuItems.push(<Divider />);
     menuItems.push(
-      <MenuItem onClick={() => handleCommand("Delete")}>Delete list</MenuItem>
+      <MenuItem key="delete" onClick={() => handleCommand("Delete")}>Delete list</MenuItem>
     );
   }
 

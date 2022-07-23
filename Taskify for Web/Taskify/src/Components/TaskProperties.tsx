@@ -47,7 +47,7 @@ export interface TaskOptionsProps {
   onClose?: () => void;
 }
 
-export default function (props: TaskOptionsProps): ReactElement {
+export default function TaskProperties(props: TaskOptionsProps): ReactElement {
   const [openTaskDrawer, setOpenTaskDrawer] = React.useState(false);
   const theme = useTheme();
   const classes = useStyles();
