@@ -46,6 +46,7 @@ module.exports = {
     "@typescript-eslint/no-redeclare": "off",
     "@typescript-eslint/no-shadow": "off",
     "react/require-default-props": "off",
+    "react/display-name": "off",
     // this stops eslint requiring storybook in Dependencies, not devDependencies
     "import/no-extraneous-dependencies": [
       "error",
