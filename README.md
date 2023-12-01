@@ -1,6 +1,6 @@
 # Taskify
 
-**This repository is meant as a place to try to implement the same basic application using various technologies. A tag has been created for the old code where we had some initial projects for mobile etc. but the React version had most of the work done to it, but also the code in some cases is out of sync with current packages/libraries. I'll be cleaning this repository up in the coming days and rebooting the project both in public and with the latest versions of packages etc. **
+**This repository is meant as a place to try to implement the same basic application using various technologies. A tag has been created for the old code where we had some initial projects for mobile etc. but the React version had most of the work done to it, but also the code in some cases is out of sync with current packages/libraries. I'll be cleaning this repository up in the coming days and rebooting the project both in public and with the latest versions of packages etc.**
 
 **This is NOT a working application at this point.**
 
