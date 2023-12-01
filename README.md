@@ -1,8 +1,8 @@
 # Taskify
 
-**This repos. is meant as a trying to implement the same basic application using various technologies. A tag has been created for the old code where we had some initial projects for mobile etc. but the React version had most of the work done to it. I'll be cleaning this repository up in the coming days and rebooting the project both in public and with the latest versions of packages etc. 
+**This repos. is meant as a trying to implement the same basic application using various technologies. A tag has been created for the old code where we had some initial projects for mobile etc. but the React version had most of the work done to it. I'll be cleaning this repository up in the coming days and rebooting the project both in public and with the latest versions of packages etc.**
 
-This is NOT a working application at this point.**
+**This is NOT a working application at this point.**
 
 # Premise
 
