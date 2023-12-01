@@ -8,6 +8,8 @@ import AppConfig from "../config/AppConfig";
 @injectable()
 export default class TaskServiceAgent implements ITaskServiceAgent {
   fetchTaskLists(callback: ITaskListCallBack): void {
+    console.log(`Server ${AppConfig.TASKS_API_URL}`);
+
     axios
       .get(AppConfig.TASKS_API_URL)
       .then((response) => {
