@@ -23,3 +23,5 @@ Core concepts.
 * Task lists contain/groups tasks 
 * There are two types of task list, the first type are "standard" built-in lists, for example _Today_ lists all tasks for today, _Important_ all tasks marked as important, _Assigned to you_ tasks assigned to the user and _Tasks_ which simply lists all tasks. The second type of task list are user defined lists which contain a description and tasks can be assigned to.
 * Groups, user defines groups can be created that user defined task lists can be assigned to. A group should have a description.
+
+See SPECIFICATION.md for more information.
